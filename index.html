@@ -1,0 +1,4433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسابقة المعلومات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="shortcut icon" href="mst.png" type="image/png">
+    <style>
+        :root {
+            --primary-color: #2e8b57;
+            --secondary-color: #3cb371;
+            --accent-color: #8fbc8f;
+            --light-color: #f5f5f5;
+            --dark-color: #2f4f4f;
+            --success-color: #4caf50;
+            --warning-color: #ffa500;
+            --danger-color: #f44336;
+            --team1-color: #2e8b57;
+            --team2-color: #4682b4;
+            --gold-color: #daa520;
+            --silver-color: #c0c0c0;
+            --bronze-color: #cd7f32;
+            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+            --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1a3a1a 100%);
+            color: var(--light-color);
+            min-height: 100vh;
+            transition: var(--transition);
+            overflow: hidden;
+            position: relative;
+            text-align: right;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ebe4 100%);
+            color: var(--dark-color);
+        }
+
+        /* Container Styles */
+        .container {
+            width: 100%;
+            height: 100vh;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo.left {
+            order: 1;
+        }
+
+        .logo.right {
+            order: 3;
+            height: 120px;
+        }
+
+        .title-container {
+            order: 2;
+            text-align: center;
+            padding: 0 15px;
+            flex-grow: 1;
+        }
+
+        h1 {
+            background: linear-gradient(to right, var(--gold-color), #ff3b3b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 900;
+            text-shadow: var(--text-shadow);
+            line-height: 1.3;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(to right, var(--gold-color), #b8860b);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* شعار الاستدامة */
+        .sustainability-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            z-index: -1;
+            opacity: 0.1;
+            transition: var(--transition);
+        }
+
+        body.light-mode .sustainability-logo {
+            opacity: 0.05;
+        }
+
+        /* Watermark */
+        .watermark {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 100;
+            font-family: 'Tajawal', sans-serif;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .watermark::before {
+            content: "";
+            font-size: 2rem;
+        }
+
+        body.light-mode .watermark {
+            color: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Game Controls */
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto 10px;
+            width: 100%;
+            max-width: 100%;
+            z-index: 10;
+            flex-wrap: wrap;
+            padding: 5px;
+        }
+
+        .game-controls button {
+            flex: 1;
+            min-width: 120px;
+            max-width: 200px;
+            padding: 10px 5px;
+            font-size: 0.9rem;
+            margin: 2px;
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 140px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        button:focus:not(:active)::after {
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            background-image: linear-gradient(to right, var(--secondary-color), #2e8b57);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            background-image: linear-gradient(to right, var(--success-color), #2e7d32);
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            background-image: linear-gradient(to right, var(--warning-color), #ff8c00);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            background-image: linear-gradient(to right, var(--danger-color), #c62828);
+        }
+
+        .btn-gold {
+            background-color: var(--gold-color);
+            background-image: linear-gradient(to right, var(--gold-color), #b8860b);
+            color: #2f4f4f;
+        }
+
+        /* Game Container */
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 5px;
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-bottom: 10px;
+        }
+
+        .game-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Team Container */
+        .team-container {
+            background: rgba(30, 60, 40, 0.8);
+            backdrop-filter: blur(15px);
+            width: 100%;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .team-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            z-index: -1;
+        }
+
+        body.light-mode .team-container {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .team-container.active {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        body.light-mode .team-container.active {
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .team-container.team1 {
+            border-top: 5px solid var(--team1-color);
+        }
+
+        .team-container.team2 {
+            border-top: 5px solid var(--team2-color);
+        }
+
+        /* Team Header */
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            flex-direction: row-reverse;
+        }
+
+        body.light-mode .team-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .team-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-shadow: var(--text-shadow);
+        }
+
+        .team1-title {
+            color: var(--team1-color);
+        }
+
+        .team2-title {
+            color: var(--team2-color);
+        }
+
+        .team-stats {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-direction: row-reverse;
+        }
+
+        .timer,
+        .score {
+            font-size: 1.1rem;
+            font-weight: 800;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            min-width: 50px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .timer,
+        body.light-mode .score {
+            background-color: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .score {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4));
+            color: var(--light-color);
+        }
+
+        .team1 .score {
+            background: linear-gradient(135deg, var(--team1-color), #2e8b57);
+        }
+
+        .team2 .score {
+            background: linear-gradient(135deg, var(--team2-color), #4169e1);
+        }
+
+        .timer.warning {
+            color: var(--warning-color);
+            animation: pulse 1s infinite;
+        }
+
+        .timer.danger {
+            color: var(--danger-color);
+            animation: pulse 0.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        /* Question Container */
+        .question-container {
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--secondary-color);
+            position: relative;
+            word-break: break-word;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .question-text {
+            background: rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* Options */
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 600;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.light-mode .option-btn {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--dark-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .option-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        body.light-mode .option-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .option-btn:active {
+            transform: translateY(2px);
+        }
+
+        .option-btn.correct {
+            background: var(--success-color);
+            color: white;
+            animation: correctAnswer 0.5s ease;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .option-btn.wrong {
+            background: var(--danger-color);
+            color: white;
+            animation: wrongAnswer 0.5s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        @keyframes correctAnswer {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes wrongAnswer {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-5px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Progress */
+        .progress-container {
+            margin-top: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-direction: row-reverse;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .progress-bar {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--success-color));
+            border-radius: 6px;
+            width: 0;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0.1) 100%);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .team1 .progress {
+            background: linear-gradient(90deg, var(--team1-color), #2e8b57);
+        }
+
+        .team2 .progress {
+            background: linear-gradient(90deg, var(--team2-color), #4169e1);
+        }
+
+        /* Stats */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            gap: 10px;
+            flex-direction: row-reverse;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .stat-box {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-shadow: var(--text-shadow);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        /* Player Selection */
+        .player-selection {
+            text-align: center;
+            margin: 15px auto;
+            /* تقليل الهامش */
+            max-width: 600px;
+            animation: fadeIn 1s ease;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 15px 0;
+        }
+
+        .player-selection::-webkit-scrollbar {
+            display: none;
+        }
+
+        .player-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--light-color);
+            font-weight: 800;
+            text-shadow: var(--text-shadow);
+            position: relative;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+        }
+
+        .player-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold-color), #b8860b);
+            border-radius: 4px;
+        }
+
+        body.light-mode .player-title {
+            color: var(--dark-color);
+        }
+
+        .player-buttons {
+            display: flex;
+            /* تغيير من column إلى flex */
+            flex-direction: row;
+            /* لجعل العناصر في صف واحد */
+            justify-content: center;
+            /* توسيط العناصر */
+            gap: 15px;
+            margin: 0 auto;
+            max-width: 800px;
+            /* زيادة العرض لتتناسب مع الصف */
+            padding: 0 15px;
+        }
+
+        .player-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 20px 12px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            flex: 1;
+            /* لجعل الأزرار تأخذ مساحة متساوية */
+            min-width: 150px;
+            /* تحديد عرض أدنى */
+        }
+
+        .player-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .player-btn:hover::before {
+            opacity: 1;
+        }
+
+        body.light-mode .player-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .player-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .player-icon {
+            font-size: 5rem;
+            transition: var(--transition);
+        }
+
+        .player-btn:hover .player-icon {
+            transform: scale(1.2);
+        }
+
+        /* Category Selection */
+        .category-selection {
+            text-align: center;
+            margin: 15px 0;
+            animation: fadeIn 1s ease;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 15px 0;
+        }
+
+        .category-selection::-webkit-scrollbar {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light-color);
+            font-weight: 800;
+            text-shadow: var(--text-shadow);
+            position: relative;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+        }
+
+        .category-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold-color), #b8860b);
+            border-radius: 4px;
+        }
+
+        body.light-mode .category-title {
+            color: var(--dark-color);
+        }
+
+        .category-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 0 15px;
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 20px 12px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .category-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .category-btn:hover::before {
+            opacity: 1;
+        }
+
+        body.light-mode .category-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .category-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .category-btn:hover .category-icon {
+            transform: scale(1.2);
+        }
+
+        /* Team Names */
+        .team-names {
+            text-align: center;
+            margin: 15px auto;
+            max-width: 600px;
+            animation: fadeIn 1s ease;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 15px;
+        }
+
+        .team-names::-webkit-scrollbar {
+            display: none;
+        }
+
+        .team-input-container {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .team-input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Tajawal', sans-serif;
+            margin-bottom: 15px;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--box-shadow);
+        }
+
+        .team-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(60, 179, 113, 0.4);
+            border-color: var(--secondary-color);
+        }
+
+        body.light-mode .team-input {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--dark-color);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .start-game-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Celebration Screen */
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .celebration.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .celebration-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: var(--border-radius);
+            border: 2px solid var(--gold-color);
+            box-shadow: 0 0 30px rgba(218, 165, 32, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .celebration-content::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(to bottom right,
+                    rgba(218, 165, 32, 0.1),
+                    rgba(218, 165, 32, 0.05),
+                    transparent);
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+
+        .celebration-message {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold-color);
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            transform: scale(0.5);
+            opacity: 0;
+            animation: celebrationText 1s 0.5s forwards;
+        }
+
+        .celebration-team {
+            font-size: 2.5rem;
+            color: var(--gold-color);
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            font-weight: 800;
+            background: linear-gradient(to right, var(--gold-color), #b8860b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 0 15px;
+        }
+
+        .celebration-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .celebration-stat {
+            text-align: center;
+        }
+
+        .celebration-stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .celebration-stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .celebration-btn {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            animation: pulse 2s infinite;
+            font-weight: 700;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--gold-color);
+            border-radius: 50%;
+            animation: confettiFall 5s linear forwards;
+            z-index: -1;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes celebrationText {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Question difficulty indicator */
+        .difficulty {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            left: auto;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .difficulty.easy {
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .difficulty.medium {
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+        }
+
+        .difficulty.hard {
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+
+        /* Category specific colors */
+        .category-programming {
+            background: linear-gradient(135deg, #3cb371, #2e8b57);
+            border-color: #3cb371;
+        }
+
+        .category-technology {
+            background: linear-gradient(135deg, #4682b4, #4169e1);
+            border-color: #4682b4;
+        }
+
+        .category-sustainability {
+            background: linear-gradient(135deg, #8fbc8f, #556b2f);
+            border-color: #8fbc8f;
+        }
+
+        .category-medical {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            border-color: #4caf50;
+        }
+
+        .category-general {
+            background: linear-gradient(135deg, #daa520, #b8860b);
+            border-color: #daa520;
+        }
+
+        .category-environment {
+            background: linear-gradient(135deg, #20b2aa, #008b8b);
+            border-color: #20b2aa;
+        }
+
+        .category-history {
+            background: linear-gradient(135deg, #cd7f32, #a0522d);
+            border-color: #cd7f32;
+        }
+
+        .category-sports {
+            background: linear-gradient(135deg, #4169e1, #1e90ff);
+            border-color: #4169e1;
+        }
+
+        /* Background Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Sustainability Effects */
+        .sustainability-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes float-leaf {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-50px) rotate(10deg);
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(0deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo {
+                height: 120px;
+            }
+
+            .logo.right {
+                height: 140px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h1::after {
+                width: 180px;
+            }
+
+            .category-buttons {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .category-btn {
+                min-height: 150px;
+                padding: 25px 15px;
+                font-size: 1.1rem;
+            }
+
+            .category-icon {
+                font-size: 2.5rem;
+            }
+
+            .team-title {
+                font-size: 1.3rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+                min-height: 100px;
+            }
+
+            .option-btn {
+                font-size: 1rem;
+                min-height: 80px;
+            }
+
+            .timer,
+            .score {
+                font-size: 1.3rem;
+                min-width: 60px;
+            }
+
+            .watermark {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+
+            .celebration-message {
+                font-size: 2.5rem;
+            }
+
+            .celebration-team {
+                font-size: 3rem;
+            }
+
+            .game-container {
+                flex-direction: row;
+                gap: 15px;
+            }
+
+            .team-container {
+                flex: 1;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .logo {
+                height: 140px;
+            }
+
+            .logo.right {
+                height: 160px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .category-buttons {
+                gap: 20px;
+            }
+
+            .category-btn {
+                min-height: 180px;
+                font-size: 1.2rem;
+            }
+
+            .category-icon {
+                font-size: 3rem;
+            }
+
+            .team-container {
+                padding: 20px;
+            }
+
+            .question-text {
+                font-size: 1.4rem;
+            }
+
+            .option-btn {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+
+            .timer,
+            .score {
+                font-size: 1.5rem;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .start-game-btn {
+                padding: 12px 40px;
+                font-size: 1.2rem;
+            }
+
+            .team-input {
+                padding: 15px 20px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .logo {
+                height: 160px;
+            }
+
+            .logo.right {
+                height: 180px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-buttons {
+                gap: 25px;
+            }
+
+            .category-btn {
+                min-height: 200px;
+                font-size: 1.3rem;
+            }
+
+            .category-icon {
+                font-size: 3.5rem;
+            }
+
+            .team-title {
+                font-size: 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.5rem;
+            }
+
+            .option-btn {
+                font-size: 1.2rem;
+            }
+
+            .timer,
+            .score {
+                font-size: 1.7rem;
+            }
+        }
+
+        /* Mobile Landscape */
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+            .container {
+                padding: 8px;
+            }
+
+            .logo {
+                height: 70px !important;
+            }
+
+            .logo.right {
+                height: 90px !important;
+            }
+
+            h1 {
+                font-size: 1.1rem;
+            }
+
+            .player-selection,
+            .category-selection,
+            .team-names {
+                padding: 8px 0;
+            }
+
+            .category-buttons {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 8px;
+            }
+
+            .category-btn {
+                min-height: 100px;
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .category-icon {
+                font-size: 1.5rem;
+            }
+
+            .team-container {
+                padding: 12px;
+            }
+
+            .question-text {
+                min-height: 70px;
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+
+            .option-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+                min-height: 60px;
+            }
+
+            .team-title {
+                font-size: 1rem;
+            }
+
+            .timer,
+            .score {
+                font-size: 1rem;
+                min-width: 50px;
+                padding: 5px 10px;
+            }
+
+            button {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                min-width: 100px;
+            }
+
+            .start-game-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .team-input {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Story (Instagram) dimensions */
+        @media (max-width: 600px) and (max-height: 1000px) {
+            .container {
+                padding: 8px;
+            }
+
+            .logo {
+                height: 70px;
+            }
+
+            .logo.right {
+                height: 90px;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .player-selection,
+            .category-selection,
+            .team-names {
+                padding: 12px 0;
+            }
+
+            .category-buttons {
+                grid-template-columns: repeat(2, 1fr));
+                gap: 12px;
+            }
+
+            .category-btn {
+                min-height: 100px;
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            .category-icon {
+                font-size: 1.8rem;
+            }
+
+            .team-container {
+                padding: 12px;
+            }
+
+            .question-text {
+                min-height: 80px;
+                font-size: 1rem;
+                padding: 12px;
+            }
+
+            .option-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+                min-height: 60px;
+            }
+
+            .team-title {
+                font-size: 1.1rem;
+            }
+
+            .timer,
+            .score {
+                font-size: 1.1rem;
+                min-width: 50px;
+                padding: 5px 10px;
+            }
+
+            button {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                min-width: 100px;
+            }
+
+            .start-game-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .team-input {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .options-container {
+                grid-template-columns: 1fr !important;
+            }
+
+            .team-container {
+                padding: 12px !important;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- شعار الاستدامة -->
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjM2NiMzcxIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem0xMjAuMi0xNjkuN2MtMjAuMiAxNC42LTU1LjggNDMuNS0xMDUuMSA0My41LTU2LjQgMC04OS4yLTM3LjYtOTcuNC00OS40LTMtNC4xLTguMS00LjEtMTEuMiAwLTEwLjUgMTQuMS0zOS41IDQ5LjQtOTcuNCA0OS40LTQ5LjMgMC04NC45LTI4LjktMTA1LjEtNDMuNS0xLjUtMS4xLTQuMS0uOC01LjEuOS0xLjkgMi4xLTEuOSA1LjEuMSA3LjEgMjMuNSA0My4xIDE0OS4zIDQzLjEgMTQ5LjMgMCAwIDEyNS44LTEwNi4yIDE0OS4zLTE0OS4zIDEuOS0yIDEuOS01LjEuMS03LjEtMS0xLjctMy42LTIuMS01LjItLjl6Ii8+PC9zdmc+"
+        alt="شعار الاستدامة" class="sustainability-logo">
+
+    <!-- Watermark -->
+	<div class="watermark">© جميع الحقوق محفوظة — تصميم حسن علاء (it7asan)</div>
+	
+    <!-- Celebration Screen -->
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <div class="celebration-message">تهانينا!</div>
+            <div class="celebration-team" id="celebration-team">الفريق الفائز</div>
+            <div class="celebration-stats">
+                <div class="celebration-stat">
+                    <div class="celebration-stat-value" id="celebration-score1">0</div>
+                    <div class="celebration-stat-label">النقاط</div>
+                </div>
+                <div class="celebration-stat">
+                    <div class="celebration-stat-value" id="celebration-correct1">0</div>
+                    <div class="celebration-stat-label">إجابات صحيحة</div>
+                </div>
+                <div class="celebration-stat">
+                    <div class="celebration-stat-value" id="celebration-score2">0</div>
+                    <div class="celebration-stat-label">النقاط</div>
+                </div>
+                <div class="celebration-stat">
+                    <div class="celebration-stat-value" id="celebration-correct2">0</div>
+                    <div class="celebration-stat-label">إجابات صحيحة</div>
+                </div>
+            </div>
+            <button class="btn-gold celebration-btn" onclick="restartGame()">
+                <span>العب مرة أخرى</span>
+                <span>🔄</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="mst.png" alt="شعار الكلية" class="logo left">
+                <div class="title-container">
+                    <h1>مسابقة المعلومات</h1>
+                </div>
+                <img src="must.png" alt="شعار الجامعة" class="logo right">
+            </div>
+        </header>
+
+        <!-- Player Selection -->
+        <div class="player-selection" id="player-selection">
+            <h2 class="player-title">اختر عدد اللاعبين</h2>
+            <div class="player-buttons">
+                <div class="player-btn" data-players="1">
+                    <span class="player-icon">👤</span>
+                    <span>لاعب واحد</span>
+                </div>
+                <div class="player-btn" data-players="2">
+                    <span class="player-icon">👥</span>
+                    <span>لاعبين</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Selection -->
+        <div class="category-selection" id="category-selection" style="display: none;">
+            <h2 class="category-title">اختر فئة الأسئلة</h2>
+            <div class="category-buttons">
+                <div class="category-btn category-programming" data-category="programming">
+                    <span class="category-icon">💻</span>
+                    <span>البرمجة</span>
+                </div>
+                <div class="category-btn category-technology" data-category="technology">
+                    <span class="category-icon">📱</span>
+                    <span>التكنولوجيا</span>
+                </div>
+                <div class="category-btn category-sustainability" data-category="sustainability">
+                    <span class="category-icon">🌱</span>
+                    <span>الاستدامة</span>
+                </div>
+                <div class="category-btn category-environment" data-category="environment">
+                    <span class="category-icon">🌍</span>
+                    <span>البيئة</span>
+                </div>
+                <div class="category-btn category-medical" data-category="medical">
+                    <span class="category-icon">🏥</span>
+                    <span>معلومات طبية</span>
+                </div>
+                <div class="category-btn category-history" data-category="history">
+                    <span class="category-icon">🏛️</span>
+                    <span>التاريخ</span>
+                </div>
+                <div class="category-btn category-sports" data-category="sports">
+                    <span class="category-icon">⚽</span>
+                    <span>الرياضة</span>
+                </div>
+                <div class="category-btn category-general" data-category="general">
+                    <span class="category-icon">🌎</span>
+                    <span>معلومات عامة</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Names Input -->
+        <div class="team-names" id="team-names" style="display: none;">
+            <h2 class="category-title">أدخل أسماء الفرق</h2>
+            <div class="team-input-container">
+                <input type="text" id="team1-name" class="team-input" placeholder="اسم الفريق الأول">
+                <input type="text" id="team2-name" class="team-input" placeholder="اسم الفريق الثاني"
+                    style="display: none;">
+            </div>
+            <button class="btn-success start-game-btn" id="start-game-btn">
+                <span>ابدأ المسابقة</span>
+                <span>🚀</span>
+            </button>
+        </div>
+
+        <!-- Game Controls -->
+        <div class="game-controls" id="game-controls" style="display: none;">
+            <!-- <button class="btn-primary" id="dark-mode-btn">
+                <span id="dark-mode-text">الوضع الليلي</span>
+                <span id="dark-mode-icon">🌙</span>
+            </button>
+            <button class="btn-warning" id="pause-btn">
+                <span>إيقاف الوقت</span>
+                <span>⏸️</span>
+            </button> -->
+            <button class="btn-danger" id="restart-btn" onclick="restartGame()">
+                <span>إعادة اللعب</span>
+                <span>🔄</span>
+            </button>
+        </div>
+
+        <!-- Game Area -->
+        <div class="game-container" id="game-area" style="display: none;">
+            <!-- Team 1 Container -->
+            <div class="team-container team1" id="team1-container">
+                <div class="team-header">
+                    <h3 class="team-title team1-title" id="team1-title">الفريق الأول</h3>
+                    <div class="team-stats">
+                        <div class="score" id="team1-score">0</div>
+                        <div class="timer" id="team1-timer">30</div>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text" id="team1-question-text">سيتم عرض السؤال هنا</div>
+                    <div class="options-container" id="team1-options-container"></div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>التقدم</span>
+                        <span id="team1-progress-text">0/5</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="team1-progress"></div>
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-value" id="team1-correct-count">0</div>
+                        <div class="stat-label">إجابات صحيحة</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="team1-wrong-count">0</div>
+                        <div class="stat-label">إجابات خاطئة</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team 2 Container -->
+            <div class="team-container team2" id="team2-container" style="display: none;">
+                <div class="team-header">
+                    <h3 class="team-title team2-title" id="team2-title">الفريق الثاني</h3>
+                    <div class="team-stats">
+                        <div class="score" id="team2-score">0</div>
+                        <div class="timer" id="team2-timer">30</div>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text" id="team2-question-text">سيتم عرض السؤال هنا</div>
+                    <div class="options-container" id="team2-options-container"></div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>التقدم</span>
+                        <span id="team2-progress-text">0/5</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="team2-progress"></div>
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-value" id="team2-correct-count">0</div>
+                        <div class="stat-label">إجابات صحيحة</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="team2-wrong-count">0</div>
+                        <div class="stat-label">إجابات خاطئة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="timer-sound" src="https://assets.mixkit.co/active_storage/sfx/2993/2993-preview.mp3"></audio>
+    <audio id="correct-sound" src="https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3"></audio>
+    <audio id="wrong-sound" src="https://assets.mixkit.co/active_storage/sfx/1084/1084-preview.mp3"></audio>
+    <audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2767/2767-preview.mp3"></audio>
+    <audio id="countdown-sound" src="https://assets.mixkit.co/active_storage/sfx/2508/2508-preview.mp3"></audio>
+
+    <script>
+        // Game Data Structure
+        const questions = {
+            // يمكنك إضافة الأسئلة هنا لاحقاً
+            "programming": [   // المجموعة 1: JavaScript (10 أسئلة)
+                {
+                    "question": "ما هي الكلمة المفتاحية لإنشاء دالة في JavaScript؟",
+                    "options": ["func", "def", "function", "define"],
+                    "answer": "function"
+                },
+                {
+                    "question": "ما هو المشغل المستخدم للمقارنة بين القيم والنوع في JavaScript؟",
+                    "options": ["==", "===", "=", "!="],
+                    "answer": "==="
+                },
+                {
+                    "question": "ما هي الدالة المستخدمة لطباعة نص في وحدة التحكم؟",
+                    "options": ["print()", "console.log()", "log()", "display()"],
+                    "answer": "console.log()"
+                },
+                {
+                    "question": "ما هي طريقة إضافة عنصر إلى نهاية المصفوفة؟",
+                    "options": ["push()", "append()", "add()", "insert()"],
+                    "answer": "push()"
+                },
+                {
+                    "question": "ما هو نوع حلقة التكرار التي تنفذ الكود مرة واحدة على الأقل؟",
+                    "options": ["for", "while", "do...while", "forEach"],
+                    "answer": "do...while"
+                },
+                {
+                    "question": "ما هي الكلمة المفتاحية الأحدث للإعلان عن متغير؟",
+                    "options": ["var", "let", "const", "variable"],
+                    "answer": "let"
+                },
+                {
+                    "question": "ما هي الدالة المستخدمة لتحويل JSON إلى كائن؟",
+                    "options": ["JSON.parse()", "JSON.decode()", "JSON.toObject()", "JSON.read()"],
+                    "answer": "JSON.parse()"
+                },
+                {
+                    "question": "ما هي الخاصية المستخدمة للحصول على طول المصفوفة؟",
+                    "options": ["size", "length", "count", "items"],
+                    "answer": "length"
+                },
+                {
+                    "question": "ما هي الدالة المستخدمة لتنفيذ كود بعد فترة زمنية؟",
+                    "options": ["setTimeout()", "delay()", "wait()", "pause()"],
+                    "answer": "setTimeout()"
+                },
+                {
+                    "question": "ما هي الطريقة المستخدمة لتحويل النص إلى أحرف كبيرة؟",
+                    "options": ["toUpperCase()", "upperCase()", "capitalize()", "toUpper()"],
+                    "answer": "toUpperCase()"
+                },
+
+                // المجموعة 2: Python (10 أسئلة)
+                {
+                    "question": "كيف تعلن عن متغير في Python؟",
+                    "options": ["var x", "x = 10", "int x", "declare x"],
+                    "answer": "x = 10"
+                },
+                {
+                    "question": "ما هي الدالة المستخدمة لعرض النص في Python؟",
+                    "options": ["print()", "console.log()", "echo()", "output()"],
+                    "answer": "print()"
+                },
+                {
+                    "question": "ما هو نوع البيانات المستخدم للقائمة في Python؟",
+                    "options": ["array", "list", "tuple", "set"],
+                    "answer": "list"
+                },
+                {
+                    "question": "ما هي الكلمة المفتاحية لإنشاء دالة في Python؟",
+                    "options": ["func", "def", "function", "define"],
+                    "answer": "def"
+                },
+                {
+                    "question": "كيف تقرأ إدخال المستخدم في Python؟",
+                    "options": ["input()", "read()", "get()", "scan()"],
+                    "answer": "input()"
+                },
+                {
+                    "question": "ما هو إطار العمل الأشهر لبناء تطبيقات ويب في Python؟",
+                    "options": ["Django", "Flask", "FastAPI", "Pyramid"],
+                    "answer": "Django"
+                },
+                {
+                    "question": "ما هي المكتبة المستخدمة للتعامل مع البيانات في Python؟",
+                    "options": ["pandas", "numpy", "matplotlib", "scipy"],
+                    "answer": "pandas"
+                },
+                {
+                    "question": "ما هي الطريقة المستخدمة لإضافة عنصر إلى القائمة؟",
+                    "options": ["add()", "append()", "insert()", "push()"],
+                    "answer": "append()"
+                },
+                {
+                    "question": "ما هو المشغل المستخدم للأسس في Python؟",
+                    "options": ["^", "**", "*", "//"],
+                    "answer": "**"
+                },
+                {
+                    "question": "ما هي الكلمة المفتاحية لإنهاء حلقة في Python؟",
+                    "options": ["stop", "exit", "break", "end"],
+                    "answer": "break"
+                },
+
+                // المجموعة 3: Java (10 أسئلة)
+                {
+                    "question": "ما هي الكلمة المفتاحية لإنشاء صنف في Java؟",
+                    "options": ["class", "object", "struct", "category"],
+                    "answer": "class"
+                },
+                {
+                    "question": "كيف تعلن عن متغير ثابت في Java؟",
+                    "options": ["const", "final", "static", "constant"],
+                    "answer": "final"
+                },
+                {
+                    "question": "ما هي الدالة الرئيسية لبدء تنفيذ البرنامج؟",
+                    "options": ["main()", "start()", "init()", "run()"],
+                    "answer": "main()"
+                },
+                {
+                    "question": "ما هو نوع البيانات البدائي لتخزين الأعداد الصحيحة في Java؟",
+                    "options": ["int", "Integer", "number", "num"],
+                    "answer": "int"
+                },
+                {
+                    "question": "ما هي الكلمة المفتاحية لإنشاء كائن في Java؟",
+                    "options": ["new", "create", "object", "make"],
+                    "answer": "new"
+                },
+                {
+                    "question": "ما هي المكتبة المستخدمة للتعامل مع المدخلات في Java؟",
+                    "options": ["java.io", "java.util", "java.input", "java.system"],
+                    "answer": "java.util"
+                },
+                {
+                    "question": "ما هو إطار العمل الأشهر لبناء تطبيقات ويب في Java؟",
+                    "options": ["Spring", "Hibernate", "Struts", "JSF"],
+                    "answer": "Spring"
+                },
+                {
+                    "question": "ما هي الكلمة المفتاحية للإرث في Java؟",
+                    "options": ["extends", "inherits", "implements", "using"],
+                    "answer": "extends"
+                },
+                {
+                    "question": "ما هي الطريقة المستخدمة للحصول على طول السلسلة النصية؟",
+                    "options": ["size()", "length()", "count()", "getSize()"],
+                    "answer": "length()"
+                },
+                {
+                    "question": "ما هو نوع الحلقة الذي ينفذ كودًا لعدد محدد من المرات؟",
+                    "options": ["while", "do-while", "for", "foreach"],
+                    "answer": "for"
+                },
+
+                // المجموعة 4: HTML/CSS (10 أسئلة)
+                {
+                    "question": "ما هو العنصر المستخدم لإضافة صورة في HTML؟",
+                    "options": ["<image>", "<img>", "<pic>", "<photo>"],
+                    "answer": "<img>"
+                },
+                {
+                    "question": "ما هي الخاصية في CSS لتغيير لون الخلفية؟",
+                    "options": ["color", "background", "bg-color", "background-color"],
+                    "answer": "background-color"
+                },
+                {
+                    "question": "ما هو العنصر المستخدم لإنشاء رابط في HTML؟",
+                    "options": ["<link>", "<a>", "<href>", "<url>"],
+                    "answer": "<a>"
+                },
+                {
+                    "question": "ما هي الخاصية المستخدمة لتغيير حجم الخط في CSS؟",
+                    "options": ["text-size", "font-size", "size", "text-style"],
+                    "answer": "font-size"
+                },
+                {
+                    "question": "ما هو العنصر المستخدم لإنشاء قائمة غير مرتبة؟",
+                    "options": ["<ol>", "<ul>", "<li>", "<list>"],
+                    "answer": "<ul>"
+                },
+                {
+                    "question": "ما هي الطريقة الصحيحة لربط ملف CSS مع HTML؟",
+                    "options": ["<style>", "<css>", "<link>", "<import>"],
+                    "answer": "<link>"
+                },
+                {
+                    "question": "ما هي الخاصية المستخدمة لجعل العنصر مخفيًا؟",
+                    "options": ["hidden", "visible", "display", "visibility"],
+                    "answer": "display"
+                },
+                {
+                    "question": "ما هو العنصر المستخدم لإنشاء جدول في HTML؟",
+                    "options": ["<table>", "<tr>", "<td>", "<grid>"],
+                    "answer": "<table>"
+                },
+                {
+                    "question": "ما هي الخاصية المستخدمة لتحديد هوامش العنصر في CSS؟",
+                    "options": ["padding", "margin", "border", "spacing"],
+                    "answer": "margin"
+                },
+                {
+                    "question": "ما هو العنصر المستخدم لإنشاء نموذج في HTML؟",
+                    "options": ["<form>", "<input>", "<submit>", "<model>"],
+                    "answer": "<form>"
+                },
+
+                // المجموعة 5: قواعد البيانات وأدوات التطوير (10 أسئلة)
+                {
+                    "question": "ما هي أداة التحكم في الإصدارات الأكثر شيوعًا؟",
+                    "options": ["Git", "SVN", "Mercurial", "Perforce"],
+                    "answer": "Git"
+                },
+                {
+                    "question": "ما هي لغة الاستعلام المستخدمة في قواعد البيانات العلائقية؟",
+                    "options": ["SQL", "NoSQL", "MongoDB", "GraphQL"],
+                    "answer": "SQL"
+                },
+                {
+                    "question": "ما هي أداة إدارة الحزم في Node.js؟",
+                    "options": ["npm", "pip", "composer", "gradle"],
+                    "answer": "npm"
+                },
+                {
+                    "question": "ما هو نظام إدارة قواعد البيانات الأكثر شيوعًا؟",
+                    "options": ["MySQL", "MongoDB", "PostgreSQL", "Oracle"],
+                    "answer": "MySQL"
+                },
+                {
+                    "question": "ما هي لغة البرمجة المستخدمة في تطوير تطبيقات Android؟",
+                    "options": ["Java", "Swift", "Kotlin", "C#"],
+                    "answer": "Kotlin"
+                },
+                {
+                    "question": "ما هي لغة البرمجة المستخدمة في تطوير تطبيقات iOS؟",
+                    "options": ["Java", "Swift", "Kotlin", "C#"],
+                    "answer": "Swift"
+                },
+                {
+                    "question": "ما هي أسرع لغة برمجة من حيث الأداء؟",
+                    "options": ["Python", "C++", "Java", "JavaScript"],
+                    "answer": "C++"
+                },
+                {
+                    "question": "ما هي لغة البرمجة المستخدمة في تحليل البيانات؟",
+                    "options": ["Python", "Java", "C++", "Ruby"],
+                    "answer": "Python"
+                },
+                {
+                    "question": "ما هي لغة البرمجة المستخدمة في تطوير الألعاب؟",
+                    "options": ["C#", "Python", "Java", "JavaScript"],
+                    "answer": "C#"
+                },
+                {
+                    "question": "ما هو إطار العمل المستخدم لبناء تطبيقات ويب في JavaScript؟",
+                    "options": ["Express", "Django", "Laravel", "Spring"],
+                    "answer": "Express"
+                }
+            ],
+            "technology": [{
+                "question": "ما هو نظام التشغيل الأكثر استخدامًا في الخوادم حول العالم؟",
+                "options": ["Windows Server", "Linux", "macOS Server", "Unix"],
+                "answer": "Linux"
+            },
+            {
+                "question": "ما هي أسرع وسيلة تخزين بيانات متاحة حاليًا للمستهلكين؟",
+                "options": ["HDD", "SSD", "USB 3.0", "NVMe SSD"],
+                "answer": "NVMe SSD"
+            },
+            {
+                "question": "ما هي التقنية المستخدمة في شاشات الهواتف الذكية الحديثة التي توفر أسودًا عميقًا؟",
+                "options": ["LCD", "OLED", "AMOLED", "LED"],
+                "answer": "OLED"
+            },
+            {
+                "question": "ما هو الجيل الحالي من تقنيات الاتصالات اللاسلكية للهواتف المحمولة؟",
+                "options": ["4G", "5G", "LTE", "6G"],
+                "answer": "5G"
+            },
+            {
+                "question": "ما هي الشركة المصنعة لمعالجات Core i7 و Core i9؟",
+                "options": ["AMD", "Intel", "Qualcomm", "Apple"],
+                "answer": "Intel"
+            },
+            {
+                "question": "ما هو البروتوكول الأكثر أمانًا لتصفح مواقع الويب؟",
+                "options": ["HTTP", "HTTPS", "FTP", "TCP"],
+                "answer": "HTTPS"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك دفع ثمن المشتريات باستخدام هاتفك الذكي؟",
+                "options": ["NFC", "Bluetooth", "QR Code", "Wi-Fi"],
+                "answer": "NFC"
+            },
+            {
+                "question": "ما هو اسم نظام التشغيل مفتوح المصدر الذي يعتمد عليه نظام Android؟",
+                "options": ["Linux", "Windows", "iOS", "HarmonyOS"],
+                "answer": "Linux"
+            },
+            {
+                "question": "ما هي الشركة التي طورت معالجات M1 و M2؟",
+                "options": ["Intel", "AMD", "Apple", "Qualcomm"],
+                "answer": "Apple"
+            },
+            {
+                "question": "ما هي لغة الترميز المستخدمة لإنشاء صفحات الويب؟",
+                "options": ["HTML", "Python", "Java", "C++"],
+                "answer": "HTML"
+            },
+            {
+                "question": "ما هو اسم أكبر منصة للفيديوهات القصيرة المملوكة لشركة ByteDance؟",
+                "options": ["Instagram", "TikTok", "YouTube Shorts", "Snapchat"],
+                "answer": "TikTok"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك استخدام سماعات لاسلكية مع هاتفك؟",
+                "options": ["Bluetooth", "NFC", "Wi-Fi", "GPS"],
+                "answer": "Bluetooth"
+            },
+            {
+                "question": "ما هو اسم أول قمر صناعي أطلقته البشرية؟",
+                "options": ["Apollo 11", "Sputnik 1", "Hubble", "Voyager"],
+                "answer": "Sputnik 1"
+            },
+            {
+                "question": "ما هي الشركة التي طورت نظام التشغيل Windows؟",
+                "options": ["Apple", "Microsoft", "Google", "IBM"],
+                "answer": "Microsoft"
+            },
+            {
+                "question": "ما هو اسم المعالج الذي طورته شركة AMD لمنافسة Intel؟",
+                "options": ["Core i9", "Ryzen", "Snapdragon", "Exynos"],
+                "answer": "Ryzen"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك شحن هاتفك دون توصيله بسلك؟",
+                "options": ["Fast Charging", "Wireless Charging", "Solar Charging", "USB-C"],
+                "answer": "Wireless Charging"
+            },
+            {
+                "question": "ما هو اسم أكبر شركة لتصنيع الهواتف الذكية في العالم حالياً؟",
+                "options": ["Apple", "Samsung", "Xiaomi", "Huawei"],
+                "answer": "Samsung"
+            },
+            {
+                "question": "ما هي التقنية التي تستخدمها أجهزة الصراف الآلي لقراءة البطاقات البنكية؟",
+                "options": ["NFC", "QR Code", "Magnetic Stripe", "Chip"],
+                "answer": "Magnetic Stripe"
+            },
+            {
+                "question": "ما هو اسم نظام التشغيل الذي طورته جوجل للهواتف الذكية؟",
+                "options": ["iOS", "Android", "HarmonyOS", "Windows Phone"],
+                "answer": "Android"
+            },
+            {
+                "question": "ما هي الشركة التي تمتلك محرك البحث جوجل؟",
+                "options": ["Microsoft", "Alphabet", "Amazon", "Meta"],
+                "answer": "Alphabet"
+            },
+            {
+                "question": "ما هو اسم الجهاز الذي يحول التيار المتردد إلى تيار مستمر في الحواسيب؟",
+                "options": ["CPU", "GPU", "Power Supply", "Motherboard"],
+                "answer": "Power Supply"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك استخدام هاتفك كجهاز تحكم عن بعد؟",
+                "options": ["Bluetooth", "IR Blaster", "Wi-Fi", "NFC"],
+                "answer": "IR Blaster"
+            },
+            {
+                "question": "ما هو اسم الشركة التي طورت معالجات Snapdragon؟",
+                "options": ["Intel", "Qualcomm", "MediaTek", "Samsung"],
+                "answer": "Qualcomm"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك إجراء مكالمات فيديو عبر الإنترنت؟",
+                "options": ["VoIP", "4G", "Wi-Fi", "Bluetooth"],
+                "answer": "VoIP"
+            },
+            {
+                "question": "ما هو اسم أول هاتف ذكي أطلقته شركة Apple؟",
+                "options": ["iPhone 3G", "iPhone 4", "iPhone (2007)", "iPhone 5"],
+                "answer": "iPhone (2007)"
+            },
+            {
+                "question": "ما هي الشركة التي طورت نظام التشغيل macOS؟",
+                "options": ["Microsoft", "Apple", "Google", "IBM"],
+                "answer": "Apple"
+            },
+            {
+                "question": "ما هو اسم المعالج الرسومي الذي تطوره شركة Nvidia؟",
+                "options": ["Radeon", "GeForce", "Intel HD", "PowerVR"],
+                "answer": "GeForce"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك توصيل شاشة خارجية بهاتفك؟",
+                "options": ["USB-C", "HDMI", "DisplayPort", "MHL"],
+                "answer": "USB-C"
+            },
+            {
+                "question": "ما هو اسم أول كمبيوتر شخصي طرح في الأسواق؟",
+                "options": ["IBM PC", "Apple I", "Commodore 64", "Altair 8800"],
+                "answer": "Altair 8800"
+            },
+            {
+                "question": "ما هي الشركة التي طورت نظام التشغيل Chrome OS؟",
+                "options": ["Microsoft", "Apple", "Google", "Mozilla"],
+                "answer": "Google"
+            },
+            {
+                "question": "ما هو اسم المعالج الذي تطوره شركة Samsung لهواتفها؟",
+                "options": ["Snapdragon", "Exynos", "MediaTek", "Kirin"],
+                "answer": "Exynos"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك استخدام هاتفك كبوصلة؟",
+                "options": ["GPS", "NFC", "Magnetometer", "Gyroscope"],
+                "answer": "Magnetometer"
+            },
+            {
+                "question": "ما هو اسم أول كمبيوتر محمول من Apple؟",
+                "options": ["MacBook Air", "PowerBook", "MacBook Pro", "iBook"],
+                "answer": "PowerBook"
+            },
+            {
+                "question": "ما هي الشركة التي طورت معالجات Ryzen؟",
+                "options": ["Intel", "AMD", "Qualcomm", "Apple"],
+                "answer": "AMD"
+            },
+            {
+                "question": "ما هو اسم نظام الذكاء الاصطناعي الذي طورته OpenAI؟",
+                "options": ["DeepMind", "ChatGPT", "Watson", "Bard"],
+                "answer": "ChatGPT"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك قياس خطواتك اليومية؟",
+                "options": ["GPS", "Accelerometer", "Gyroscope", "Barometer"],
+                "answer": "Accelerometer"
+            },
+            {
+                "question": "ما هو اسم أول هاتف يعمل بنظام Android؟",
+                "options": ["HTC Dream", "Samsung Galaxy", "Motorola Droid", "Google Pixel"],
+                "answer": "HTC Dream"
+            },
+            {
+                "question": "ما هي الشركة التي طورت معالجات Kirin؟",
+                "options": ["Samsung", "Huawei", "Xiaomi", "Oppo"],
+                "answer": "Huawei"
+            },
+            {
+                "question": "ما هو اسم أول كمبيوتر من Apple يستخدم معالج M1؟",
+                "options": ["MacBook Air", "MacBook Pro", "Mac mini", "iMac"],
+                "answer": "MacBook Air"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك فتح هاتفك باستخدام وجهك؟",
+                "options": ["Touch ID", "Face ID", "Iris Scanner", "Pattern Unlock"],
+                "answer": "Face ID"
+            },
+            {
+                "question": "ما هو اسم أول هاتف قابل للطي طرح تجارياً؟",
+                "options": ["Samsung Galaxy Fold", "Huawei Mate X", "Motorola Razr", "Royole FlexPai"],
+                "answer": "Royole FlexPai"
+            },
+            {
+                "question": "ما هي الشركة التي طورت نظام التشغيل HarmonyOS؟",
+                "options": ["Samsung", "Huawei", "Xiaomi", "Oppo"],
+                "answer": "Huawei"
+            },
+            {
+                "question": "ما هو اسم أول كاميرا رقمية طرحتها شركة Kodak؟",
+                "options": ["DC40", "DCS 100", "EasyShare", "Instamatic"],
+                "answer": "DCS 100"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك شحن هاتفك بسرعة عالية؟",
+                "options": ["Qi Wireless", "Fast Charging", "USB-PD", "Quick Charge"],
+                "answer": "Quick Charge"
+            },
+            {
+                "question": "ما هو اسم أول هاتف يدعم تقنية 5G؟",
+                "options": ["Samsung Galaxy S10 5G", "LG V50 ThinQ", "Huawei Mate X", "Xiaomi Mi Mix 3 5G"],
+                "answer": "Samsung Galaxy S10 5G"
+            },
+            {
+                "question": "ما هي الشركة التي طورت معالجات Tensor لهواتف Pixel؟",
+                "options": ["Qualcomm", "Samsung", "Google", "MediaTek"],
+                "answer": "Google"
+            },
+            {
+                "question": "ما هو اسم أول هاتف من Apple يدعم تقنية 5G؟",
+                "options": ["iPhone 11", "iPhone 12", "iPhone SE", "iPhone XS"],
+                "answer": "iPhone 12"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك استخدام قلم رقمي مع هاتفك؟",
+                "options": ["Bluetooth", "NFC", "Wacom", "Active Pen"],
+                "answer": "Wacom"
+            },
+            {
+                "question": "ما هو اسم أول هاتف من Samsung بسعة تخزين 1 تيرابايت؟",
+                "options": ["Galaxy S10", "Galaxy Note 10", "Galaxy S20 Ultra", "Galaxy Note 20 Ultra"],
+                "answer": "Galaxy S10"
+            },
+            {
+                "question": "ما هي الشركة التي طورت نظام التشغيل Tizen؟",
+                "options": ["Samsung", "LG", "Google", "Apple"],
+                "answer": "Samsung"
+            },
+            {
+                "question": "ما هو اسم أول هاتف من Huawei بدون خدمات جوجل؟",
+                "options": ["P30 Pro", "Mate 30 Pro", "P40 Pro", "Mate 40 Pro"],
+                "answer": "Mate 30 Pro"
+            },
+            {
+                "question": "ما هي التقنية التي تتيح لك توصيل سماعات سلكية بهاتف حديث؟",
+                "options": ["USB-C", "3.5mm Jack", "Lightning", "Bluetooth"],
+                "answer": "USB-C"
+            }],
+            "sustainability": [{
+                "question": "ما هو الهدف الثالث من أهداف التنمية المستدامة للأمم المتحدة؟",
+                "options": [
+                    "الصحة الجيدة والرفاه",
+                    "التعليم الجيد",
+                    "المساواة بين الجنسين",
+                    "القضاء على الفقر"
+                ],
+                "answer": "الصحة الجيدة والرفاه",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي نسبة الطاقة المتجددة التي تهدف السعودية لإنتاجها بحلول 2030؟",
+                "options": ["30%", "50%", "70%", "90%"],
+                "answer": "50%",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي المدة التي يستغرقها تحلل كيس البلاستيك في البيئة؟",
+                "options": ["10 سنوات", "50 سنة", "100 سنة", "500 سنة"],
+                "answer": "500 سنة",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو المشروع السعودي العملاق للطاقة المتجددة؟",
+                "options": ["نيوم", "السعودية الخضراء", "القدية", "ريد سي"],
+                "answer": "السعودية الخضراء",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي أكثر الدول إنتاجًا للطاقة الشمسية في العالم؟",
+                "options": ["الصين", "الولايات المتحدة", "ألمانيا", "الهند"],
+                "answer": "الصين",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو الغاز الذي تطلقه الماشية ويؤثر على المناخ؟",
+                "options": [
+                    "ثاني أكسيد الكربون",
+                    "الميثان",
+                    "أكسيد النيتروز",
+                    "الأوزون"
+                ],
+                "answer": "الميثان",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي المادة التي تشكل النسبة الأكبر من النفايات المنزلية؟",
+                "options": ["البلاستيك", "الورق", "الزجاج", "المواد العضوية"],
+                "answer": "المواد العضوية",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو رمز إعادة تدوير البلاستيك من النوع PET؟",
+                "options": ["1", "2", "3", "4"],
+                "answer": "1",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي أسرع مصادر الطاقة المتجددة نموًا في العالم؟",
+                "options": [
+                    "الطاقة الشمسية",
+                    "طاقة الرياح",
+                    "الطاقة الكهرومائية",
+                    "الطاقة الحيوية"
+                ],
+                "answer": "الطاقة الشمسية",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو المبدأ الأساسي للاقتصاد الدائري؟",
+                "options": [
+                    "إعادة الاستخدام والتدوير",
+                    "الاستهلاك المفرط",
+                    "التخلص من النفايات",
+                    "الاعتماد على الوقود الأحفوري"
+                ],
+                "answer": "إعادة الاستخدام والتدوير",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الفائدة الرئيسية للمباني الخضراء؟",
+                "options": [
+                    "زيادة استهلاك الطاقة",
+                    "تحسين كفاءة استخدام الطاقة",
+                    "استخدام مواد غير قابلة لإعادة التدوير",
+                    "زيادة انبعاثات الكربون"
+                ],
+                "answer": "تحسين كفاءة استخدام الطاقة",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو التأثير الرئيسي لظاهرة الاحتباس الحراري على المحيطات؟",
+                "options": [
+                    "انخفاض مستوى سطح البحر",
+                    "تحمض المحيطات",
+                    "زيادة نسبة الأكسجين",
+                    "انخفاض درجة الحرارة"
+                ],
+                "answer": "تحمض المحيطات",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي تقنية CCS في مجال الاستدامة؟",
+                "options": [
+                    "تقليل انبعاثات الكربون",
+                    "زيادة استخدام الوقود الأحفوري",
+                    "إنتاج المزيد من النفايات",
+                    "تدمير النظم البيئية"
+                ],
+                "answer": "تقليل انبعاثات الكربون",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو الهدف الأساسي لاتفاقية باريس للمناخ؟",
+                "options": [
+                    "زيادة انبعاثات الغازات الدفيئة",
+                    "الحد من ارتفاع درجة الحرارة العالمية",
+                    "تعزيز استخدام الفحم",
+                    "تقليل مساحات الغابات"
+                ],
+                "answer": "الحد من ارتفاع درجة الحرارة العالمية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الميزة الرئيسية للنقل المستدام؟",
+                "options": [
+                    "زيادة التلوث",
+                    "تقليل الانبعاثات الكربونية",
+                    "استهلاك المزيد من الوقود",
+                    "زيادة الازدحام المروري"
+                ],
+                "answer": "تقليل الانبعاثات الكربونية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو مفهوم Zero Waste؟",
+                "options": [
+                    "إنتاج المزيد من النفايات",
+                    "إعادة التدوير الكامل وتقليل الهدر",
+                    "حرق النفايات",
+                    "إلقاء النفايات في المحيطات"
+                ],
+                "answer": "إعادة التدوير الكامل وتقليل الهدر",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الدولة الرائدة عالميًا في إعادة التدوير؟",
+                "options": ["الصين", "الولايات المتحدة", "ألمانيا", "الهند"],
+                "answer": "ألمانيا",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو التأثير البيئي الرئيسي لإزالة الغابات؟",
+                "options": [
+                    "زيادة امتصاص الكربون",
+                    "زيادة انبعاثات ثاني أكسيد الكربون",
+                    "تحسين جودة التربة",
+                    "زيادة التنوع البيولوجي"
+                ],
+                "answer": "زيادة انبعاثات ثاني أكسيد الكربون",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الطاقة المتجددة المستخرجة من حرارة باطن الأرض؟",
+                "options": [
+                    "الطاقة الحرارية الأرضية",
+                    "الطاقة النووية",
+                    "طاقة الفحم",
+                    "طاقة الديزل"
+                ],
+                "answer": "الطاقة الحرارية الأرضية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو الغرض الرئيسي من بطاقات كفاءة الطاقة؟",
+                "options": [
+                    "زيادة استهلاك الطاقة",
+                    "توجيه المستهلكين نحو الأجهزة الأقل كفاءة",
+                    "تشجيع استخدام الأجهزة الموفرة للطاقة",
+                    "زيادة انبعاثات الكربون"
+                ],
+                "answer": "تشجيع استخدام الأجهزة الموفرة للطاقة",
+                "difficulty": 2
+            }],
+            "environment": [{
+                "question": "ما هو أكبر نظام بيئي على الأرض؟",
+                "options": ["الغابات الاستوائية", "المحيطات", "الصحاري الكبرى", "الأنهار الدولية"],
+                "answer": "المحيطات",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي الطبقة التي تحمي الأرض من الأشعة فوق البنفسجية الضارة؟",
+                "options": ["التروبوسفير", "الستراتوسفير", "طبقة الأوزون", "الميزوسفير"],
+                "answer": "طبقة الأوزون",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو أكثر أنواع التلوث تأثيراً على صحة الإنسان في المدن الكبرى؟",
+                "options": ["تلوث التربة", "تلوث الهواء", "تلوث المياه الجوفية", "التلوث الضوضائي"],
+                "answer": "تلوث الهواء",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي أكبر غابة استوائية من حيث المساحة في العالم؟",
+                "options": ["غابة الكونغو المطيرة", "غابة الأمازون المطيرة", "غابة بورنيو المطيرة", "غابة دينتري الأسترالية"],
+                "answer": "غابة الأمازون المطيرة",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو أكثر الحيوانات تعرضاً للصيد الجائر بسبب قرونه؟",
+                "options": ["الفيل الأفريقي", "وحيد القرن الأسود", "النمر البنغالي", "الغوريلا الجبلية"],
+                "answer": "وحيد القرن الأسود",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي المادة الكيميائية الأساسية المسؤولة عن تكون الأمطار الحمضية؟",
+                "options": ["ثاني أكسيد الكبريت (SO2)", "أول أكسيد الكربون (CO)", "ثاني أكسيد الكربون (CO2)", "أكسيد النيتروجين (NO)"],
+                "answer": "ثاني أكسيد الكبريت (SO2)",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو المعدن السام المستخدم في الترمومترات الطبية والذي يسبب تلوثاً بيئياً خطيراً؟",
+                "options": ["الرصاص (Pb)", "الزئبق (Hg)", "الكادميوم (Cd)", "الزرنيخ (As)"],
+                "answer": "الزئبق (Hg)",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي أعلى قمة جبلية في العالم من حيث الارتفاع عن سطح البحر؟",
+                "options": ["جبل كليمنجارو", "جبل إفرست", "جبل كينابالو", "جبل أكونكاجوا"],
+                "answer": "جبل إفرست",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو السبب الرئيسي لظاهرة المد الأحمر في المحيطات؟",
+                "options": ["تسرب النفط الخام", "إلقاء النفايات الصناعية", "ازدهار الطحالب السامة", "ارتفاع درجة حرارة المياه"],
+                "answer": "ازدهار الطحالب السامة",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي الدولة التي تتصدر حالياً إنتاج النفط الخام في العالم؟",
+                "options": ["الإمارات العربية المتحدة", "المملكة العربية السعودية", "الولايات المتحدة الأمريكية", "روسيا الاتحادية"],
+                "answer": "الولايات المتحدة الأمريكية",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي طبقة الغلاف الجوي التي تحدث فيها معظم الظواهر الجوية؟",
+                "options": ["الستراتوسفير", "التروبوسفير", "الميزوسفير", "الثيرموسفير"],
+                "answer": "التروبوسفير",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو المصدر البشري الرئيسي للتلوث البلاستيكي في المحيطات؟",
+                "options": ["نفايات السفن السياحية", "شبكات الصيد المهملة", "المخلفات البلاستيكية من اليابسة", "تسربات المصانع الساحلية"],
+                "answer": "المخلفات البلاستيكية من اليابسة",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو التأثير المناخي الرئيسي لظاهرة النينيو؟",
+                "options": ["انخفاض درجات الحرارة العالمية", "تغير أنماط هطول الأمطار", "زيادة سرعة الرياح", "انخفاض مستوى سطح البحر"],
+                "answer": "تغير أنماط هطول الأمطار",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الفائدة الأساسية من إنشاء المحميات الطبيعية البرية؟",
+                "options": ["جذب السياح", "حماية الأنواع المهددة بالانقراض", "توفير مناطق للصيد", "إنشاء مشاريع عمرانية"],
+                "answer": "حماية الأنواع المهددة بالانقراض",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي المواد الكيميائية الرئيسية المسببة لاستنزاف طبقة الأوزون؟",
+                "options": ["مركبات الكربون الهيدروكلورية فلورية (CFCs)", "ثاني أكسيد الكبريت (SO2)", "أكسيد النيتروجين (NOx)", "الميثان (CH4)"],
+                "answer": "مركبات الكربون الهيدروكلورية فلورية (CFCs)",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو نوع التربة الأكثر عرضة لعملية التصحر؟",
+                "options": ["التربة الطينية", "التربة الرملية الجافة", "التربة الخصبة", "التربة البركانية"],
+                "answer": "التربة الرملية الجافة",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو التأثير البيئي الرئيسي لعمليات التعدين السطحي؟",
+                "options": ["زيادة خصوبة التربة", "تلوث المياه الجوفية", "تحسين جودة الهواء", "زيادة التنوع البيولوجي"],
+                "answer": "تلوث المياه الجوفية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الميزة البيئية الأساسية لاستخدام الأكياس القابلة لإعادة الاستخدام؟",
+                "options": ["زيادة دخل المتاجر", "تقليل كمية النفايات البلاستيكية", "تحسين مظهر المدينة", "توفير وقت التسوق"],
+                "answer": "تقليل كمية النفايات البلاستيكية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو المصدر الرئيسي للتلوث البلاستيكي في المحيطات حسب دراسات الأمم المتحدة؟",
+                "options": ["النفايات الطبية", "معدات الصيد المفقودة", "المخلفات المنزلية", "نفايات المصانع"],
+                "answer": "المخلفات المنزلية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو التأثير البيئي الرئيسي للزراعة المكثفة؟",
+                "options": ["زيادة خصوبة التربة", "استنزاف الموارد المائية", "تحسين التنوع البيولوجي", "تقليل انبعاثات الكربون"],
+                "answer": "استنزاف الموارد المائية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو التعريف العلمي لمفهوم البصمة البيئية؟",
+                "options": ["كمية المياه التي يستهلكها الفرد", "مساحة الأرض المنتجة اللازمة لموارد الفرد", "عدد الأشجار التي يزرعها الفرد", "كمية الطاقة الكهربائية المستهلكة"],
+                "answer": "مساحة الأرض المنتجة اللازمة لموارد الفرد",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي الاستراتيجية الأكثر فعالية لمكافحة التصحر؟",
+                "options": ["زيادة الري الصناعي", "إعادة تشجير المناطق الجافة", "استخدام المبيدات الحشرية", "التوسع في البناء"],
+                "answer": "إعادة تشجير المناطق الجافة",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو التأثير العالمي الرئيسي لذوبان الجليد القطبي؟",
+                "options": ["انخفاض ملوحة المحيطات", "ارتفاع مستوى سطح البحر", "زيادة مساحة اليابسة", "تحسن خصوبة التربة"],
+                "answer": "ارتفاع مستوى سطح البحر",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي التقنية الأكثر استخداماً في معالجة المياه العادمة؟",
+                "options": ["التنقية بالأشعة فوق البنفسجية", "التنقية البيولوجية", "التقطير الحراري", "التنقية بالمغناطيس"],
+                "answer": "التنقية البيولوجية",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو المبدأ الأساسي للتنمية المستدامة للموارد المائية؟",
+                "options": ["زيادة استهلاك المياه", "حماية مصادر المياه من التلوث", "تقليل تكلفة تحلية المياه", "تصدير المياه الزائدة"],
+                "answer": "حماية مصادر المياه من التلوث",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي الميزة الأساسية للطاقة الحرارية الأرضية؟",
+                "options": ["انخفاض تكلفة الإنشاء", "قلة الانبعاثات الكربونية", "إمكانية التنقل", "عدم الحاجة للمياه"],
+                "answer": "قلة الانبعاثات الكربونية",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو التأثير البيئي الرئيسي للأنواع الغازية على النظم البيئية؟",
+                "options": ["تحسين خصوبة التربة", "تهديد الأنواع المحلية", "زيادة التنوع البيولوجي", "تحسين جودة المياه"],
+                "answer": "تهديد الأنواع المحلية",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي التقنية الأكثر فعالية للحد من انبعاثات غازات الدفيئة؟",
+                "options": ["احتجاز الكربون وتخزينه", "التحول إلى الطاقة المتجددة", "زيادة استخدام الفحم", "تقليل المساحات الخضراء"],
+                "answer": "التحول إلى الطاقة المتجددة",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو الشرط الأساسي للزراعة العضوية؟",
+                "options": ["استخدام المبيدات الكيميائية", "الاعتماد على الأسمدة الطبيعية", "الري المكثف", "استخدام البذور المعدلة وراثياً"],
+                "answer": "الاعتماد على الأسمدة الطبيعية",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو التحدي الرئيسي في إدارة النفايات الإلكترونية؟",
+                "options": ["ارتفاع قيمة إعادة التدوير", "احتواء المواد السامة", "قلة كمية النفايات", "سهولة الفرز"],
+                "answer": "احتواء المواد السامة",
+                "difficulty": 3
+            }],
+            "medical": [{
+                "question": "ما هو العضو المسؤول عن إنتاج الأنسولين في الجسم؟",
+                "options": ["الكبد", "البنكرياس", "الطحال", "الغدة الدرقية"],
+                "answer": "البنكرياس",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي الوظيفة الرئيسية للرئتين؟",
+                "options": ["ضخ الدم", "تنظيم السكر", "تبادل الغازات", "إنتاج الهرمونات"],
+                "answer": "تبادل الغازات",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو المعدل الطبيعي لدرجة حرارة الجسم؟",
+                "options": ["35°C", "37°C", "40°C", "38.5°C"],
+                "answer": "37°C",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو الفيتامين الذي ينتجه الجلد عند التعرض لأشعة الشمس؟",
+                "options": ["فيتامين A", "فيتامين C", "فيتامين D", "فيتامين K"],
+                "answer": "فيتامين D",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي المادة المسؤولة عن لون الدم الأحمر؟",
+                "options": ["الكوليسترول", "الهيموغلوبين", "الأنسولين", "الكيراتين"],
+                "answer": "الهيموغلوبين",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو العضو المسؤول عن تصفية الدم من السموم؟",
+                "options": ["القلب", "الكلى", "الرئتين", "المعدة"],
+                "answer": "الكلى",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو المرض الذي يسببه نقص الحديد في الجسم؟",
+                "options": ["السكري", "فقر الدم", "الربو", "الضغط المرتفع"],
+                "answer": "فقر الدم",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو الجزء المسؤول عن التوازن في الأذن؟",
+                "options": ["القوقعة", "المطرقة", "الدهليز", "الطبلة"],
+                "answer": "الدهليز",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو عدد ضربات القلب الطبيعية في الدقيقة للشخص البالغ؟",
+                "options": ["30-50", "60-100", "120-150", "160-200"],
+                "answer": "60-100",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو الغاز الذي يزفره الإنسان؟",
+                "options": ["الأكسجين", "الهيدروجين", "ثاني أكسيد الكربون", "النتروجين"],
+                "answer": "ثاني أكسيد الكربون",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي المادة الكيميائية التي تنقل الإشارات العصبية؟",
+                "options": ["الهيموغلوبين", "الأنسولين", "الناقل العصبي", "الكولاجين"],
+                "answer": "الناقل العصبي",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي أكثر ثلاثة أعراض شيوعاً لارتفاع ضغط الدم؟",
+                "options": ["الصداع، الدوخة، ضيق التنفس", "السعال، العطس، التهاب الحلق", "الحكة، الطفح الجلدي، التورم", "التعرق، الرعشة، الجوع"],
+                "answer": "الصداع، الدوخة، ضيق التنفس",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الفائدة الأساسية للألياف الغذائية للجهاز الهضمي؟",
+                "options": ["تحسين حركة الأمعاء", "زيادة امتصاص الدهون", "تقليل إفراز العصارات الهضمية", "تسريع عملية التمثيل الغذائي"],
+                "answer": "تحسين حركة الأمعاء",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو أخطر تأثير للتدخين على الرئتين؟",
+                "options": ["سرطان الرئة", "تغيير لون الأسنان", "رائحة الفم الكريهة", "جفاف الفم"],
+                "answer": "سرطان الرئة",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو العامل الرئيسي المسبب للسمنة؟",
+                "options": ["الإفراط في تناول السعرات الحرارية", "قلة شرب الماء", "النوم الزائد", "التعرض للشمس"],
+                "answer": "الإفراط في تناول السعرات الحرارية",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الطريقة الأكثر فعالية للوقاية من هشاشة العظام؟",
+                "options": ["تناول الكالسيوم وفيتامين D", "شرب القهوة بانتظام", "الجلوس الطويل", "التدخين"],
+                "answer": "تناول الكالسيوم وفيتامين D",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو العَرَض الأكثر وضوحاً للجفاف؟",
+                "options": ["العطش الشديد", "زيادة التعرق", "احمرار الجلد", "زيادة الشهية"],
+                "answer": "العطش الشديد",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الفائدة الرئيسية لشرب الماء للكلى؟",
+                "options": ["مساعدة الكلى على تصفية السموم", "زيادة ضغط الدم", "تقليل إنتاج البول", "زيادة تركيز الأملاح"],
+                "answer": "مساعدة الكلى على تصفية السموم",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو أخطر مضاعفات مرض السكري غير المنضبط؟",
+                "options": ["بتر الأطراف", "زيادة الشهية", "تحسن الرؤية", "زيادة الطاقة"],
+                "answer": "بتر الأطراف",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي الفائدة الأساسية للتمارين الرياضية للقلب؟",
+                "options": ["تقوية عضلة القلب", "زيادة ضغط الدم", "تقليل كفاءة الرئتين", "زيادة الكوليسترول"],
+                "answer": "تقوية عضلة القلب",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو أفضل وقت لقياس ضغط الدم للحصول على قراءة دقيقة؟",
+                "options": ["بعد ممارسة الرياضة", "بعد تناول وجبة دسمة", "في الصباح قبل تناول الطعام", "قبل النوم مباشرة"],
+                "answer": "في الصباح قبل تناول الطعام",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي الاستراتيجية الأكثر فعالية للوقاية من أمراض القلب؟",
+                "options": ["الإقلاع عن التدخين", "تناول الوجبات السريعة", "قلة النوم", "عدم ممارسة الرياضة"],
+                "answer": "الإقلاع عن التدخين",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو التأثير الأكثر خطورة لقلة النوم المزمن؟",
+                "options": ["ضعف جهاز المناعة", "زيادة التركيز", "تحسن المزاج", "زيادة الطاقة"],
+                "answer": "ضعف جهاز المناعة",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي الفائدة الأساسية للصيام المتقطع؟",
+                "options": ["تحسين حساسية الأنسولين", "زيادة تخزين الدهون", "رفع مستويات السكر", "تقليل معدل الأيض"],
+                "answer": "تحسين حساسية الأنسولين",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو العَرَض الأكثر شيوعاً لنقص فيتامين B12؟",
+                "options": ["التعب والإرهاق", "زيادة الطاقة", "تحسن النوم", "زيادة الشهية"],
+                "answer": "التعب والإرهاق",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي الطريقة الأكثر فعالية لخفض الكوليسترول الضار؟",
+                "options": ["تناول الأطعمة الغنية بالألياف", "الإكثار من الدهون المشبعة", "قلة الحركة", "التدخين"],
+                "answer": "تناول الأطعمة الغنية بالألياف",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي الفائدة الرئيسية للزنك لجهاز المناعة؟",
+                "options": ["تعزيز وظيفة المناعة", "تقليل عدد خلايا الدم البيضاء", "زيادة العدوى", "تقليل الاستجابة المناعية"],
+                "answer": "تعزيز وظيفة المناعة",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو التأثير الأكثر خطورة للإجهاد المزمن؟",
+                "options": ["ارتفاع ضغط الدم", "انخفاض معدل ضربات القلب", "تحسن الهضم", "زيادة الاسترخاء"],
+                "answer": "ارتفاع ضغط الدم",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي الفائدة الأساسية لأحماض أوميغا 3 للقلب؟",
+                "options": ["خفض الدهون الثلاثية", "زيادة الكوليسترول الضار", "رفع ضغط الدم", "تقليل كفاءة الدورة الدموية"],
+                "answer": "خفض الدهون الثلاثية",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هي العادة الأكثر تأثيراً في تحسين جودة النوم؟",
+                "options": ["الالتزام بموعد نوم منتظم", "شرب القهوة قبل النوم", "استخدام الأجهزة الإلكترونية في الفراش", "تناول وجبات دسمة ليلاً"],
+                "answer": "الالتزام بموعد نوم منتظم",
+                "difficulty": 3
+            }],
+            "history": [
+                {
+                    "question": "ما هي أول حضارة نشأت في بلاد ما بين النهرين؟",
+                    "options": ["الحضارة الآشورية", "الحضارة البابلية", "الحضارة السومرية", "الحضارة الأكادية"],
+                    "answer": "الحضارة السومرية",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو الملك الذي وضع أول قانون مكتوب في التاريخ؟",
+                    "options": ["حمورابي", "نبوخذ نصر", "سرجون الأكادي", "أشوربانيبال"],
+                    "answer": "حمورابي",
+                    "difficulty": 1
+                },
+                {
+                    "question": "أين كانت تقع مدينة بابل القديمة؟",
+                    "options": ["شمال العراق", "جنوب العراق", "وسط العراق", "غرب العراق"],
+                    "answer": "جنوب العراق",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هو الاسم القديم لنهر دجلة؟",
+                    "options": ["الفُرات", "خابور", "ديجلاث", "الفرات الصغير"],
+                    "answer": "ديجلاث",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من أشهر ملوك آشور الذي بنى مكتبة نينوى؟",
+                    "options": ["سنحاريب", "أشوربانيبال", "تغلث فلاسر", "شلمنصر الثالث"],
+                    "answer": "أشوربانيبال",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي الكتابة التي اخترعها السومريون؟",
+                    "options": ["الهيروغليفية", "الخط المسماري", "الأبجدية الفينيقية", "الآرامية"],
+                    "answer": "الخط المسماري",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هو البناء الشهير الذي بناه نبوخذ نصر الثاني لزوجته؟",
+                    "options": ["برج بابل", "حدائق بابل المعلقة", "زقورة أور", "معبد مردوخ"],
+                    "answer": "حدائق بابل المعلقة",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي أقدم مدينة معروفة في التاريخ تقع في جنوب العراق؟",
+                    "options": ["أور", "نينوى", "بابل", "كيش"],
+                    "answer": "أور",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو الإله الرئيسي في الديانة البابلية؟",
+                    "options": ["إنليل", "أنو", "مردوخ", "أدد"],
+                    "answer": "مردوخ",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي الزقورة في الحضارة العراقية القديمة؟",
+                    "options": ["قصر ملكي", "معبد مدرج", "سور المدينة", "مقبرة جماعية"],
+                    "answer": "معبد مدرج",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من القائد الفارسي الذي احتل بابل عام 539 ق.م؟",
+                    "options": ["دارا الأول", "قمبيز", "كورش الكبير", "زركسيس"],
+                    "answer": "كورش الكبير",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هي المملكة التي حكمت العراق بعد سقوط بابل على يد الفرس؟",
+                    "options": ["المملكة الآشورية", "المملكة الأكادية", "الإمبراطورية الأخمينية", "مملكة ميديا"],
+                    "answer": "الإمبراطورية الأخمينية",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو سبب تسمية بلاد ما بين النهرين بهذا الاسم؟",
+                    "options": ["بين جبلين", "بين نهرين", "بين صحراوين", "بين بحرين"],
+                    "answer": "بين نهرين",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو الملك السومري الذي اشتهر بملحقة جلجامش؟",
+                    "options": ["أور نمو", "لوكال زاجيسي", "جلجامش", "سرجون الأكادي"],
+                    "answer": "جلجامش",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هي العاصمة الآشورية القديمة؟",
+                    "options": ["بابل", "أور", "نينوى", "كيش"],
+                    "answer": "نينوى",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو الاسم القديم للخليج العربي في النصوص العراقية القديمة؟",
+                    "options": ["بحر الظلمات", "بحر السند", "البحر الأسفل", "بحر إريتريا"],
+                    "answer": "البحر الأسفل",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو الملك الذي أسس الإمبراطورية الأكادية؟",
+                    "options": ["نارام سين", "سرجون الأكادي", "شمشي أدد", "حمورابي"],
+                    "answer": "سرجون الأكادي",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هي المادة الرئيسية التي استخدمها العراقيون القدماء في الكتابة؟",
+                    "options": ["البردي", "الرق", "الطين", "الخشب"],
+                    "answer": "الطين",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو أقدم قانون معروف قبل قانون حمورابي؟",
+                    "options": ["قانون أور نمو", "قانون ليبيت عشتار", "قانون آشور", "قانون بابل"],
+                    "answer": "قانون أور نمو",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو الدور الرئيسي للمعابد (الزقورات) في العراق القديم؟",
+                    "options": ["مراكز تجارية", "مراكز دينية وإدارية", "قصور للملوك", "مخازن للحبوب"],
+                    "answer": "مراكز دينية وإدارية",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو الملك الآشوري الذي دمر مدينة بابل عام 689 ق.م؟",
+                    "options": ["أشوربانيبال", "سنحاريب", "تغلث فلاسر الثالث", "شلمنصر الخامس"],
+                    "answer": "سنحاريب",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هي اللغة التي حلَّت محل السومرية كلغة رسمية في العراق القديم؟",
+                    "options": ["الآرامية", "الأكادية", "الفينيقية", "العبرية"],
+                    "answer": "الأكادية",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو اسم العصر الذي ظهرت فيه أولى المدن السومرية؟",
+                    "options": ["العصر الحجري", "عصر عبيد", "العصر البرونزي", "العصر الحديدي"],
+                    "answer": "عصر عبيد",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هي الإلهة السومرية المختصة بالحب والحرب؟",
+                    "options": ["إنانا", "ننهورساج", "عشتار", "تيامات"],
+                    "answer": "إنانا",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو السبب الرئيسي لسقوط الإمبراطورية الآشورية؟",
+                    "options": ["الغزو الفارسي", "الثورات الداخلية والتحالفات المعادية", "الكوارث الطبيعية", "الانهيار الاقتصادي"],
+                    "answer": "الثورات الداخلية والتحالفات المعادية",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو اسم المعركة التي أنهت حكم الدولة الساسانية في العراق؟",
+                    "options": ["معركة القادسية", "معركة نينوى", "معركة بابل", "معركة أليس"],
+                    "answer": "معركة القادسية",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هو الحاكم العربي الذي أسس مدينة الكوفة؟",
+                    "options": ["خالد بن الوليد", "سعد بن أبي وقاص", "عمر بن الخطاب", "الحجاج بن يوسف"],
+                    "answer": "سعد بن أبي وقاص",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هي المدينة العراقية التي كانت عاصمة للخلافة العباسية؟",
+                    "options": ["البصرة", "الكوفة", "بغداد", "الموصل"],
+                    "answer": "بغداد",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو اسم العملة المستخدمة في العراق خلال العصر العباسي؟",
+                    "options": ["الدينار", "الدرهم", "الفلوس", "القرش"],
+                    "answer": "الدرهم",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو أبرز سبب لانهيار نظام الري في جنوب العراق قديماً؟",
+                    "options": ["الغزوات المغولية", "تراكم الأملاح في التربة", "تغيير مجرى النهرين", "الجفاف الطويل"],
+                    "answer": "تراكم الأملاح في التربة",
+                    "difficulty": 3
+                },
+
+                {
+                    "question": "من هو الفرعون المصري الذي بنى الهرم الأكبر؟",
+                    "options": ["رمسيس الثاني", "خوفو", "اخناتون", "توت عنخ آمون"],
+                    "answer": "خوفو",
+                    "difficulty": 1
+                },
+                {
+                    "question": "أين نشأت حضارة المايا؟",
+                    "options": ["أمريكا الجنوبية", "أمريكا الوسطى", "أفريقيا", "آسيا"],
+                    "answer": "أمريكا الوسطى",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي الحضارة التي طورت نظام الكتابة الهيروغليفية؟",
+                    "options": ["اليونانية", "الرومانية", "المصرية القديمة", "الفينيقية"],
+                    "answer": "المصرية القديمة",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من كان أول إمبراطور لروما؟",
+                    "options": ["يوليوس قيصر", "أغسطس", "نيرون", "قسطنطين"],
+                    "answer": "أغسطس",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي الحرب التي دارت بين أثينا وإسبرطة؟",
+                    "options": ["الحروب الفارسية", "حرب طروادة", "الحرب البيلوبونيسية", "الحروب المقدونية"],
+                    "answer": "الحرب البيلوبونيسية",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو القائد المغولي الذي غزا معظم آسيا؟",
+                    "options": ["أتيلا", "جنكيز خان", "هولاكو", "تيمورلنك"],
+                    "answer": "جنكيز خان",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي أول حضارة نشأت في الهند؟",
+                    "options": ["حضارة الغانغ", "حضارة هارابا", "حضارة المغول", "حضارة الدرافيديين"],
+                    "answer": "حضارة هارابا",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من اكتشف أمريكا عام 1492؟",
+                    "options": ["فاسكو دا غاما", "كريستوفر كولومبوس", "ماجلان", "جيمس كوك"],
+                    "answer": "كريستوفر كولومبوس",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي الإمبراطورية التي حكمت معظم أوروبا في العصور الوسطى؟",
+                    "options": ["الإمبراطورية الرومانية المقدسة", "الإمبراطورية البيزنطية", "الإمبراطورية العثمانية", "الإمبراطورية البريطانية"],
+                    "answer": "الإمبراطورية الرومانية المقدسة",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هو اسم المعركة التي هزم فيها نابليون نهائياً؟",
+                    "options": ["ووترلو", "أوسترليتز", "بورودينو", "تشارلستون"],
+                    "answer": "ووترلو",
+                    "difficulty": 1
+                },
+                {
+                    "question": "ما هي الدولة التي كانت تُعرف باسم 'الإمبراطورية التي لا تغيب عنها الشمس'؟",
+                    "options": ["الإمبراطورية البريطانية", "الإمبراطورية الإسبانية", "الإمبراطورية الفرنسية", "الإمبراطورية البرتغالية"],
+                    "answer": "الإمبراطورية البريطانية",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو الفيلسوف اليوناني المعلم بالإسكندر الأكبر؟",
+                    "options": ["أرسطو", "أفلاطون", "سقراط", "هرقليطس"],
+                    "answer": "أرسطو",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هي الحضارة التي بنت مدينة ماشو بيتشو؟",
+                    "options": ["المايا", "الإنكا", "الأزتيك", "الزابوتيك"],
+                    "answer": "الإنكا",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو سبب حرب المائة عام بين إنجلترا وفرنسا؟",
+                    "options": ["الصراع على العرش الفرنسي", "الخلاف الديني", "التجارة", "الحدود"],
+                    "answer": "الصراع على العرش الفرنسي",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو أول رئيس للولايات المتحدة؟",
+                    "options": ["توماس جيفرسون", "جون آدامز", "جورج واشنطن", "أبراهام لينكولن"],
+                    "answer": "جورج واشنطن",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هي الوثيقة التي أعلنت استقلال الولايات المتحدة؟",
+                    "options": ["دستور الولايات المتحدة", "إعلان الاستقلال", "وثيقة الحقوق", "معاهدة باريس"],
+                    "answer": "إعلان الاستقلال",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو القائد العسكري القرطاجي الذي عبر جبال الألب لمهاجمة روما؟",
+                    "options": ["حنبعل", "أسكوبار", "هانيبال", "سكيبيو"],
+                    "answer": "حنبعل",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هي الدولة التي انفصلت عن الهند عام 1947؟",
+                    "options": ["نيبال", "باكستان", "بنجلاديش", "سريلانكا"],
+                    "answer": "باكستان",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو اسم آخر إمبراطور لروسيا قبل الثورة البلشفية؟",
+                    "options": ["بطرس الأكبر", "نيكولاي الثاني", "ألكسندر الثالث", "إيفان الرهيب"],
+                    "answer": "نيكولاي الثاني",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هي الحرب التي أنهت حكم نابليون الثالث في فرنسا؟",
+                    "options": ["الحرب الفرنسية البروسية", "حرب القرم", "الحرب النابليونية", "الحرب العالمية الأولى"],
+                    "answer": "الحرب الفرنسية البروسية",
+                    "difficulty": 3
+                }
+
+            ],
+            "sports": [
+                // Modern Iraqi Football (2015-2025) - 20 Questions
+                {
+                    "question": "من هو اللاعب العراقي الذي فاز بجائزة أفضل لاعب آسيوي في عام 2023؟",
+                    "options": ["مهند علي", "حيدر عبد الأمير", "جلال حسن", "علي عدنان"],
+                    "answer": "مهند علي",
+                    "difficulty": 2
+                },
+                {
+                    "question": "في أي عام تأهل العراق لكأس آسيا 2023؟",
+                    "options": ["2021", "2022", "2023", "تأهل تلقائيا"],
+                    "answer": "2022",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو المدرب الإسباني الذي درب المنتخب العراقي بين 2021-2023؟",
+                    "options": ["خيسوس كاساس", "إيرنيستو فالفيردي", "بيب غوارديولا", "زين الدين زيدان"],
+                    "answer": "خيسوس كاساس",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو النادي العراقي الذي وصل لنهائي كأس الاتحاد الآسيوي 2018؟",
+                    "options": ["الزوراء", "القوة الجوية", "النفط", "أربيل"],
+                    "answer": "القوة الجوية",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هو الحارس العراقي الذي انتقل إلى نادي أوستينده البلجيكي في 2021؟",
+                    "options": ["جلال حسن", "فارس حسن", "محمد حامد", "نور صبري"],
+                    "answer": "جلال حسن",
+                    "difficulty": 2
+                },
+                {
+                    "question": "في أي عام فاز العراق بكأس العرب للمنتخبات تحت 20 سنة؟",
+                    "options": ["2018", "2020", "2022", "لم يفز"],
+                    "answer": "2022",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو الهداف التاريخي للمنتخب العراقي في تصفيات كأس العالم 2022؟",
+                    "options": ["مهند علي", "علاء عبد الزهرة", "أيمن حسين", "محمد قاسم"],
+                    "answer": "أيمن حسين",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو النادي العراقي الذي فاز بالدوري الممتاز في موسم 2022-2023؟",
+                    "options": ["الشرطة", "الزوراء", "القوة الجوية", "النفط"],
+                    "answer": "الشرطة",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو اللاعب العراقي الذي لعب مع نادي سانت باولي الألماني؟",
+                    "options": ["علي عدنان", "مهند علي", "جلال حسن", "حيدر عبد الأمير"],
+                    "answer": "علي عدنان",
+                    "difficulty": 3
+                },
+                {
+                    "question": "في أي مركز أنهى العراق كأس آسيا 2023؟",
+                    "options": ["الدور ربع النهائي", "الدور 16", "مرحلة المجموعات", "المركز الثالث"],
+                    "answer": "الدور 16",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو اللاعب العراقي الذي سجل هدف الفوز ضد إيران في تصفيات كأس العالم 2022؟",
+                    "options": ["أيمن حسين", "مهند علي", "علاء عبد الزهرة", "حيدر عبد الأمير"],
+                    "answer": "أيمن حسين",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو عدد أهداف مهند علي مع المنتخب العراقي حتى 2024؟",
+                    "options": ["15", "25", "35", "أكثر من 40"],
+                    "answer": "أكثر من 40",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هو المدرب الوطني الذي قاد العراق في كأس آسيا 2019؟",
+                    "options": ["قحطان جثير", "صباح حاتم", "عبد الغني شهد", "علي حسين"],
+                    "answer": "صباح حاتم",
+                    "difficulty": 2
+                },
+                {
+                    "question": "في أي عام تأسس دوري المحترفين العراقي بالشكل الحالي؟",
+                    "options": ["2013", "2015", "2017", "2019"],
+                    "answer": "2017",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هو اللاعب العراقي الذي لعب في الدوري القطري مع نادي الوكرة؟",
+                    "options": ["مهند علي", "أيمن حسين", "حيدر عبد الأمير", "جميع ما سبق"],
+                    "answer": "جميع ما سبق",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو أفضل إنجاز للعراق في كأس آسيا بعد 2007؟",
+                    "options": ["المركز الثالث 2015", "الدور ربع النهائي 2019", "الدور 16 2023", "لم يتجاوز المجموعات"],
+                    "answer": "الدور ربع النهائي 2019",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو هداف الدوري العراقي لموسم 2021-2022؟",
+                    "options": ["أيمن حسين", "مهند علي", "علاء عبد الزهرة", "حسين علي"],
+                    "answer": "أيمن حسين",
+                    "difficulty": 3
+                },
+                {
+                    "question": "في أي عام عاد المنتخب العراقي ليلعب مبارياته على أرضه في بغداد؟",
+                    "options": ["2018", "2019", "2020", "2021"],
+                    "answer": "2019",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو اللاعب العراقي الذي انتقل إلى نادي كايسري سبور التركي في 2023؟",
+                    "options": ["مهند علي", "علي عدنان", "جلال حسن", "أيمن حسين"],
+                    "answer": "أيمن حسين",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو النادي العراقي الذي فاز بكأس العراق ثلاث مرات متتالية (2015-2018)?",
+                    "options": ["الزوراء", "القوة الجوية", "الشرطة", "أربيل"],
+                    "answer": "القوة الجوية",
+                    "difficulty": 3
+                },
+
+                // Historical Iraqi Football (1980-2014) - 10 Questions
+                {
+                    "question": "من هو اللاعب العراقي الذي سجل هدف العراق التاريخي في كأس العالم 1986 ضد بلجيكا؟",
+                    "options": ["حسين سعيد", "أحمد راضي", "كريم محمد", "ناطق هاشم"],
+                    "answer": "أحمد راضي",
+                    "difficulty": 1
+                },
+                {
+                    "question": "في أي عام تأهل العراق لأول مرة لكأس العالم؟",
+                    "options": ["1982", "1986", "1990", "1994"],
+                    "answer": "1986",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو المدرب الذي قاد العراق للفوز بكأس آسيا 2007؟",
+                    "options": ["أكرم سلمان", "جورفان فييرا", "عدنان حمد", "قحطان جثير"],
+                    "answer": "جورفان فييرا",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو اللاعب العراقي الذي لعب مع نادي إنتر ميلان الإيطالي؟",
+                    "options": ["حسين سعيد", "علي عدنان", "يونس محمود", "أحمد راضي"],
+                    "answer": "حسين سعيد",
+                    "difficulty": 2
+                },
+                {
+                    "question": "في أي عام فاز العراق ببطولة كأس الخليج لأول مرة؟",
+                    "options": ["1979", "1984", "1988", "2004"],
+                    "answer": "1979",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو هداف العراق التاريخي في تصفيات كأس العالم؟",
+                    "options": ["يونس محمود", "أحمد راضي", "حسين سعيد", "علاء عبد الزهرة"],
+                    "answer": "حسين سعيد",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو اسم الملعب الرئيسي الذي يستضيف مباريات المنتخب العراقي في بغداد؟",
+                    "options": ["ملعب الشعب", "ملعب الصداقة", "ملعب الزوراء", "ملعب الميناء"],
+                    "answer": "ملعب الشعب",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو اللاعب العراقي الذي فاز بجائزة أفضل لاعب في آسيا عام 1988؟",
+                    "options": ["حسين سعيد", "أحمد راضي", "كريم محمد", "يونس محمود"],
+                    "answer": "حسين سعيد",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو السبب الرئيسي لحرمان العراق من المشاركة في كأس العالم 1994؟",
+                    "options": ["الحرب", "عقوبات الفيفا", "انسحاب اللاعبين", "عدم التأهل"],
+                    "answer": "عقوبات الفيفا",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هو اللاعب العراقي الذي سجل هدف الفوز في نهائي كأس آسيا 2007 ضد السعودية؟",
+                    "options": ["يونس محمود", "نشأت أكرم", "قحطان جثير", "حيدر عبد الأمير"],
+                    "answer": "يونس محمود",
+                    "difficulty": 1
+                },
+
+                // European/Spanish Football - 25 Questions
+                {
+                    "question": "ما هو النادي الأكثر فوزًا بدوري أبطال أوروبا؟",
+                    "options": ["برشلونة", "بايرن ميونخ", "ريال مدريد", "ليفربول"],
+                    "answer": "ريال مدريد",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو الهداف التاريخي لريال مدريد؟",
+                    "options": ["راؤول", "كريستيانو رونالدو", "دي ستيفانو", "كاريم بنزيمة"],
+                    "answer": "كريستيانو رونالدو",
+                    "difficulty": 1
+                },
+                {
+                    "question": "في أي عام فاز برشلونة بثلاثية (الدوري، الكأس، دوري الأبطال)؟",
+                    "options": ["2009", "2011", "2015", "2020"],
+                    "answer": "2009",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو اللاعب الذي سجل أكثر أهداف في تاريخ الكلاسيكو؟",
+                    "options": ["ليونيل ميسي", "كريستيانو رونالدو", "ألفريدو دي ستيفانو", "راؤول"],
+                    "answer": "ليونيل ميسي",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو المدرب الذي قاد ريال مدريد للفوز بـ3 دوري أبطال متتالية (2016-2018)?",
+                    "options": ["جوزيه مورينيو", "كارلو أنشيلوتي", "زين الدين زيدان", "بيب غوارديولا"],
+                    "answer": "زين الدين زيدان",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو النادي الذي يمتلك الرقم القياسي لأطول سلسلة انتصارات في الدوري الإسباني؟",
+                    "options": ["برشلونة", "ريال مدريد", "أتلتيكو مدريد", "فالنسيا"],
+                    "answer": "برشلونة",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هو اللاعب الذي لعب أكثر عدد مباريات مع برشلونة؟",
+                    "options": ["ليونيل ميسي", "أندريس إنييستا", "تشافي", "كارليس بويول"],
+                    "answer": "ليونيل ميسي",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو الهداف التاريخي للدوري الإسباني؟",
+                    "options": ["كريستيانو رونالدو", "ليونيل ميسي", "تلمو زارا", "هوغو سانشيز"],
+                    "answer": "ليونيل ميسي",
+                    "difficulty": 1
+                },
+                {
+                    "question": "في أي عام انتقل نيمار من برشلونة إلى باريس سان جيرمان؟",
+                    "options": ["2015", "2017", "2019", "2021"],
+                    "answer": "2017",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو عدد ألقاب برشلونة في دوري أبطال أوروبا؟",
+                    "options": ["3", "5", "7", "9"],
+                    "answer": "5",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو اللاعب الذي سجل أسرع هاتريك في تاريخ الدوري الإسباني؟",
+                    "options": ["ليونيل ميسي", "كريستيانو رونالدو", "لويس سواريز", "روبرت ليفاندوفسكي"],
+                    "answer": "روبرت ليفاندوفسكي",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو النادي الأكثر فوزًا بكأس الملك في إسبانيا؟",
+                    "options": ["برشلونة", "ريال مدريد", "أتلتيكو بيلباو", "فالنسيا"],
+                    "answer": "برشلونة",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو المدرب الذي قاد برشلونة للفوز بالسداسية (2009)?",
+                    "options": ["بيب غوارديولا", "لويس إنريكي", "إرنستو فالفيردي", "رونالد كومان"],
+                    "answer": "بيب غوارديولا",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو اللاعب الذي سجل أكثر أهداف في موسم واحد من الدوري الإسباني؟",
+                    "options": ["ليونيل ميسي (50 هدفًا)", "كريستيانو رونالدو (48 هدفًا)", "هوغو سانشيز (38 هدفًا)", "تلمو زارا (35 هدفًا)"],
+                    "answer": "ليونيل ميسي (50 هدفًا)",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو النادي الأكثر فوزًا بالدوري الألماني؟",
+                    "options": ["بايرن ميونخ", "بوروسيا دورتموند", "هامبورغ", "شالكه"],
+                    "answer": "بايرن ميونخ",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو اللاعب الذي لعب لريال مدريد وبرشلونة؟",
+                    "options": ["لويس فيغو", "رونالدو نازاريو", "صامويل إيتو", "جميع ما سبق"],
+                    "answer": "جميع ما سبق",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو النادي الأكثر فوزًا بالدوري الإنجليزي الممتاز؟",
+                    "options": ["مانشستر يونايتد", "ليفربول", "آرسنال", "تشيلسي"],
+                    "answer": "مانشستر يونايتد",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو الهداف التاريخي لدوري أبطال أوروبا؟",
+                    "options": ["ليونيل ميسي", "كريستيانو رونالدو", "روبرت ليفاندوفسكي", "راؤول"],
+                    "answer": "كريستيانو رونالدو",
+                    "difficulty": 1
+                },
+                {
+                    "question": "في أي عام فاز ريال مدريد بدوري الأبطال للمرة الثالثة عشر؟",
+                    "options": ["2016", "2017", "2018", "2022"],
+                    "answer": "2018",
+                    "difficulty": 2
+                },
+                {
+                    "question": "ما هو النادي الإنجليزي الوحيد الذي فاز بالثلاثية المحلية (الدوري، الكأس، دوري الأبطال)?",
+                    "options": ["مانشستر يونايتد", "ليفربول", "تشيلسي", "مانشستر سيتي"],
+                    "answer": "مانشستر يونايتد",
+                    "difficulty": 2
+                },
+                {
+                    "question": "من هو المدرب الذي قاد تشيلسي للفوز بدوري الأبطال 2012؟",
+                    "options": ["جوزيه مورينيو", "كارلو أنشيلوتي", "روبرتو دي ماتيو", "أنطونيو كونتي"],
+                    "answer": "روبرتو دي ماتيو",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو النادي الذي يمتلك الرقم القياسي لعدم الخسارة في الدوري الإنجليزي؟",
+                    "options": ["آرسنال (49 مباراة)", "ليفربول (44 مباراة)", "مانشستر يونايتد (40 مباراة)", "تشيلسي (38 مباراة)"],
+                    "answer": "آرسنال (49 مباراة)",
+                    "difficulty": 3
+                },
+                {
+                    "question": "من هو اللاعب الذي سجل أسرع هدف في تاريخ الدوري الإنجليزي؟",
+                    "options": ["سيرجيو أغويرو", "صادق بيريز", "شين لونج", "كريستيان إريكسن"],
+                    "answer": "شين لونج",
+                    "difficulty": 3
+                },
+                {
+                    "question": "ما هو النادي الأكثر فوزًا بكأس إسبانيا؟",
+                    "options": ["برشلونة", "ريال مدريد", "أتلتيكو بيلباو", "فالنسيا"],
+                    "answer": "برشلونة",
+                    "difficulty": 1
+                },
+                {
+                    "question": "من هو اللاعب الذي فاز بجائزة الكرة الذهبية لأكثر عدد مرات؟",
+                    "options": ["ليونيل ميسي", "كريستيانو رونالدو", "ميشيل بلاتيني", "يوهان كرويف"],
+                    "answer": "ليونيل ميسي",
+                    "difficulty": 1
+                }
+            ],
+            "general": [{
+                "question": "ما هي عاصمة أستراليا؟",
+                "options": ["سيدني", "ملبورن", "كانبرا", "بريزبان"],
+                "answer": "كانبرا",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو أطول نهر في العالم؟",
+                "options": ["نهر النيل", "نهر الأمازون", "نهر اليانغتسي", "نهر المسيسيبي"],
+                "answer": "نهر النيل",
+                "difficulty": 1
+            },
+            {
+                "question": "من هو مخترع المصباح الكهربائي؟",
+                "options": ["توماس إديسون", "ألكسندر جراهام بيل", "نيكولا تيسلا", "جاليليو جاليلي"],
+                "answer": "توماس إديسون",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي أكبر دولة في العالم من حيث المساحة؟",
+                "options": ["كندا", "الصين", "الولايات المتحدة", "روسيا"],
+                "answer": "روسيا",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو العنصر الكيميائي الذي رمزه 'O'؟",
+                "options": ["الذهب", "الأكسجين", "الأوزون", "الحديد"],
+                "answer": "الأكسجين",
+                "difficulty": 1
+            },
+            {
+                "question": "في أي عام هبط الإنسان أول مرة على القمر؟",
+                "options": ["1965", "1969", "1972", "1981"],
+                "answer": "1969",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي اللغة الرسمية في البرازيل؟",
+                "options": ["الإسبانية", "الإنجليزية", "البرتغالية", "الفرنسية"],
+                "answer": "البرتغالية",
+                "difficulty": 1
+            },
+            {
+                "question": "من هو مؤلف رواية 'البؤساء'؟",
+                "options": ["ليو تولستوي", "فيكتور هوغو", "شارلز ديكنز", "جي كي رولينج"],
+                "answer": "فيكتور هوغو",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو أعمق محيط في العالم؟",
+                "options": ["المحيط الأطلسي", "المحيط الهندي", "المحيط الهادئ", "المحيط المتجمد الشمالي"],
+                "answer": "المحيط الهادئ",
+                "difficulty": 1
+            },
+            {
+                "question": "كم عدد القارات في العالم؟",
+                "options": ["5", "6", "7", "8"],
+                "answer": "7",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هي العملة الرسمية في اليابان؟",
+                "options": ["الدولار", "اليورو", "الين", "الجنيه"],
+                "answer": "الين",
+                "difficulty": 1
+            },
+            {
+                "question": "من رسم لوحة الموناليزا؟",
+                "options": ["بابلو بيكاسو", "فنسنت فان جوخ", "ليوناردو دا فينشي", "سلفادور دالي"],
+                "answer": "ليوناردو دا فينشي",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو أكبر كوكب في المجموعة الشمسية؟",
+                "options": ["الأرض", "المشتري", "زحل", "نبتون"],
+                "answer": "المشتري",
+                "difficulty": 1
+            },
+            {
+                "question": "في أي قارة تقع مصر؟",
+                "options": ["أوروبا", "آسيا", "أفريقيا", "أمريكا الجنوبية"],
+                "answer": "أفريقيا",
+                "difficulty": 1
+            },
+            {
+                "question": "ما هو اسم أطول سلسلة جبال في العالم؟",
+                "options": ["جبال الألب", "جبال الأنديز", "جبال روكي", "جبال الهيمالايا"],
+                "answer": "جبال الأنديز",
+                "difficulty": 2
+            },
+            {
+                "question": "من هو أول رئيس للولايات المتحدة الأمريكية؟",
+                "options": ["توماس جيفرسون", "جورج واشنطن", "أبراهام لينكولن", "جون آدامز"],
+                "answer": "جورج واشنطن",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هي عاصمة كندا؟",
+                "options": ["تورونتو", "فانكوفر", "أوتاوا", "مونتريال"],
+                "answer": "أوتاوا",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو اسم أقدم جامعة في العالم؟",
+                "options": ["جامعة هارفارد", "جامعة أكسفورد", "جامعة القرويين", "جامعة بولونيا"],
+                "answer": "جامعة القرويين",
+                "difficulty": 2
+            },
+            {
+                "question": "كم عدد العظام في جسم الإنسان البالغ؟",
+                "options": ["206", "300", "150", "400"],
+                "answer": "206",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو اسم أسرع حيوان بري؟",
+                "options": ["الفهد", "الأسد", "النمر", "الغزال"],
+                "answer": "الفهد",
+                "difficulty": 2
+            },
+            {
+                "question": "من هو العالم الذي اكتشف الجاذبية الأرضية؟",
+                "options": ["ألبرت أينشتاين", "إسحاق نيوتن", "جاليليو جاليلي", "نيكولا تيسلا"],
+                "answer": "إسحاق نيوتن",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو اسم أكبر صحراء في العالم؟",
+                "options": ["الصحراء الكبرى", "صحراء جوبي", "صحراء الربع الخالي", "صحراء أتاكاما"],
+                "answer": "الصحراء الكبرى",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو اسم العملية التي تنتج بها النباتات غذائها؟",
+                "options": ["التنفس", "التمثيل الضوئي", "التخمر", "التكاثر"],
+                "answer": "التمثيل الضوئي",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو اسم أطول برج في العالم؟",
+                "options": ["برج خليفة", "برج شنغهاي", "برج بيزا", "برج إيفل"],
+                "answer": "برج خليفة",
+                "difficulty": 2
+            },
+            {
+                "question": "من هو مؤلف مسرحية 'روميو وجولييت'؟",
+                "options": ["ويليام شكسبير", "جورج برنارد شو", "أوسكار وايلد", "آرثر ميلر"],
+                "answer": "ويليام شكسبير",
+                "difficulty": 2
+            },
+            {
+                "question": "ما هو اسم أعمق نقطة في المحيطات؟",
+                "options": ["خندق ماريانا", "خندق بورتوريكو", "خندق تونغا", "خندق اليابان"],
+                "answer": "خندق ماريانا",
+                "difficulty": 3
+            },
+            {
+                "question": "من هو أول إنسان سار على القمر؟",
+                "options": ["نيل أرمسترونغ", "باز ألدرين", "يوري جاجارين", "جون غلين"],
+                "answer": "نيل أرمسترونغ",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أكبر شلال في العالم؟",
+                "options": ["شلالات نياجرا", "شلالات أنجل", "شلالات فيكتوريا", "شلالات إجوازو"],
+                "answer": "شلالات أنجل",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أقدم حضارة معروفة في العالم؟",
+                "options": ["الحضارة المصرية", "الحضارة السومرية", "الحضارة الصينية", "الحضارة الهندية"],
+                "answer": "الحضارة السومرية",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أسرع طائر في العالم؟",
+                "options": ["الصقر", "النسر", "السنونو", "الببغاء"],
+                "answer": "الصقر",
+                "difficulty": 3
+            },
+            {
+                "question": "من هو مخترع الهاتف؟",
+                "options": ["توماس إديسون", "ألكسندر جراهام بيل", "نيكولا تيسلا", "جولييلمو ماركوني"],
+                "answer": "ألكسندر جراهام بيل",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أكبر بحيرة في العالم؟",
+                "options": ["بحيرة بايكال", "بحيرة سوبيريور", "بحيرة فيكتوريا", "بحيرة قزوين"],
+                "answer": "بحيرة قزوين",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أطول جسر في العالم؟",
+                "options": ["جسر ميلو", "جسر هونغ كونغ-تشوهاي-ماكاو", "جسر البوابة الذهبية", "جسر نانجينغ"],
+                "answer": "جسر هونغ كونغ-تشوهاي-ماكاو",
+                "difficulty": 3
+            },
+            {
+                "question": "من هو مؤلف كتاب 'أصل الأنواع'؟",
+                "options": ["تشارلز داروين", "سيغموند فرويد", "كارل ماركس", "ألبرت أينشتاين"],
+                "answer": "تشارلز داروين",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أكبر غابة استوائية في العالم؟",
+                "options": ["غابة الكونغو", "غابة الأمازون", "غابة بورنيو", "غابة دينتري"],
+                "answer": "غابة الأمازون",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أقدم دين في العالم؟",
+                "options": ["المسيحية", "الإسلام", "الهندوسية", "اليهودية"],
+                "answer": "الهندوسية",
+                "difficulty": 3
+            },
+            {
+                "question": "من هو أول رئيس لمصر بعد ثورة 1952؟",
+                "options": ["جمال عبد الناصر", "محمد نجيب", "أنور السادات", "حسني مبارك"],
+                "answer": "محمد نجيب",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أطول ناطحة سحاب في العالم؟",
+                "options": ["برج خليفة", "برج شنغهاي", "برج الساعة", "برج مركز التجارة العالمي"],
+                "answer": "برج خليفة",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أكبر جزيرة في العالم؟",
+                "options": ["جرينلاند", "مدغشقر", "بورنيو", "بابوا غينيا الجديدة"],
+                "answer": "جرينلاند",
+                "difficulty": 3
+            },
+            {
+                "question": "من هو مؤلف كتاب 'الحرب والسلام'؟",
+                "options": ["فيودور دوستويفسكي", "ليو تولستوي", "أنطون تشيخوف", "فلاديمير نابوكوف"],
+                "answer": "ليو تولستوي",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أقدم عاصمة في التاريخ؟",
+                "options": ["روما", "أثينا", "دمشق", "بابل"],
+                "answer": "دمشق",
+                "difficulty": 3
+            },
+            {
+                "question": "ما هو اسم أطول نهر في أوروبا؟",
+                "options": ["نهر الدانوب", "نهر الفولجا", "نهر الراين", "نهر السين"],
+                "answer": "نهر الفولجا",
+                "difficulty": 3
+            }]
+        };
+
+        // Game State Management
+        const GameState = {
+            questions: {
+                team1: [],
+                team2: []
+            },
+            currentQuestion: {
+                team1: null,
+                team2: null
+            },
+            scores: {
+                team1: 0,
+                team2: 0
+            },
+            stats: {
+                team1: { correct: 0, wrong: 0 },
+                team2: { correct: 0, wrong: 0 }
+            },
+            names: {
+                team1: "الفريق الأول",
+                team2: "الفريق الثاني"
+            },
+            settings: {
+                category: "",
+                totalQuestions: 10,
+                timePerQuestion: 30,
+                currentTeam: "team1",
+                timer: null,
+                isTimerPaused: false,
+                gameStarted: false,
+                usedQuestions: new Set(), // لتجنب تكرار الأسئلة
+                playersCount: 1 // عدد اللاعبين الافتراضي
+            }
+        };
+
+        // DOM Elements Cache
+        const DOM = {
+            playerSelection: document.getElementById("player-selection"),
+            categorySelection: document.getElementById("category-selection"),
+            teamNamesInput: document.getElementById("team-names"),
+            gameControls: document.getElementById("game-controls"),
+            gameArea: document.getElementById("game-area"),
+            celebrationScreen: document.getElementById("celebration"),
+            celebrationTeam: document.getElementById("celebration-team"),
+            darkModeBtn: document.getElementById("dark-mode-btn"),
+            darkModeIcon: document.getElementById("dark-mode-icon"),
+            pauseBtn: document.getElementById("pause-btn"),
+            restartBtn: document.getElementById("restart-btn"),
+            startGameBtn: document.getElementById("start-game-btn"),
+            particles: document.getElementById("particles"),
+            audio: {
+                correct: document.getElementById("correct-sound"),
+                wrong: document.getElementById("wrong-sound"),
+                countdown: document.getElementById("countdown-sound"),
+                timer: document.getElementById("timer-sound"),
+                win: document.getElementById("win-sound")
+            }
+        };
+
+        // Initialize Game
+        function initGame() {
+            createParticles();
+            createSustainabilityEffects();
+            setupEventListeners();
+            checkPreferredColorScheme();
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement("div");
+                particle.className = "particle";
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.width = `${Math.random() * 3 + 1}px`;
+                particle.style.height = particle.style.width;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                DOM.particles.appendChild(particle);
+            }
+        }
+
+        function createSustainabilityEffects() {
+            const effectsContainer = document.createElement('div');
+            effectsContainer.className = 'sustainability-effects';
+            document.body.appendChild(effectsContainer);
+
+            for (let i = 0; i < 10; i++) {
+                const leaf = document.createElement('div');
+                leaf.innerHTML = '🌿';
+                leaf.style.position = 'absolute';
+                leaf.style.fontSize = `${Math.random() * 20 + 10}px`;
+                leaf.style.left = `${Math.random() * 100}%`;
+                leaf.style.top = `${Math.random() * 100}%`;
+                leaf.style.opacity = '0.6';
+                leaf.style.animation = `float-leaf ${Math.random() * 10 + 10}s infinite linear`;
+                effectsContainer.appendChild(leaf);
+            }
+        }
+
+        function setupEventListeners() {
+            // Player selection buttons
+            document.querySelectorAll(".player-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    selectPlayers(parseInt(this.getAttribute('data-players')));
+                });
+            });
+
+            // Category selection buttons
+            document.querySelectorAll(".category-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    selectCategory(this.getAttribute('data-category'));
+                });
+            });
+
+            // Start game button
+            DOM.startGameBtn.addEventListener("click", startGame);
+
+            // Game control buttons
+            DOM.darkModeBtn.addEventListener("click", toggleDarkMode);
+            DOM.pauseBtn.addEventListener("click", toggleTimer);
+            DOM.restartBtn.addEventListener("click", restartGame);
+
+            // Celebration screen button
+            document.querySelector(".celebration-btn").addEventListener("click", restartGame);
+        }
+
+        // Player Selection
+        function selectPlayers(count) {
+            GameState.settings.playersCount = count;
+            animateTransition(DOM.playerSelection, DOM.categorySelection);
+
+            // تعديل واجهة إدخال الأسماء حسب عدد اللاعبين
+            const team2Input = document.getElementById("team2-name");
+            if (count === 1) {
+                team2Input.style.display = "none";
+                document.getElementById("team2-container").style.display = "none";
+            } else {
+                team2Input.style.display = "block";
+                document.getElementById("team2-container").style.display = "block";
+            }
+        }
+
+        // Game Flow Functions
+        function selectCategory(category) {
+            GameState.settings.category = category;
+            animateTransition(DOM.categorySelection, DOM.teamNamesInput);
+        }
+
+        function startGame() {
+            // Get team names
+            GameState.names.team1 = document.getElementById("team1-name").value || "الفريق الأول";
+
+            if (GameState.settings.playersCount === 2) {
+                GameState.names.team2 = document.getElementById("team2-name").value || "الفريق الثاني";
+            } else {
+                GameState.names.team2 = "الكمبيوتر"; // اسم افتراضي للاعب الواحد
+            }
+
+            // Update UI
+            updateTeamNames();
+            resetScoreDisplays();
+
+            // Prepare questions
+            prepareQuestions();
+
+            // Start game
+            animateTransition(DOM.teamNamesInput, DOM.gameControls);
+            DOM.gameArea.style.display = "flex";
+            GameState.settings.gameStarted = true;
+            GameState.settings.usedQuestions.clear(); // Reset used questions
+
+            // Display first question
+            displayQuestion(GameState.settings.currentTeam);
+            startTimer(GameState.settings.currentTeam);
+            highlightActiveTeam();
+        }
+
+        function prepareQuestions() {
+            // Get questions for selected category
+            const allQuestions = [...questions[GameState.settings.category]];
+
+            // تصفية الأسئلة الفارغة
+            const filteredQuestions = allQuestions.filter(q => q.question && q.options && q.answer);
+
+            if (filteredQuestions.length < GameState.settings.totalQuestions * 2) {
+                alert(`لا يوجد أسئلة كافية في هذه الفئة (يحتاج ${GameState.settings.totalQuestions * 2} سؤالاً، المتوفر ${filteredQuestions.length}). الرجاء إضافة المزيد من الأسئلة.`);
+                restartGame();
+                return;
+            }
+
+            // Shuffle questions
+            shuffleArray(filteredQuestions);
+
+            // Split questions between teams (unique questions for each team)
+            GameState.questions.team1 = filteredQuestions.slice(0, GameState.settings.totalQuestions);
+            GameState.questions.team2 = filteredQuestions.slice(
+                GameState.settings.totalQuestions,
+                GameState.settings.totalQuestions * 2
+            );
+
+            // Mark all selected questions as used
+            [...GameState.questions.team1, ...GameState.questions.team2].forEach(q => {
+                GameState.settings.usedQuestions.add(q.question);
+            });
+        }
+
+        function displayQuestion(team) {
+            const questionContainer = document.getElementById(`${team}-question-text`);
+            const optionsContainer = document.getElementById(`${team}-options-container`);
+
+            // Check if there are more questions
+            if (GameState.questions[team].length === 0) {
+                endGame();
+                return;
+            }
+
+            // Get next question
+            const questionData = GameState.questions[team][0];
+            GameState.currentQuestion[team] = questionData;
+
+            // Display question with difficulty
+            const difficultyText = ["سهل", "متوسط", "صعب"][questionData.difficulty - 1] || "";
+            const difficultyClass = ["easy", "medium", "hard"][questionData.difficulty - 1] || "";
+
+            let questionHTML = questionData.question;
+            if (difficultyText) {
+                questionHTML = `<span class="difficulty ${difficultyClass}">${difficultyText}</span> ${questionData.question}`;
+            }
+
+            questionContainer.innerHTML = questionHTML;
+
+            // Clear and create new options
+            optionsContainer.innerHTML = "";
+            shuffleArray([...questionData.options]).forEach(option => {
+                const button = document.createElement("button");
+                button.className = "option-btn";
+                button.textContent = option;
+                button.addEventListener("click", () => checkAnswer(team, option));
+                optionsContainer.appendChild(button);
+            });
+
+            // Update progress
+            updateProgressDisplay(team);
+
+            // Animate appearance
+            animateElement(questionContainer, "fadeIn");
+            animateElement(optionsContainer, "fadeIn");
+        }
+
+        function checkAnswer(team, selectedOption) {
+            const questionData = GameState.currentQuestion[team];
+            const optionsContainer = document.getElementById(`${team}-options-container`);
+            const buttons = optionsContainer.querySelectorAll(".option-btn");
+
+            // Disable all buttons
+            buttons.forEach(btn => btn.disabled = true);
+
+            // Mark correct/wrong answers
+            buttons.forEach(btn => {
+                if (btn.textContent === questionData.answer) {
+                    btn.classList.add("correct");
+                } else if (btn.textContent === selectedOption) {
+                    btn.classList.add("wrong");
+                }
+            });
+
+            // Handle answer
+            const isCorrect = selectedOption === questionData.answer;
+            playSound(isCorrect ? "correct" : "wrong");
+            updateScores(team, isCorrect);
+
+            // Remove the answered question
+            GameState.questions[team].shift();
+
+            // Move to next question after delay
+            setTimeout(() => {
+                if (GameState.settings.gameStarted) {
+                    if (GameState.settings.playersCount === 1) {
+                        // في حالة لاعب واحد، انتقل للسؤال التالي مباشرة
+                        displayQuestion(team);
+                        startTimer(team);
+                    } else {
+                        switchTeam();
+                    }
+                }
+            }, 2000);
+        }
+
+        function switchTeam() {
+            // Clear current timer
+            clearInterval(GameState.settings.timer);
+
+            // Switch to other team
+            GameState.settings.currentTeam = GameState.settings.currentTeam === "team1" ? "team2" : "team1";
+
+            // Check if game should end
+            if (GameState.questions.team1.length === 0 && GameState.questions.team2.length === 0) {
+                endGame();
+                return;
+            }
+
+            // Display question and start timer for new team
+            displayQuestion(GameState.settings.currentTeam);
+            startTimer(GameState.settings.currentTeam);
+            highlightActiveTeam();
+        }
+
+        // Timer Functions
+        function startTimer(team) {
+            let timeLeft = GameState.settings.timePerQuestion;
+            const timerElement = document.getElementById(`${team}-timer`);
+
+            // Reset timer display
+            updateTimerDisplay(timerElement, timeLeft);
+
+            // Clear any existing timer
+            if (GameState.settings.timer) {
+                clearInterval(GameState.settings.timer);
+            }
+
+            // Start new timer
+            GameState.settings.timer = setInterval(() => {
+                if (!GameState.settings.isTimerPaused && GameState.settings.gameStarted) {
+                    timeLeft--;
+                    updateTimerDisplay(timerElement, timeLeft);
+
+                    // Handle timer events
+                    if (timeLeft <= 0) {
+                        handleTimeUp(team);
+                    } else if (timeLeft <= 5) {
+                        playSound("countdown");
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay(element, time) {
+            element.textContent = time;
+            element.className = "timer";
+
+            if (time <= 10) {
+                element.classList.add("warning");
+                if (time <= 5) {
+                    element.classList.remove("warning");
+                    element.classList.add("danger");
+                }
+            }
+        }
+
+        function handleTimeUp(team) {
+            clearInterval(GameState.settings.timer);
+            playSound("timer");
+
+            // Mark question as wrong
+            checkAnswer(team, null);
+        }
+
+        function toggleTimer() {
+            GameState.settings.isTimerPaused = !GameState.settings.isTimerPaused;
+            DOM.pauseBtn.innerHTML = GameState.settings.isTimerPaused ?
+                '<span>استئناف الوقت</span> <span>▶️</span>' :
+                '<span>إيقاف الوقت</span> <span>⏸️</span>';
+        }
+
+        // UI Update Functions
+        function updateTeamNames() {
+            document.getElementById("team1-title").textContent = GameState.names.team1;
+            document.getElementById("team2-title").textContent = GameState.names.team2;
+        }
+
+        function resetScoreDisplays() {
+            // Reset scores
+            document.getElementById("team1-score").textContent = "0";
+            document.getElementById("team2-score").textContent = "0";
+
+            // Reset stats
+            document.getElementById("team1-correct-count").textContent = "0";
+            document.getElementById("team1-wrong-count").textContent = "0";
+            document.getElementById("team2-correct-count").textContent = "0";
+            document.getElementById("team2-wrong-count").textContent = "0";
+
+            // Reset progress
+            document.getElementById("team1-progress").style.width = "0%";
+            document.getElementById("team2-progress").style.width = "0%";
+            document.getElementById("team1-progress-text").textContent = `0/${GameState.settings.totalQuestions}`;
+            document.getElementById("team2-progress-text").textContent = `0/${GameState.settings.totalQuestions}`;
+        }
+
+        function updateScores(team, isCorrect) {
+            // Update scores and stats
+            if (isCorrect) {
+                GameState.scores[team]++;
+                GameState.stats[team].correct++;
+            } else {
+                GameState.stats[team].wrong++;
+            }
+
+            // Update UI
+            document.getElementById(`${team}-score`).textContent = GameState.scores[team];
+            document.getElementById(`${team}-correct-count`).textContent = GameState.stats[team].correct;
+            document.getElementById(`${team}-wrong-count`).textContent = GameState.stats[team].wrong;
+
+            // Update progress bars
+            updateProgressBars();
+        }
+
+        function updateProgressBars() {
+            const team1Progress = (GameState.stats.team1.correct / GameState.settings.totalQuestions) * 100;
+            const team2Progress = (GameState.stats.team2.correct / GameState.settings.totalQuestions) * 100;
+
+            document.getElementById("team1-progress").style.width = `${team1Progress}%`;
+            document.getElementById("team2-progress").style.width = `${team2Progress}%`;
+
+            // Update progress text
+            const team1Answered = GameState.stats.team1.correct + GameState.stats.team1.wrong;
+            const team2Answered = GameState.stats.team2.correct + GameState.stats.team2.wrong;
+
+            document.getElementById("team1-progress-text").textContent =
+                `${team1Answered}/${GameState.settings.totalQuestions}`;
+            document.getElementById("team2-progress-text").textContent =
+                `${team2Answered}/${GameState.settings.totalQuestions}`;
+        }
+
+        function updateProgressDisplay(team) {
+            const answered = GameState.stats[team].correct + GameState.stats[team].wrong;
+            document.getElementById(`${team}-progress-text`).textContent =
+                `${answered}/${GameState.settings.totalQuestions}`;
+        }
+
+        function highlightActiveTeam() {
+            document.getElementById("team1-container").classList.remove("active");
+            document.getElementById("team2-container").classList.remove("active");
+            document.getElementById(`${GameState.settings.currentTeam}-container`).classList.add("active");
+        }
+
+        // End Game Functions
+        function endGame() {
+            GameState.settings.gameStarted = false;
+            clearInterval(GameState.settings.timer);
+
+            // Determine winner
+            let winner;
+            if (GameState.scores.team1 > GameState.scores.team2) {
+                winner = GameState.names.team1;
+            } else if (GameState.scores.team2 > GameState.scores.team1) {
+                winner = GameState.names.team2;
+            } else {
+                winner = "تعادل بين الفريقين";
+            }
+
+            // Update celebration screen
+            DOM.celebrationTeam.textContent = winner;
+            document.getElementById("celebration-score1").textContent = GameState.scores.team1;
+            document.getElementById("celebration-correct1").textContent = GameState.stats.team1.correct;
+            document.getElementById("celebration-score2").textContent = GameState.scores.team2;
+            document.getElementById("celebration-correct2").textContent = GameState.stats.team2.correct;
+
+            // Show celebration
+            DOM.celebrationScreen.classList.add("active");
+            playSound("win");
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const colors = ['#3cb371', '#daa520', '#4682b4', '#4caf50', '#8fbc8f', '#2e8b57'];
+
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement("div");
+                confetti.className = "confetti";
+
+                // Random properties
+                confetti.style.width = `${Math.random() * 10 + 5}px`;
+                confetti.style.height = confetti.style.width;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 5}s`;
+
+                DOM.celebrationScreen.appendChild(confetti);
+            }
+        }
+
+        function restartGame() {
+            // إيقاف جميع المؤقتات والأصوات
+            clearInterval(GameState.settings.timer);
+
+            // إيقاف جميع الأصوات الجارية
+            Object.values(DOM.audio).forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+
+            // إعادة تحميل الصفحة بعد تأخير بسيط لضمان اكتمال العمليات
+            setTimeout(() => {
+                window.location.reload(true); // true يضمن تحميل الصفحة من السيرفر وليس الكاش
+            }, 300);
+        }
+
+        function resetGameState() {
+            GameState.questions.team1 = [];
+            GameState.questions.team2 = [];
+            GameState.currentQuestion.team1 = null;
+            GameState.currentQuestion.team2 = null;
+            GameState.scores.team1 = 0;
+            GameState.scores.team2 = 0;
+            GameState.stats.team1 = { correct: 0, wrong: 0 };
+            GameState.stats.team2 = { correct: 0, wrong: 0 };
+            GameState.names.team1 = "الفريق الأول";
+            GameState.names.team2 = "الفريق الثاني";
+            GameState.settings = {
+                category: "",
+                totalQuestions: 10,
+                timePerQuestion: 30,
+                currentTeam: "team1",
+                timer: null,
+                isTimerPaused: false,
+                gameStarted: false,
+                usedQuestions: new Set(),
+                playersCount: 1
+            };
+        }
+
+        // Utility Functions
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function animateElement(element, animation) {
+            element.classList.add("animate__animated", `animate__${animation}`);
+            element.addEventListener('animationend', () => {
+                element.classList.remove("animate__animated", `animate__${animation}`);
+            });
+        }
+
+        function animateTransition(hideElement, showElement) {
+            hideElement.style.display = "none";
+            showElement.style.display = "block";
+            animateElement(showElement, "fadeIn");
+        }
+
+        function playSound(type) {
+            if (DOM.audio[type]) {
+                DOM.audio[type].currentTime = 0;
+                DOM.audio[type].play();
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("light-mode");
+            DOM.darkModeIcon.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+            document.getElementById("dark-mode-text").textContent =
+                document.body.classList.contains("light-mode") ? "الوضع النهاري" : "الوضع الليلي";
+        }
+
+        function checkPreferredColorScheme() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                toggleDarkMode();
+            }
+        }
+
+        // Initialize the game when DOM is loaded
+        document.addEventListener("DOMContentLoaded", initGame);
+
+        // Function to add questions (you can call this from console or from your admin interface)
+        function addQuestions(category, newQuestions) {
+            if (!questions[category]) {
+                console.error(`Category ${category} does not exist`);
+                return;
+            }
+
+            // Filter out questions that are already in the database
+            const uniqueNewQuestions = newQuestions.filter(newQ => {
+                return !questions[category].some(existingQ => existingQ.question === newQ.question);
+            });
+
+            questions[category].push(...uniqueNewQuestions);
+            console.log(`Added ${uniqueNewQuestions.length} new questions to ${category} category`);
+        }
+    </script>
+</body>
+
+</html>
