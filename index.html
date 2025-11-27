@@ -164,38 +164,69 @@
             opacity: 0.05;
         }
 
-        /* Watermark */
-        .watermark {
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-            z-index: 100;
-            font-family: 'Tajawal', sans-serif;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 8px 16px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--box-shadow);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
+      /* Watermark - Responsive */
+.watermark {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* حجم مرن حسب الشاشة */
+    font-size: clamp(0.8rem, 2vw, 2rem);
 
-        .watermark::before {
-            content: "";
-            font-size: 2rem;
-        }
+    color: rgba(255, 255, 255, 0.9);
+    z-index: 100;
+    font-family: 'Tajawal', sans-serif;
 
-        body.light-mode .watermark {
-            color: rgba(0, 0, 0, 0.8);
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
+    background: rgba(0, 0, 0, 0.5);
+    padding: clamp(4px, 1vw, 8px) clamp(10px, 2vw, 16px);
+    border-radius: 50px;
+
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--box-shadow);
+
+    display: flex;
+    align-items: center;
+    gap: clamp(4px, 1vw, 8px);
+
+    transition: var(--transition);
+
+    max-width: 90vw;   /* لمنع الخروج من الشاشة */
+    text-align: center;
+}
+
+/* أيقونة قبل النص */
+.watermark::before {
+    content: "";
+    font-size: inherit;
+}
+
+/* الوضع الفاتح */
+body.light-mode .watermark {
+    color: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ تحسين للشاشات الصغيرة جدًا */
+@media (max-width: 480px) {
+    .watermark {
+        bottom: 10px;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 30px;
+    }
+}
+
+/* ✅ تحسين للشاشات الكبيرة جدًا */
+@media (min-width: 1600px) {
+    .watermark {
+        font-size: 2.2rem;
+        padding: 10px 22px;
+    }
+}
+
 
         /* Game Controls */
         .game-controls {
@@ -4429,5 +4460,6 @@
         }
     </script>
 </body>
+
 
 </html>
