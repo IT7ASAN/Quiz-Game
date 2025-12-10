@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>تحدي المعلومات</title>
+    <title>تحديات المعرفة المتقدم</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -218,8 +218,8 @@
         /* Header */
         header {
             text-align: center;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             flex-shrink: 0;
@@ -243,7 +243,7 @@
 
         h1 {
             font-size: 1.2rem;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             font-weight: 900;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
@@ -255,7 +255,7 @@
 
         .subtitle {
             color: var(--primary-light);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 500;
             opacity: 0.9;
         }
@@ -280,14 +280,15 @@
         .mode-container {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius);
-            padding: 15px;
+            padding: 12px;
             box-shadow: var(--shadow);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            height: 60%;
+            height: auto;
             display: flex;
             flex-direction: column;
             animation: fadeIn 0.3s ease;
+            margin-bottom: 10px;
         }
 
         @keyframes fadeIn {
@@ -301,12 +302,12 @@
         }
 
         .mode-header {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-align: center;
         }
 
         .mode-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
             margin-bottom: 5px;
             background: var(--gradient-primary);
@@ -316,23 +317,22 @@
         }
 
         .mode-subtitle {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--primary-light);
             opacity: 0.9;
         }
 
         .mode-grid {
             display: grid;
-            
+            grid-template-columns: repeat(2, 1fr);
             gap: 8px;
-            margin-bottom: 15px;
-            flex: 0.8;
+            margin-bottom: 10px;
         }
 
         .mode-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
             border-radius: var(--border-radius);
-            padding: 15px 10px;
+            padding: 12px 8px;
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
@@ -343,7 +343,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 110px;
+            min-height: 100px;
             position: relative;
             overflow: hidden;
         }
@@ -382,7 +382,7 @@
         }
 
         .mode-icon {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 8px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
@@ -402,7 +402,7 @@
         }
 
         .mode-card-title {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 800;
             margin-bottom: 5px;
             color: var(--dark-text);
@@ -415,11 +415,65 @@
         }
 
         .mode-card-desc {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--primary-light);
             opacity: 0.9;
             position: relative;
             z-index: 1;
+        }
+
+        /* Game Instructions */
+        .game-instructions {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: var(--border-radius);
+            padding: 12px;
+            margin-top: 10px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        body.light-mode .game-instructions {
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .instructions-title i {
+            font-size: 0.9rem;
+        }
+
+        .instructions-content {
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: var(--dark-text);
+        }
+
+        body.light-mode .instructions-content {
+            color: var(--light-text);
+        }
+
+        .instruction-item {
+            margin-bottom: 6px;
+            padding-right: 5px;
+            position: relative;
+        }
+
+        .instruction-item::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            right: -8px;
         }
 
         /* Player Name Input */
@@ -431,11 +485,11 @@
         .player-name-container {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius);
-            padding: 15px;
+            padding: 12px;
             box-shadow: var(--shadow);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            height: 82%;
+            height: auto;
             display: flex;
             flex-direction: column;
             animation: fadeIn 0.3s ease;
@@ -447,15 +501,14 @@
         }
 
         .player-input-group {
-            margin-bottom: 15px;
-            
+            margin-bottom: 10px;
         }
 
         .player-input-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 700;
-            font-size: 1.9rem;
+            font-size: 0.9rem;
             color: var(--dark-text);
             display: flex;
             align-items: center;
@@ -472,12 +525,12 @@
 
         .player-input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 12px;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--border-radius-sm);
             font-family: 'Tajawal', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--dark-text);
             transition: var(--transition);
             backdrop-filter: blur(10px);
@@ -498,7 +551,7 @@
 
         .player-input::placeholder {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         body.light-mode .player-input::placeholder {
@@ -507,8 +560,8 @@
 
         .input-hint {
             display: block;
-            margin-top: 6px;
-            font-size: 0.75rem;
+            margin-top: 5px;
+            font-size: 0.7rem;
             color: var(--primary-light);
             opacity: 0.7;
         }
@@ -516,7 +569,7 @@
         /* Team Name Input */
         .team-colors {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-top: 8px;
             flex-wrap: wrap;
         }
@@ -525,8 +578,8 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.8rem;
-            padding: 6px 10px;
+            font-size: 0.75rem;
+            padding: 5px 8px;
             border-radius: var(--border-radius-sm);
             background: rgba(255, 255, 255, 0.05);
             transition: var(--transition);
@@ -542,8 +595,8 @@
         }
 
         .color-dot {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -565,11 +618,11 @@
         .category-container {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius);
-            padding: 15px;
+            padding: 12px;
             box-shadow: var(--shadow);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            height: 70%;
+            height: auto;
             display: flex;
             flex-direction: column;
             animation: fadeIn 0.3s ease;
@@ -582,11 +635,11 @@
 
         .category-header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .category-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
             margin-bottom: 5px;
             background: var(--gradient-primary);
@@ -596,7 +649,7 @@
         }
 
         .category-subtitle {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--primary-light);
             opacity: 0.9;
         }
@@ -604,9 +657,9 @@
         .category-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 15px;
-            
+            gap: 6px;
+            margin-bottom: 10px;
+            max-height: 300px;
             overflow-y: auto;
             padding: 2px;
         }
@@ -614,7 +667,7 @@
         .category-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
             border-radius: var(--border-radius-sm);
-            padding: 12px 8px;
+            padding: 10px 6px;
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
@@ -625,7 +678,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 90px;
+            min-height: 80px;
             position: relative;
             overflow: hidden;
         }
@@ -664,8 +717,8 @@
         }
 
         .category-icon {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             background-clip: text;
@@ -675,7 +728,7 @@
         }
 
         .category-name {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 800;
             margin-bottom: 4px;
             color: var(--dark-text);
@@ -688,11 +741,163 @@
         }
 
         .category-desc {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--primary-light);
             opacity: 0.9;
             position: relative;
             z-index: 1;
+        }
+
+        /* Questions Count Selection */
+        .questions-count-section {
+            margin-top: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .questions-count-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark-text);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        body.light-mode .questions-count-title {
+            color: var(--light-text);
+        }
+
+        .questions-count-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .count-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow);
+        }
+
+        body.light-mode .count-btn {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--light-text);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .count-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .count-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .count-display {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .count-hint {
+            font-size: 0.7rem;
+            color: var(--primary-light);
+            text-align: center;
+        }
+
+        /* Buttons */
+        .buttons-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn, .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 100px;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before, .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover::before, .action-btn:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn-primary, .action-btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        .nav-btn-primary:hover, .action-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .nav-btn-secondary, .action-btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--dark-text);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        body.light-mode .nav-btn-secondary, 
+        body.light-mode .action-btn-secondary {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--light-text);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn-secondary:hover, .action-btn-secondary:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: var(--shadow-lg);
         }
 
         /* Quiz Container */
@@ -713,11 +918,11 @@
         .quiz-header {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius);
-            padding: 10px 12px;
+            padding: 8px 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 8px;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             flex-shrink: 0;
@@ -737,19 +942,19 @@
         .player-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex: 1;
             min-width: 0;
         }
 
         .player-avatar {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: var(--border-radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: white;
             flex-shrink: 0;
             box-shadow: var(--shadow);
@@ -774,9 +979,9 @@
         }
 
         .player-name-display {
-            font-size: 1.5rem;
+            font-size: 0.9rem;
             font-weight: 800;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -788,7 +993,7 @@
         }
 
         .player-mode {
-            font-size: 1rem;
+            font-size: 0.75rem;
             color: var(--primary-light);
             opacity: 0.9;
             white-space: nowrap;
@@ -798,18 +1003,18 @@
 
         .quiz-controls {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             flex-shrink: 0;
         }
 
         .control-btn-small {
-            width: 150px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: var(--border-radius-sm);
             border: none;
             background: rgba(255, 255, 255, 0.08);
             color: var(--dark-text);
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
@@ -848,22 +1053,22 @@
         .quiz-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 8px;
+            gap: 6px;
+            margin-bottom: 6px;
             flex-shrink: 0;
         }
 
         .stat-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius-sm);
-            padding: 10px;
+            padding: 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
             backdrop-filter: blur(10px);
-            min-height: 60px;
+            min-height: 50px;
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.4s ease;
@@ -901,13 +1106,13 @@
         }
 
         .stat-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             flex-shrink: 0;
             position: relative;
             z-index: 1;
@@ -936,9 +1141,9 @@
         }
 
         .stat-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--primary-light);
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
@@ -946,7 +1151,7 @@
         }
 
         .stat-value {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             font-weight: 900;
             line-height: 1;
             white-space: nowrap;
@@ -966,7 +1171,7 @@
 
         /* Progress Bar */
         .progress-container {
-            margin-top: 8px;
+            margin-top: 6px;
             flex-shrink: 0;
             animation: fadeInUp 0.5s ease;
         }
@@ -975,7 +1180,7 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 3px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--dark-text);
         }
@@ -985,7 +1190,7 @@
         }
 
         .progress-bar {
-            height: 6px;
+            height: 5px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
             overflow: hidden;
@@ -1008,7 +1213,7 @@
         .question-container {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius);
-            padding: 15px;
+            padding: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             
@@ -1050,8 +1255,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             flex-shrink: 0;
         }
@@ -1061,7 +1266,7 @@
         }
 
         .question-title {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--primary-light);
             display: flex;
@@ -1070,15 +1275,15 @@
         }
 
         .question-title i {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .question-difficulty {
             background: var(--gradient-primary);
             color: white;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 700;
             box-shadow: var(--shadow);
         }
@@ -1089,15 +1294,15 @@
             align-items: center;
             justify-content: center;
             min-height: 0;
-            padding: 8px 0;
+            padding: 12px 0;
         }
 
         .question-text {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 800;
             line-height: 1.4;
             text-align: center;
-            padding: 15px;
+            padding: 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--border-radius-sm);
             border-right: 4px solid var(--primary);
@@ -1124,20 +1329,20 @@
         .options-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 6px;
             
             overflow-y: auto;
-            padding: 0px;
+            padding: 2px;
         }
 
         .option-btn {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
             border: 2px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--border-radius-sm);
-            padding: 12px 10px;
+            padding: 10px 8px;
             text-align: right;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: 'Tajawal', sans-serif;
@@ -1148,7 +1353,7 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
-            min-height: 70px;
+            min-height: 60px;
             box-shadow: var(--shadow);
         }
 
@@ -1208,16 +1413,16 @@
 
         .option-letter {
             background: rgba(255, 255, 255, 0.1);
-            width: 35px;
-            height: 35px;
-            border-radius: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 900;
             flex-shrink: 0;
-            margin-left: 8px;
+            margin-left: 6px;
             transition: var(--transition);
             box-shadow: var(--shadow);
         }
@@ -1241,8 +1446,8 @@
         /* Auto-advance indicator */
         .auto-advance-indicator {
             text-align: center;
-            margin-top: 10px;
-            font-size: 0.8rem;
+            margin-top: 8px;
+            font-size: 0.75rem;
             color: var(--primary-light);
             opacity: 0.8;
             animation: fadeInOut 2s ease-in-out infinite;
@@ -1264,11 +1469,11 @@
         .results-container {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius);
-            padding: 15px;
+            padding: 12px;
             box-shadow: var(--shadow);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            height: 100%;
+            height: 60%;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -1282,14 +1487,14 @@
 
         .results-header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             flex-shrink: 0;
         }
 
         .results-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             background-clip: text;
@@ -1297,7 +1502,7 @@
         }
 
         .results-subtitle {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--primary-light);
             opacity: 0.9;
         }
@@ -1305,9 +1510,9 @@
         /* Result Banner */
         .result-banner {
             border-radius: var(--border-radius);
-            padding: 15px;
+            padding: 12px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
             overflow: hidden;
             animation: float 3s ease-in-out infinite;
@@ -1343,34 +1548,34 @@
         }
 
         .result-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
             color: white;
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
 
         .result-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: white;
             font-weight: 900;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .result-message {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.95);
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .result-score {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.9);
             font-weight: 600;
         }
@@ -1379,8 +1584,8 @@
         .teams-results {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 12px;
             flex: 1;
             overflow-y: auto;
             padding: 2px;
@@ -1389,7 +1594,7 @@
         .team-result-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border-radius: var(--border-radius-sm);
-            padding: 12px;
+            padding: 10px;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
@@ -1431,18 +1636,18 @@
         .team-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 8px;
         }
 
         .team-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: white;
             flex-shrink: 0;
             box-shadow: var(--shadow);
@@ -1457,7 +1662,7 @@
         }
 
         .team-name {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 800;
             margin-bottom: 3px;
             white-space: nowrap;
@@ -1473,13 +1678,13 @@
         .team-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 6px;
+            margin-bottom: 8px;
         }
 
         .team-stat {
             text-align: center;
-            padding: 8px 6px;
+            padding: 6px 4px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--border-radius-sm);
             transition: var(--transition);
@@ -1495,23 +1700,23 @@
         }
 
         .team-stat-value {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 900;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             line-height: 1;
         }
 
         .team-stat-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--primary-light);
         }
 
         .team-accuracy {
             text-align: center;
-            padding: 10px;
+            padding: 8px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--border-radius-sm);
-            margin-top: 8px;
+            margin-top: 6px;
             transition: var(--transition);
         }
 
@@ -1525,111 +1730,45 @@
         }
 
         .accuracy-value {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 900;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             line-height: 1;
         }
 
         .accuracy-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--primary-light);
             font-weight: 600;
         }
 
-        /* Buttons */
-        .buttons-group {
+        /* Results Actions */
+        .results-actions {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 12px;
             justify-content: center;
             flex-wrap: wrap;
-        }
-
-        .nav-btn, .action-btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: var(--border-radius-sm);
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 120px;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-btn::before, .action-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .nav-btn:hover::before, .action-btn:hover::before {
-            opacity: 1;
-        }
-
-        .nav-btn-primary, .action-btn-primary {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-        }
-
-        .nav-btn-primary:hover, .action-btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .nav-btn-secondary, .action-btn-secondary {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--dark-text);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        body.light-mode .nav-btn-secondary, 
-        body.light-mode .action-btn-secondary {
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--light-text);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-btn-secondary:hover, .action-btn-secondary:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: var(--shadow-lg);
         }
 
         /* Watermark */
         .watermark {
             position: fixed;
-            bottom: 10px;
+            bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.7);
             z-index: 100;
             font-family: 'Tajawal', sans-serif;
             background: rgba(0, 0, 0, 0.4);
-            padding: 6px 15px;
+            padding: 5px 12px;
             border-radius: 15px;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
@@ -1642,7 +1781,7 @@
         }
 
         .watermark i {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--primary-light);
         }
 
@@ -1664,8 +1803,8 @@
 
         .confetti {
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             opacity: 0;
             animation: confetti-fall 3s ease-in forwards;
             transform-origin: center;
@@ -1700,18 +1839,18 @@
             text-align: center;
         }
 
-        .mb-10 {
-            margin-bottom: 10px;
+        .mb-8 {
+            margin-bottom: 8px;
         }
 
-        .mt-10 {
-            margin-top: 10px;
+        .mt-8 {
+            margin-top: 8px;
         }
 
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
         }
 
         ::-webkit-scrollbar-track {
@@ -1761,11 +1900,11 @@
             }
             
             .subtitle {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
             
             .mode-title, .category-title, .results-title {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             
             .category-grid {
@@ -1785,7 +1924,7 @@
             }
             
             .question-text {
-                font-size: 1.5rem;
+                font-size: 1rem;
                 padding: 10px;
             }
         }
@@ -1805,14 +1944,14 @@
             }
             
             .subtitle {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
             
             .mode-container, 
             .player-name-container,
             .category-container,
             .results-container {
-                padding: 12px;
+                padding: 10px;
             }
             
             .mode-grid,
@@ -1827,30 +1966,30 @@
             
             .mode-card,
             .category-card {
-                padding: 10px 8px;
-                min-height: 85px;
+                padding: 8px 6px;
+                min-height: 75px;
             }
             
             .mode-icon {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
             
             .category-icon {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
             }
             
             .mode-card-title,
             .category-name {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
             
             .mode-card-desc,
             .category-desc {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
             }
             
             .quiz-header {
-                padding: 8px 10px;
+                padding: 6px 8px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -1858,61 +1997,61 @@
             .quiz-controls {
                 width: 100%;
                 justify-content: center;
-                margin-top: 8px;
+                margin-top: 6px;
             }
             
             .stat-card {
-                padding: 8px;
-                min-height: 55px;
+                padding: 6px;
+                min-height: 45px;
             }
             
             .stat-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-            
-            .stat-value {
-                font-size: 1.2rem;
-            }
-            
-            .option-btn {
-                padding: 10px 8px;
-                font-size: 0.85rem;
-                min-height: 60px;
-            }
-            
-            .option-letter {
-                width: 30px;
-                height: 30px;
+                width: 25px;
+                height: 25px;
                 font-size: 0.9rem;
             }
             
-            .nav-btn, .action-btn {
-                padding: 8px 12px;
-                min-width: 110px;
+            .stat-value {
+                font-size: 1rem;
+            }
+            
+            .option-btn {
+                padding: 8px 6px;
                 font-size: 0.8rem;
+                min-height: 50px;
+            }
+            
+            .option-letter {
+                width: 25px;
+                height: 25px;
+                font-size: 0.8rem;
+            }
+            
+            .nav-btn, .action-btn {
+                padding: 7px 10px;
+                min-width: 90px;
+                font-size: 0.75rem;
             }
             
             .team-header {
                 flex-direction: column;
                 text-align: center;
-                gap: 8px;
+                gap: 6px;
             }
             
             .team-avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
             }
             
             .team-name {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
             
             .watermark {
-                font-size: 0.7rem;
-                padding: 5px 12px;
+                font-size: 0.65rem;
+                padding: 4px 10px;
             }
         }
 
@@ -1927,14 +2066,14 @@
             }
             
             h1 {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
             
             .mode-container, 
             .player-name-container,
             .category-container,
             .results-container {
-                padding: 10px;
+                padding: 8px;
             }
             
             .mode-grid,
@@ -1949,23 +2088,23 @@
             
             .mode-card,
             .category-card {
-                padding: 8px 6px;
-                min-height: 80px;
+                padding: 6px 4px;
+                min-height: 70px;
             }
             
             .mode-card-title,
             .category-name {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
             
             .mode-card-desc,
             .category-desc {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
             }
             
             .player-input {
-                padding: 10px 12px;
-                font-size: 0.85rem;
+                padding: 8px 10px;
+                font-size: 0.8rem;
             }
             
             .quiz-stats {
@@ -1977,30 +2116,30 @@
             }
             
             .question-text {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 padding: 8px;
             }
             
             .player-info {
                 flex-direction: column;
                 text-align: center;
-                gap: 8px;
+                gap: 6px;
             }
             
             .player-avatar {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
             }
             
             .player-name-display {
-                font-size: 0.95rem;
+                font-size: 0.85rem;
             }
             
             .control-btn-small {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
             }
             
             .buttons-group {
@@ -2010,8 +2149,8 @@
             
             .nav-btn, .action-btn {
                 width: 100%;
-                max-width: 200px;
-                font-size: 0.75rem;
+                max-width: 180px;
+                font-size: 0.7rem;
             }
             
             .teams-results {
@@ -2019,11 +2158,22 @@
             }
             
             .result-title {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             
             .result-message {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+            }
+            
+            .count-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+            
+            .count-display {
+                font-size: 1rem;
+                min-width: 35px;
             }
         }
 
@@ -2034,36 +2184,41 @@
             
             .mode-card,
             .category-card {
-                min-height: 75px;
-                padding: 6px 4px;
+                min-height: 65px;
+                padding: 5px 3px;
             }
             
             .mode-icon {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
             }
             
             .category-icon {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             
             .question-text {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .option-btn {
-                font-size: 0.8rem;
-                padding: 8px 6px;
-                min-height: 55px;
+                font-size: 0.75rem;
+                padding: 6px 4px;
+                min-height: 45px;
             }
             
             .option-letter {
-                width: 28px;
-                height: 28px;
-                font-size: 0.85rem;
+                width: 22px;
+                height: 22px;
+                font-size: 0.75rem;
             }
             
             .teams-results {
                 grid-template-columns: 1fr;
+            }
+            
+            .count-btn {
+                width: 28px;
+                height: 28px;
             }
         }
 
@@ -2078,17 +2233,17 @@
             }
             
             .category-card {
-                min-height: 70px;
-                padding: 5px 3px;
+                min-height: 60px;
+                padding: 4px 2px;
             }
             
             .category-icon {
-                font-size: 1.1rem;
-                margin-bottom: 5px;
+                font-size: 0.9rem;
+                margin-bottom: 4px;
             }
             
             .category-name {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
             
             .category-desc {
@@ -2104,23 +2259,23 @@
             
             .mode-card,
             .category-card {
-                min-height: 70px;
+                min-height: 60px;
             }
             
             .question-text {
                 font-size: 0.8rem;
-                padding: 8px;
+                padding: 6px;
             }
             
             .option-btn {
-                min-height: 50px;
-                padding: 6px 5px;
+                min-height: 40px;
+                padding: 5px 4px;
             }
             
             .option-letter {
-                width: 25px;
-                height: 25px;
-                font-size: 0.8rem;
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
             }
         }
 
@@ -2145,16 +2300,16 @@
             
             .mode-card,
             .category-card {
-                min-height: 130px;
+                min-height: 110px;
             }
             
             .question-text {
                 font-size: 1.2rem;
-                padding: 20px;
+                padding: 15px;
             }
             
             .option-btn {
-                min-height: 85px;
+                min-height: 70px;
                 font-size: 1rem;
             }
         }
@@ -2174,7 +2329,7 @@
             
             .mode-card,
             .category-card {
-                min-height: 150px;
+                min-height: 130px;
             }
         }
     </style>
@@ -2183,11 +2338,10 @@
     <!-- جسيمات عائمة -->
     <div class="particles" id="particles"></div>
     <!-- Watermark -->
-<div class="watermark">
-    <i class="fas fa-brain"></i>
-    <span>تصميم حسن علاء (it7asan)</span>
-</div>
-
+    <div class="watermark">
+        <i class="fas fa-brain"></i>
+        <span>تصميم حسن علاء (it7asan)</span>
+    </div>
 
     <!-- Preloader -->
     <div class="preloader" id="preloader">
@@ -2199,7 +2353,7 @@
             <div class="preloader-bar">
                 <div class="preloader-fill"></div>
             </div>
-            <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.8rem;">
+            <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.75rem;">
                 نظام الاختبارات التفاعلي المتقدم
             </div>
         </div>
@@ -2208,8 +2362,8 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <h1><i class="fas fa-brain"></i> نظام تحديات المعلومات المتقدم</h1>
-            <p class="subtitle">اختبر معلوماتك في مختلف المجالات </p>
+            <h1><i class="fas fa-brain"></i> نظام تحديات المعرفة المتقدم</h1>
+            <p class="subtitle">اختبر معلوماتك في مختلف المجالات المعرفية</p>
         </header>
 
         <!-- Main Content Area -->
@@ -2237,6 +2391,21 @@
                             <p class="mode-card-desc">تحدى صديقك</p>
                         </div>
                     </div>
+                    
+                    <!-- Game Instructions -->
+                    <div class="game-instructions">
+                        <div class="instructions-title">
+                            <i class="fas fa-info-circle"></i>
+                            <span>فكرة اللعبة والغاية منها</span>
+                        </div>
+                        <div class="instructions-content">
+                            <div class="instruction-item">الغاية: اختبار معلوماتك وتوسيع مداركك المعرفية في مجالات متنوعة.</div>
+                            <div class="instruction-item">الفائدة: تنمية التفكير السريع، تحسين الذاكرة، وتطوير القدرة على اتخاذ القرارات.</div>
+                            <div class="instruction-item">طريقة اللعب: اختر طريقة اللعب (فردي أو ثنائي)، ثم اختر مجال المعرفة، ثم حدد عدد الأسئلة.</div>
+                            <div class="instruction-item">القواعد: لديك 30 ثانية للإجابة على كل سؤال، كل إجابة صحيحة = 10 نقاط.</div>
+                            <div class="instruction-item">في اللعب الفردي: أقل عدد أسئلة هو 5، في اللعب الثنائي: أقل عدد أسئلة هو 12.</div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -2261,6 +2430,10 @@
                         <button class="nav-btn nav-btn-primary" onclick="proceedToCategories()">
                             <i class="fas fa-play"></i>
                             <span>بدء التحدي</span>
+                        </button>
+                        <button class="nav-btn nav-btn-secondary" onclick="showGameModeSection()">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>رجوع</span>
                         </button>
                     </div>
                 </div>
@@ -2311,6 +2484,10 @@
                             <i class="fas fa-play"></i>
                             <span>بدء التحدي</span>
                         </button>
+                        <button class="nav-btn nav-btn-secondary" onclick="showGameModeSection()">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>رجوع</span>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -2324,6 +2501,35 @@
                     </div>
                     <div class="category-grid" id="category-grid">
                         <!-- Categories will be loaded here -->
+                    </div>
+                    
+                    <!-- Questions Count Selection -->
+                    <div class="questions-count-section" id="questions-count-section">
+                        <div class="questions-count-title">
+                            <i class="fas fa-question-circle"></i>
+                            <span>عدد الأسئلة المطلوبة</span>
+                        </div>
+                        <div class="questions-count-controls">
+                            <button class="count-btn" id="decrease-count" onclick="decreaseQuestionCount()">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <div class="count-display" id="questions-count">5</div>
+                            <button class="count-btn" id="increase-count" onclick="increaseQuestionCount()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="count-hint" id="count-hint">أقل عدد أسئلة: 5</div>
+                    </div>
+                    
+                    <div class="buttons-group">
+                        <button class="nav-btn nav-btn-primary" onclick="startGameWithQuestions()">
+                            <i class="fas fa-play"></i>
+                            <span>بدء الاختبار</span>
+                        </button>
+                        <button class="nav-btn nav-btn-secondary" onclick="backToNameSection()">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>رجوع</span>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -2385,7 +2591,7 @@
                             <div class="stat-content">
                                 <div class="stat-label">السؤال</div>
                                 <div class="stat-value question">
-                                    <span id="current-question">1</span>/<span id="total-questions">10</span>
+                                    <span id="current-question">1</span>/<span id="total-questions">5</span>
                                 </div>
                             </div>
                         </div>
@@ -2444,7 +2650,6 @@
                         <h2 class="results-title">نتائج التحدي</h2>
                         <p class="results-subtitle">إحصائيات أدائك في الاختبار</p>
                     </div>
-                    
                     <!-- Result Banner -->
                     <div class="result-banner" id="result-banner">
                         <div class="result-icon" id="result-icon">
@@ -2454,12 +2659,10 @@
                         <div class="result-message" id="result-message"></div>
                         <div class="result-score" id="result-score">0 نقطة</div>
                     </div>
-                    
                     <!-- Team Results (for dual mode) -->
                     <div class="teams-results" id="teams-results">
                         <!-- Will be populated dynamically -->
                     </div>
-                    
                     <!-- Results Actions -->
                     <div class="results-actions">
                         <button class="action-btn action-btn-primary" onclick="backToCategories()">
@@ -2474,7 +2677,6 @@
                 </div>
             </section>
         </div>
-
     </div>
 
     <!-- Confetti Container -->
@@ -2518,14 +2720,17 @@
             soundEnabled: true,
             timer: 30,
             timerInterval: null,
-            questionsPerTeam: 5,
-            totalQuestions: 10,
+            selectedQuestionsCount: 5,
+            minQuestionsSingle: 5,
+            minQuestionsDual: 12,
+            maxQuestions: 30,
+            totalQuestions: 5,
             audioContext: null,
             autoAdvanceTimeout: null,
             theme: 'dark'
         };
 
-    // Questions Database موسعة مع 100 سؤال لكل قسم
+      // Questions Database موسعة مع 100 سؤال لكل قسم
 const questionsDB = {
     programming: {
         name: 'البرمجة',
@@ -3376,6 +3581,7 @@ const questionsDB = {
         ]
     }
 };
+    
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
@@ -3399,6 +3605,9 @@ const questionsDB = {
             if (savedTheme === 'light') {
                 toggleTheme();
             }
+            
+            // Initialize questions count
+            updateQuestionsCount();
             
             // Simulate loading
             setTimeout(() => {
@@ -3507,6 +3716,9 @@ const questionsDB = {
             // Add selection to clicked card
             event.currentTarget.classList.add('selected');
             
+            // Update questions count based on mode
+            updateQuestionsCount();
+            
             // Automatically show next section after delay
             setTimeout(() => {
                 if (gameState.mode === 'dual') {
@@ -3588,9 +3800,20 @@ const questionsDB = {
             showCategorySection();
         }
 
+        function backToNameSection() {
+            if (gameState.mode === 'dual') {
+                showTeamNameSection();
+            } else {
+                showPlayerNameSection();
+            }
+        }
+
         function showCategorySection() {
             hideAllSections();
             document.getElementById('category-section').style.display = 'block';
+            
+            // Show questions count section
+            document.getElementById('questions-count-section').style.display = 'block';
         }
 
         function createCategoryCards() {
@@ -3625,16 +3848,76 @@ const questionsDB = {
             
             // Add selection to clicked card
             event.currentTarget.classList.add('selected');
+        }
+
+        function updateQuestionsCount() {
+            // Set initial count based on mode
+            if (gameState.mode === 'dual') {
+                gameState.selectedQuestionsCount = Math.max(gameState.minQuestionsDual, gameState.selectedQuestionsCount);
+            } else {
+                gameState.selectedQuestionsCount = Math.max(gameState.minQuestionsSingle, gameState.selectedQuestionsCount);
+            }
             
-            // Start the game after delay
-            setTimeout(() => {
-                startGame();
-            }, 200);
+            // Update UI
+            const countElement = document.getElementById('questions-count');
+            const hintElement = document.getElementById('count-hint');
+            const decreaseBtn = document.getElementById('decrease-count');
+            const increaseBtn = document.getElementById('increase-count');
+            
+            if (countElement) {
+                countElement.textContent = gameState.selectedQuestionsCount;
+                
+                // Update hint based on mode
+                if (gameState.mode === 'dual') {
+                    hintElement.textContent = `أقل عدد أسئلة: ${gameState.minQuestionsDual}`;
+                } else {
+                    hintElement.textContent = `أقل عدد أسئلة: ${gameState.minQuestionsSingle}`;
+                }
+                
+                // Update button states
+                const minCount = gameState.mode === 'dual' ? gameState.minQuestionsDual : gameState.minQuestionsSingle;
+                decreaseBtn.disabled = gameState.selectedQuestionsCount <= minCount;
+                increaseBtn.disabled = gameState.selectedQuestionsCount >= gameState.maxQuestions;
+            }
+        }
+
+        function decreaseQuestionCount() {
+            const minCount = gameState.mode === 'dual' ? gameState.minQuestionsDual : gameState.minQuestionsSingle;
+            if (gameState.selectedQuestionsCount > minCount) {
+                gameState.selectedQuestionsCount--;
+                updateQuestionsCount();
+            }
+        }
+
+        function increaseQuestionCount() {
+            if (gameState.selectedQuestionsCount < gameState.maxQuestions) {
+                gameState.selectedQuestionsCount++;
+                updateQuestionsCount();
+            }
+        }
+
+        function startGameWithQuestions() {
+            if (!gameState.category) {
+                alert('يرجى اختيار مجال المعرفة أولاً');
+                return;
+            }
+            
+            // Validate questions count
+            const minCount = gameState.mode === 'dual' ? gameState.minQuestionsDual : gameState.minQuestionsSingle;
+            if (gameState.selectedQuestionsCount < minCount) {
+                alert(`الحد الأدنى لعدد الأسئلة في اللعب ${gameState.mode === 'dual' ? 'الثنائي' : 'الفردي'} هو ${minCount}`);
+                return;
+            }
+            
+            startGame();
         }
 
         function startGame() {
             // Reset game state
             resetGameState();
+            
+            // Set total questions from selected count
+            gameState.totalQuestions = gameState.selectedQuestionsCount;
             
             // Select questions
             selectQuestions();
@@ -3695,9 +3978,8 @@ const questionsDB = {
             // Shuffle questions
             shuffleArray(allQuestions);
             
-            // Select 5 questions maximum (مختصرة)
-            gameState.questions = allQuestions.slice(0, 20);
-            gameState.totalQuestions = gameState.questions.length;
+            // Select the requested number of questions
+            gameState.questions = allQuestions.slice(0, gameState.selectedQuestionsCount);
             
             // Mark questions for single player mode
             if (gameState.mode === 'single') {
@@ -4108,7 +4390,7 @@ const questionsDB = {
                     </div>
                     <div>
                         <div class="team-name">${team.name}</div>
-                        <div style="color: var(--primary-light); font-size: 0.75rem;">الفريق ${teamNumber === 1 ? 'الأول' : 'الثاني'}</div>
+                        <div style="color: var(--primary-light); font-size: 0.7rem;">الفريق ${teamNumber === 1 ? 'الأول' : 'الثاني'}</div>
                     </div>
                 </div>
                 <div class="team-stats">
@@ -4140,14 +4422,14 @@ const questionsDB = {
             
             const colors = ['#6366F1', '#8B5CF6', '#EC4899', '#10B981', '#F59E0B', '#EF4444', '#3B82F6'];
             
-            for (let i = 0; i < 60; i++) {
+            for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 
                 confetti.style.left = `${Math.random() * 100}vw`;
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = `${Math.random() * 8 + 4}px`;
-                confetti.style.height = `${Math.random() * 8 + 4}px`;
+                confetti.style.width = `${Math.random() * 6 + 3}px`;
+                confetti.style.height = `${Math.random() * 6 + 3}px`;
                 confetti.style.animationDelay = `${Math.random() * 1}s`;
                 confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
                 
@@ -4171,6 +4453,9 @@ const questionsDB = {
             document.querySelectorAll('.mode-card, .category-card').forEach(card => {
                 card.classList.remove('selected');
             });
+            
+            // Reset category selection
+            gameState.category = null;
             
             // Stop timer
             stopTimer();
@@ -4396,4 +4681,3 @@ const questionsDB = {
     </script>
 </body>
 </html>
-
