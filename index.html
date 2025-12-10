@@ -242,8 +242,8 @@
         }
 
         h1 {
-            font-size: 1.2rem;
-            margin-bottom: 3px;
+            font-size: 1.5rem;
+            margin: 20px 10px;
             font-weight: 900;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
@@ -1298,7 +1298,7 @@
         }
 
         .question-text {
-            font-size: 2rem;
+            font-size: 1.1rem;
             font-weight: 800;
             line-height: 1.4;
             text-align: center;
@@ -2721,142 +2721,143 @@
             timerInterval: null,
             selectedQuestionsCount: 5,
             minQuestionsSingle: 5,
+            maxQuestionsSingle: 20,
             minQuestionsDual: 12,
-            maxQuestions: 30,
+            maxQuestionsDual: 35,
             totalQuestions: 5,
             audioContext: null,
             autoAdvanceTimeout: null,
             theme: 'dark'
         };
 
-      // Questions Database موسعة مع 100 سؤال لكل قسم
+         // Questions Database موسعة مع 100 سؤال لكل قسم
 const questionsDB = {
-    programming: {
-        name: 'البرمجة',
-        icon: 'fa-code',
-        description: 'لغات وخوارزميات وهياكل بيانات',
-        questions: [
-            [
-                {question: "أي لغة تُعرف بأنها لغة 'البرمجة للنظام'؟", options: ["C", "JavaScript", "Python", "Ruby"], answer: "C", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة التي تم تطويرها من قبل شركة مايكروسوفت وتعمل على منصة .NET؟", options: ["C#", "Go", "Rust", "Kotlin"], answer: "C#", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة المستخدمة في تطوير تطبيقات iOS الأصلية؟", options: ["Swift", "Java", "C++", "Dart"], answer: "Swift", difficulty: "easy"},
-                {question: "ما اسم النموذج البرمجي الذي تستخدمه JavaScript للتعامل مع العمليات غير المتزامنة؟", options: ["نموذج الحدث (Event Loop)", "المؤشرات (Pointers)", "الخيوط (Threads)", "الوراثة (Inheritance)"], answer: "نموذج الحدث (Event Loop)", difficulty: "medium"},
-                {question: "ما هي اللغة التي يطلق عليها غالبًا 'لغة الويب'؟", options: ["HTML", "CSS", "JavaScript", "PHP"], answer: "JavaScript", difficulty: "easy"},
-                {question: "ما هو النوع الأساسي لقيمة `null` في JavaScript؟", options: ["object", "null", "undefined", "number"], answer: "object", difficulty: "medium"},
-                {question: "أي من المبادئ التالية ليس من مبادئ SOLID في البرمجة الكائنية؟", options: ["مبدأ المسؤولية الواحدة", "مبدأ الفتح/الإغلاق", "مبدأ لسكال (Liskov)", "مبدأ الكسول (Lazy)"], answer: "مبدأ الكسول (Lazy)", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة التي صممها جايمس جوسلينج في شركة Sun Microsystems؟", options: ["Java", "C++", "Python", "Perl"], answer: "Java", difficulty: "easy"},
-                {question: "ما هو اسم دالة البناء (constructor) في فئة JavaScript؟", options: ["constructor()", "init()", "create()", "build()"], answer: "constructor()", difficulty: "medium"},
-                {question: "أي من هياكل البيانات التالية يستخدم نموذج FIFO؟", options: ["المكدس (Stack)", "الطابور (Queue)", "الشجرة (Tree)", "القائمة المرتبطة (Linked List)"], answer: "الطابور (Queue)", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة التي تُعرف بشعار 'البساطة هي أفضل من التعقيد'؟", options: ["Python", "C++", "Perl", "JavaScript"], answer: "Python", difficulty: "easy"},
-                {question: "ما هي قيمة `3 + 2 + '7'` في JavaScript؟", options: ["12", "'57'", "'327'", "خطأ (Error)"], answer: "'57'", difficulty: "medium"},
-                {question: "أي من هذه الخوارزميات يستخدم استراتيجية 'فرق تسد' (Divide and Conquer)؟", options: ["فرز الفقاعة (Bubble Sort)", "فرز الإدراج (Insertion Sort)", "فرز سريع (Quick Sort)", "فرز الاختيار (Selection Sort)"], answer: "فرز سريع (Quick Sort)", difficulty: "medium"},
-                {question: "ما هو الـ DSL الذي يُستخدم للاستعلام عن قواعد البيانات العلائقية؟", options: ["SQL", "HTML", "XML", "JSON"], answer: "SQL", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة التي طورتها شركة Mozilla وتُعرف بأمانها وأدائها العالي؟", options: ["Rust", "Dart", "Elixir", "Julia"], answer: "Rust", difficulty: "medium"},
-                {question: "ما هو الاسم التقني للخطأ 'تقسيم على صفر'؟", options: ["DivisionByZeroError", "ArithmeticException", "ZeroDivisionError", "جميع ما سبق"], answer: "جميع ما سبق", difficulty: "easy"},
-                {question: "في Python، ما الفرق بين `list` و `tuple`؟", options: ["القائمة قابلة للتغيير (Mutable) بينما الـ Tuple غير قابل (Immutable)", "الـ Tuple أسرع في التكرار", "القائمة تستخدم أقواس مربعة [] والـ Tuple يستخدم أقواس عادية ()", "جميع ما سبق"], answer: "جميع ما سبق", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة التي تم إنشاؤها خصيصًا لتنفيذ عمليات على قواعد البيانات الموزعة مثل Hadoop؟", options: ["Pig Latin", "Scala", "F#", "Clojure"], answer: "Pig Latin", difficulty: "hard"},
-                {question: "ما هو المفهوم الذي يسمح لكائن بالحصول على خصائص وطرق كائن آخر؟", options: ["التغليف (Encapsulation)", "الوراثة (Inheritance)", "تعدد الأشكال (Polymorphism)", "التجريد (Abstraction)"], answer: "الوراثة (Inheritance)", difficulty: "easy"},
-                {question: "ما هي نتيجة `console.log(typeof NaN)` في JavaScript؟", options: ["'number'", "'NaN'", "'undefined'", "'object'"], answer: "'number'", difficulty: "medium"},
-                {question: "أي لغة من اللغات التالية هي لغة مفسرة (Interpreted) وليست مكتوبة (Compiled)؟", options: ["Python", "C", "Go", "Rust"], answer: "Python", difficulty: "easy"},
-                {question: "ما هو اسم المفتاح المستخدم لتعريف دالة في JSON؟", options: ["function", "def", "=>", "لا يمكن تعريف دوال في JSON"], answer: "لا يمكن تعريف دوال في JSON", difficulty: "medium"},
-                {question: "أي من التاليين له أولوية أعلى في العمليات الحسابية: الجمع (+) أو الضرب (*)؟", options: ["الجمع", "الضرب", "لهما نفس الأولوية", "يعتمد على اللغة"], answer: "الضرب", difficulty: "easy"},
-                {question: "ما هو الاسم الكامل لـ API؟", options: ["Application Programming Interface", "Advanced Programming Instruction", "Automated Program Integration", "Applied Programming Interface"], answer: "Application Programming Interface", difficulty: "easy"},
-                {question: "في قواعد البيانات، ما هي العملية التي تجمع بين صفوف من جدولين أو أكثر؟", options: ["JOIN", "MERGE", "COMBINE", "UNION"], answer: "JOIN", difficulty: "medium"},
-                {question: "ما هي اللغة التي صممها برندان إيتش في 10 أيام فقط؟", options: ["JavaScript", "Python", "Ruby", "PHP"], answer: "JavaScript", difficulty: "medium"},
-                {question: "ما هي نتيجة `5 == '5'` في JavaScript؟", options: ["true", "false", "undefined", "خطأ (Error)"], answer: "true", difficulty: "easy"},
-                {question: "أي من هياكل البيانات التالية يكون البحث فيها أسرع نظريًا (O(1))؟", options: ["المصفوفة (Array)", "قائمة مرتبطة (Linked List)", "جدول التجزئة (Hash Table)", "شجرة ثنائية (Binary Tree)"], answer: "جدول التجزئة (Hash Table)", difficulty: "medium"},
-                {question: "ما هي لغة البرمجة التي تستخدمها منصة Flutter بشكل أساسي؟", options: ["Dart", "Kotlin", "Swift", "Java"], answer: "Dart", difficulty: "medium"},
-                {question: "ما هو الاسم التقني لمشكلة 'الانتظار الدائري' التي يمكن أن تحدث في أنظمة التشغيل؟", options: ["Deadlock", "Livelock", "Starvation", "Race Condition"], answer: "Deadlock", difficulty: "medium"},
-                {question: "ما هي القيمة التي تُرجعها دالة في C إذا لم تحدد قيمة إرجاع؟", options: ["void", "0", "قيمة عشوائية", "خطأ في الترجمة"], answer: "قيمة عشوائية", difficulty: "hard"},
-                {question: "ما هو نظام التحكم في الإصدارات الذي طوره لينوس تورفالدس؟", options: ["Git", "SVN", "Mercurial", "CVS"], answer: "Git", difficulty: "easy"},
-                {question: "أي من هذه الأنواع في TypeScript يُمثل قيمة يمكن أن تكون `null` أو `undefined`؟", options: ["any", "void", "unknown", "nullable (مثل string | null)"], answer: "nullable (مثل string | null)", difficulty: "medium"},
-                {question: "ما هو البروتوكول الذي تستخدمه صفحات الويب غير الآمنة (HTTP) بشكل افتراضي؟", options: ["80", "443", "8080", "21"], answer: "80", difficulty: "easy"},
-                {question: "ما هي الدالة المستخدمة لإنشاء كائن في JavaScript؟", options: ["Object.create()", "new Object()", "{}", "جميع ما سبق"], answer: "جميع ما سبق", difficulty: "medium"},
-                {question: "أي من هذه المفاهيم ليس نمط تصميم (Design Pattern)؟", options: ["Singleton", "Observer", "Promise", "Factory"], answer: "Promise", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة التي كانت تسمى في الأصل 'Oak'؟", options: ["Java", "C#", "Python", "Go"], answer: "Java", difficulty: "medium"},
-                {question: "ما هو الـ CSS الذي يسمح بتصميم صفحات تستجيب لجميع أحجام الشاشات؟", options: ["CSS Grid", "Flexbox", "Media Queries", "جميع ما سبق"], answer: "جميع ما سبق", difficulty: "easy"},
-                {question: "في Python، ما الذي يفعله عامل `**`؟", options: ["الضرب", "الأسي (الأس)", "القسمة", "لا شيء، ليس عاملًا صالحًا"], answer: "الأسي (الأس)", difficulty: "easy"},
-                {question: "ما هو الخطأ المسمى 'Index Out of Bounds'؟", options: ["الوصول إلى عنصر خارج نطاق المصفوفة/القائمة", "تقسيم على صفر", "تسرب الذاكرة", "تعريف متغير مرتين"], answer: "الوصول إلى عنصر خارج نطاق المصفوفة/القائمة", difficulty: "easy"},
-                {question: "ما هي لغة الترميز المستخدمة لتهيئة حزم npm؟", options: ["JSON", "YAML", "XML", "TOML"], answer: "JSON", difficulty: "easy"},
-                {question: "أي من هذه اللغات تدعم البرمجة الوظيفية (Functional Programming) بشكل كامل؟", options: ["Haskell", "C", "Java (قبل الإصدار 8)", "Python (بدون مكتبات)"], answer: "Haskell", difficulty: "medium"},
-                {question: "ما هو الاسم المختصر لـ 'JavaScript Object Notation'؟", options: ["JSN", "JSO", "JSON", "JSX"], answer: "JSON", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة المستخدمة لكتابة استعلامات في قواعد بيانات NoSQL مثل MongoDB؟", options: ["JavaScript", "MQL (MongoDB Query Language)", "SQL", "Python"], answer: "MQL (MongoDB Query Language)", difficulty: "medium"},
-                {question: "ما هي نتيجة `0.1 + 0.2 === 0.3` في JavaScript؟", options: ["true", "false", "undefined", "خطأ (Error)"], answer: "false", difficulty: "medium"},
-                {question: "ما هو الـ Garbage Collector؟", options: ["أداة لإدارة الذاكرة التلقائية", "أداة لتحسين السرعة", "مترجم للغة Python", "مكتبة في Java"], answer: "أداة لإدارة الذاكرة التلقائية", difficulty: "medium"},
-                {question: "أي من هذه الأنظمة لا يعتمد على نواة Linux؟", options: ["Ubuntu", "macOS", "Android", "Fedora"], answer: "macOS", difficulty: "medium"},
-                {question: "ما هي لغة البرمجة التي أنشأتها شركة Google وتشبه Java و C++؟", options: ["Go", "Dart", "Kotlin", "Swift"], answer: "Go", difficulty: "medium"},
-                {question: "ما هي أداة بناء (build tool) شائعة في مشاريع Java؟", options: ["Maven", "Webpack", "Pip", "npm"], answer: "Maven", difficulty: "medium"},
-                {question: "ما هو الـ HTTP Status Code الذي يعني 'تم العثور على الصفحة'؟", options: ["200", "404", "500", "302"], answer: "200", difficulty: "easy"},
-                {question: "في Python، كيف يتم كتابة تعليق على سطر واحد؟", options: ["// تعليق", "# تعليق", "/* تعليق */", "-- تعليق"], answer: "# تعليق", difficulty: "easy"},
-                {question: "ما هي الدالة التي تُستخدم لطباعة نص في وحدة تحكم JavaScript؟", options: ["print()", "console.log()", "echo()", "printf()"], answer: "console.log()", difficulty: "easy"},
-                {question: "ما هو نوع البيانات `var` في JavaScript؟", options: ["ليس نوعًا، هو كلمة لحفظ المتغير", "نوع للنصوص", "نوع للأرقام", "نوع للمنطق (boolean)"], answer: "ليس نوعًا، هو كلمة لحفظ المتغير", difficulty: "easy"},
-                {question: "ما هو الاسم الكامل لـ CSS؟", options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System", "Colorful Style Syntax"], answer: "Cascading Style Sheets", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة التي تستخدمها مكتبة React لإنشاء واجهات المستخدم؟", options: ["JavaScript (و JSX)", "Python", "Java", "C#"], answer: "JavaScript (و JSX)", difficulty: "easy"},
-                {question: "أي من هذه القيم تُعتبر 'falsy' في JavaScript؟", options: ["0", "'0'", "[]", "{}"], answer: "0", difficulty: "medium"},
-                {question: "ما هو مصطلح 'callback hell'؟", options: ["كثرة الاستدعاءات العكسية المتداخلة", "خطأ في التراجع", "مشكلة في الذاكرة", "توقف الخادم"], answer: "كثرة الاستدعاءات العكسية المتداخلة", difficulty: "medium"},
-                {question: "ما هو الاسم التقني للخطأ عند محاولة استدعاء دالة غير معرفة؟", options: ["ReferenceError", "TypeError", "SyntaxError", "RangeError"], answer: "ReferenceError", difficulty: "medium"},
-                {question: "ما هو الفرق بين `let` و `var` في JavaScript؟", options: ["`let` له نطاق كتلة (block scope)", "`var` له نطاق كتلة", "لا فرق", "`let` أقدم"], answer: "`let` له نطاق كتلة (block scope)", difficulty: "medium"},
-                {question: "ما هي لغة البرمجة المستخدمة لكتابة سكريبات سطر الأوامر في أنظمة Unix/Linux؟", options: ["Bash", "PowerShell", "CMD", "Python"], answer: "Bash", difficulty: "easy"},
-                {question: "ما هو الـ HTTP Method المستخدم لإنشاء مورد جديد على الخادم؟", options: ["GET", "POST", "PUT", "DELETE"], answer: "POST", difficulty: "easy"},
-                {question: "في Java، ما الفرق بين `==` و `.equals()`؟", options: ["`==` يقارن المراجع، `.equals()` يقارن القيم", "`.equals()` للمقارنة العددية فقط", "لا فرق", "`==` للمقارنة النصية فقط"], answer: "`==` يقارن المراجع، `.equals()` يقارن القيم", difficulty: "medium"},
-                {question: "ما هي اللغة التي تُستخدم لكتابة تطبيقات الويب من جانب الخادم (Server-side) في إطار العمل Django؟", options: ["Python", "Ruby", "PHP", "Java"], answer: "Python", difficulty: "easy"},
-                {question: "ما هو الاسم المختصر لـ 'Content Management System'؟", options: ["CMS", "CNT", "MNG", "SYS"], answer: "CMS", difficulty: "easy"},
-                {question: "أي من هذه المكتبات تُستخدم للتعامل مع التواريخ والأوقات في JavaScript؟", options: ["Moment.js", "jQuery", "Lodash", "Axios"], answer: "Moment.js", difficulty: "medium"},
-                {question: "ما هي لغة البرمجة التي صممها يوكيهيرو ماتسوموتو وتُعرف بشعار 'السعادة للمبرمج'؟", options: ["Ruby", "Python", "Perl", "Julia"], answer: "Ruby", difficulty: "medium"},
-                {question: "ما هو الـ Protocol الذي يستخدمه البريد الإلكتروني لإرسال الرسائل؟", options: ["SMTP", "POP3", "IMAP", "FTP"], answer: "SMTP", difficulty: "medium"},
-                {question: "في CSS، ما الذي يفعله `display: none;`؟", options: ["يخفي العنصر ويحتفظ بمساحته", "يخفي العنصر ولا يحتفظ بمساحته", "يجعل العنصر شفافًا", "يزيل العنصر من DOM"], answer: "يخفي العنصر ولا يحتفظ بمساحته", difficulty: "easy"},
-                {question: "ما هي نتيجة `Math.max()` في JavaScript بدون معطيات؟", options: ["0", "Infinity", "-Infinity", "undefined"], answer: "-Infinity", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة التي تُستخدم في تطوير ألعاب محرك Unity بشكل أساسي؟", options: ["C#", "Java", "C++", "Python"], answer: "C#", difficulty: "easy"},
-                {question: "ما هو الاسم التقني لتقنية تحميل جزء من الصفحة فقط دون إعادة تحميلها كاملة؟", options: ["AJAX", "jQuery", "CSS Animation", "Server-Side Rendering"], answer: "AJAX", difficulty: "medium"},
-                {question: "أي من هذه الأنواع في Python قابل للتغيير (Mutable)؟", options: ["قائمة (list)", "مجموعة (set)", "قاموس (dict)", "جميع ما سبق"], answer: "جميع ما سبق", difficulty: "easy"},
-                {question: "ما هو الـ HTTP Status Code الذي يعني 'الصفحة انتقلت مؤقتًا'؟", options: ["200", "301", "302", "404"], answer: "302", difficulty: "medium"},
-                {question: "ما هو الاسم المختصر لـ 'Representational State Transfer'؟", options: ["REST", "SOAP", "HTTP", "API"], answer: "REST", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة التي تُستخدم في تحليل البيانات والتعلم الآلي بشكل كبير؟", options: ["Python", "C++", "Java", "JavaScript"], answer: "Python", difficulty: "easy"},
-                {question: "ما هو الـ Framework الذي طورته Facebook ويُستخدم لبناء واجهات المستخدم؟", options: ["React", "Angular", "Vue.js", "Ember"], answer: "React", difficulty: "easy"},
-                {question: "ما هي قيمة `null === undefined` في JavaScript؟", options: ["true", "false", "null", "undefined"], answer: "false", difficulty: "medium"},
-                {question: "أي من هذه اللغات تُعتبر لغة 'نظام' (Systems Programming Language)؟", options: ["C", "Python", "JavaScript", "PHP"], answer: "C", difficulty: "easy"},
-                {question: "ما هو الاسم التقني للعملية التي يحول فيها المترجم الشفرة المصدرية إلى لغة الآلة؟", options: ["الترجمة (Compilation)", "التفسير (Interpretation)", "التحويل (Transpilation)", "التنفيذ (Execution)"], answer: "الترجمة (Compilation)", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة المستخدمة في تطوير إطار العمل Laravel؟", options: ["PHP", "Python", "Ruby", "Java"], answer: "PHP", difficulty: "easy"},
-                {question: "ما هو الـ Keyword المستخدم لتعريف ثابت (constant) في JavaScript (ES6)؟", options: ["const", "let", "var", "static"], answer: "const", difficulty: "easy"},
-                {question: "ما هو الـ HTTP Method المستخدم لتحديث مورد موجود كليًا على الخادم؟", options: ["PATCH", "PUT", "POST", "UPDATE"], answer: "PUT", difficulty: "medium"},
-                {question: "أي من هذه المكتبات ليست مكتبة JavaScript؟", options: ["React", "NumPy", "Vue.js", "Angular"], answer: "NumPy", difficulty: "easy"},
-                {question: "ما هي لغة البرمجة التي تُستخدم في تطوير تطبيقات Android الأصلية باستخدام Kotlin؟", options: ["Kotlin", "Swift", "Dart", "C#"], answer: "Kotlin", difficulty: "easy"},
-                {question: "ما هو الـ Design Pattern الذي يضمن وجود نسخة واحدة فقط من الفئة؟", options: ["Singleton", "Factory", "Observer", "Builder"], answer: "Singleton", difficulty: "medium"},
-                {question: "ما هي نتيجة `'5' - 3` في JavaScript؟", options: ["2", "'2'", "NaN", "خطأ (Error)"], answer: "2", difficulty: "medium"},
-                {question: "ما هو الـ Protocol الذي يحمي اتصالات الويب (HTTPS)؟", options: ["SSL/TLS", "HTTP/2", "TCP/IP", "FTP"], answer: "SSL/TLS", difficulty: "medium"},
-                {question: "في Python، ما الذي يفعله الأمر `import this`؟", options: ["يطبع 'The Zen of Python'", "يستورد مكتبة النظام", "يفعل لا شيء", "يعطي خطأ"], answer: "يطبع 'The Zen of Python'", difficulty: "medium"},
-                {question: "ما هو الـ API الذي يتيح للمتصفحات الوصول إلى الموقع الجغرافي للمستخدم؟", options: ["Geolocation API", "GPS API", "Map API", "Location API"], answer: "Geolocation API", difficulty: "medium"},
-                {question: "أي من هذه العبارات صحيحة عن الـ Blockchain؟", options: ["سلسلة كتل غير قابلة للتغيير", "تستخدم في العملات الرقمية فقط", "لا تحتاج إلى إجماع (Consensus)", "مركزية"], answer: "سلسلة كتل غير قابلة للتغيير", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة التي طورتها شركة Apple لتحل محل Objective-C؟", options: ["Swift", "Kotlin", "Dart", "Go"], answer: "Swift", difficulty: "easy"},
-                {question: "ما هو الـ HTTP Status Code الذي يعني 'غير مصرح به'؟", options: ["401", "403", "404", "500"], answer: "401", difficulty: "easy"},
-                {question: "ما هو الاسم التقني لمشكلة عندما تحاول دالتان الوصول إلى مورد مشترك في نفس الوقت؟", options: ["Race Condition", "Deadlock", "Memory Leak", "Stack Overflow"], answer: "Race Condition", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة التي صممها جون مكارثي في الخمسينيات وتُستخدم في الذكاء الاصطناعي؟", options: ["Lisp", "Prolog", "Fortran", "COBOL"], answer: "Lisp", difficulty: "hard"},
-                {question: "ما هي نتيجة `[] + []` في JavaScript؟", options: ["''", "[]", "[object Object]", "0"], answer: "''", difficulty: "hard"},
-                {question: "ما هو الـ Framework الذي طورته Google لبناء واجهات المستخدم؟", options: ["Angular", "React", "Vue.js", "Svelte"], answer: "Angular", difficulty: "easy"},
-                {question: "ما هو الـ Algorithm الذي يستخدمه Git لإنشاء معرفات فريدة لكل commit؟", options: ["SHA-1", "MD5", "AES", "RSA"], answer: "SHA-1", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة التي تُستخدم لكتابة استعلامات GraphQL؟", options: ["ليست لغة محددة، GraphQL لغة استعلام نفسها", "JavaScript", "SQL", "Python"], answer: "ليست لغة محددة، GraphQL لغة استعلام نفسها", difficulty: "medium"},
-                {question: "ما هو الـ Protocol الذي ينقل ملفات من خادم إلى عميل؟", options: ["FTP", "HTTP", "SMTP", "SSH"], answer: "FTP", difficulty: "easy"},
-                {question: "في CSS، ما الذي يفعله `position: absolute;`؟", options: ["يضع العنصر بالنسبة إلى أقرب عنصر أب له `position` غير `static`", "يصلح العنصر في مكانه", "يضع العنصر بالنسبة لصفحة الويب", "يحاذي العنصر إلى اليمين"], answer: "يضع العنصر بالنسبة إلى أقرب عنصر أب له `position` غير `static`", difficulty: "medium"},
-                {question: "ما هي لغة البرمجة التي تُستخدم في تطوير إطار العمل Spring؟", options: ["Java", "Kotlin", "Groovy", "جميع ما سبق"], answer: "جميع ما سبق", difficulty: "hard"},
-                {question: "ما هي نتيجة `typeof function() {}` في JavaScript؟", options: ["'function'", "'object'", "'undefined'", "'lambda'"], answer: "'function'", difficulty: "medium"},
-                {question: "ما هو الـ Design Pattern الذي يفصل بين إنشاء الكائن واستخدامه؟", options: ["Factory Method", "Singleton", "Observer", "Decorator"], answer: "Factory Method", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة التي طورتها شركة JetBrains لتحل محل Java على منصة JVM؟", options: ["Kotlin", "Scala", "Clojure", "Groovy"], answer: "Kotlin", difficulty: "medium"},
-                {question: "ما هي نتيجة `2 ** 3 ** 2` في Python؟", options: ["64", "512", "72", "خطأ (Error)"], answer: "512", difficulty: "hard"}
-            ],
-            [
-                {question: "ما هي الخاصية التي تجعل Node.js مناسبًا للتطبيقات ذات الحمل العالي؟", options: ["غير متزامن (Asynchronous)", "متعدد الخيوط (Multithreaded)", "مترجم (Compiled)", "نوعي (Typed)"], answer: "غير متزامن (Asynchronous)", difficulty: "medium"},
-                {question: "ما هو الـ Framework الذي يستخدمه Ruby on Rails؟", options: ["Ruby", "Python", "PHP", "JavaScript"], answer: "Ruby", difficulty: "easy"},
-                {question: "ما هي لغة الاستعلام المستخدمة في Redis؟", options: ["لا يوجد لغة استعلام، تستخدم أوامر بسيطة", "SQL", "NoSQL", "GraphQL"], answer: "لا يوجد لغة استعلام، تستخدم أوامر بسيطة", difficulty: "medium"},
-                {question: "ما هو الـ Algorithm الذي تستخدمه خوارزمية Dijkstra لإيجاد أقصر مسار؟", options: ["Greedy Algorithm", "Divide and Conquer", "Dynamic Programming", "Backtracking"], answer: "Greedy Algorithm", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة المستخدمة في تطوير kernel لنظام Linux؟", options: ["C", "C++", "Assembly", "Python"], answer: "C", difficulty: "medium"},
-                {question: "ما هو الـ Protocol الذي يستخدمه SSH لنقل البيانات بشكل آمن؟", options: ["TCP", "UDP", "ICMP", "HTTP"], answer: "TCP", difficulty: "medium"},
-                {question: "ما هي نتيجة `'b' + 'a' + + 'a' + 'a'` في JavaScript؟", options: ["'baNaNa'", "'baaa'", "'banana'", "'baundefineda'"], answer: "'baNaNa'", difficulty: "hard"},
-                {question: "ما هي لغة البرمجة المستخدمة في TensorFlow لبناء نماذج التعلم الآلي؟", options: ["Python", "C++", "Java", "JavaScript"], answer: "Python", difficulty: "easy"},
-                {question: "ما هو الـ Design Pattern الذي يسمح لكائنات غير متوافقة بالعمل معًا؟", options: ["Adapter", "Decorator", "Proxy", "Facade"], answer: "Adapter", difficulty: "medium"},
-                {question: "ما هي نتيجة `[1, 2, 3].map(parseInt)` في JavaScript؟", options: ["[1, NaN, NaN]", "[1, 2, 3]", "[1, 2, NaN]", "خطأ (Error)"], answer: "[1, NaN, NaN]", difficulty: "hard"}
-            ]
-        ].flat()
-    },
+  programming: {
+    name: 'البرمجة',
+    icon: 'fa-code',
+    description: 'لغات وخوارزميات وهياكل بيانات',
+    questions: [
+        [
+            {question: "أي لغة تُعرف بأنها لغة 'البرمجة للنظام'؟", options: ["Python", "Ruby", "C", "JavaScript"], answer: "C", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة التي تم تطويرها من قبل شركة مايكروسوفت وتعمل على منصة .NET؟", options: ["Go", "C#", "Kotlin", "Rust"], answer: "C#", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة المستخدمة في تطوير تطبيقات iOS الأصلية؟", options: ["C++", "Dart", "Java", "Swift"], answer: "Swift", difficulty: "easy"},
+            {question: "ما اسم النموذج البرمجي الذي تستخدمه JavaScript للتعامل مع العمليات غير المتزامنة؟", options: ["الخيوط (Threads)", "الوراثة (Inheritance)", "نموذج الحدث (Event Loop)", "المؤشرات (Pointers)"], answer: "نموذج الحدث (Event Loop)", difficulty: "medium"},
+            {question: "ما هي اللغة التي يطلق عليها غالبًا 'لغة الويب'؟", options: ["HTML", "PHP", "CSS", "JavaScript"], answer: "JavaScript", difficulty: "easy"},
+            {question: "ما هو النوع الأساسي لقيمة `null` في JavaScript؟", options: ["undefined", "object", "null", "number"], answer: "object", difficulty: "medium"},
+            {question: "أي من المبادئ التالية ليس من مبادئ SOLID في البرمجة الكائنية؟", options: ["مبدأ لسكال (Liskov)", "مبدأ الكسول (Lazy)", "مبدأ الفتح/الإغلاق", "مبدأ المسؤولية الواحدة"], answer: "مبدأ الكسول (Lazy)", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة التي صممها جايمس جوسلينج في شركة Sun Microsystems؟", options: ["C++", "Java", "Python", "Perl"], answer: "Java", difficulty: "easy"},
+            {question: "ما هو اسم دالة البناء (constructor) في فئة JavaScript؟", options: ["build()", "create()", "init()", "constructor()"], answer: "constructor()", difficulty: "medium"},
+            {question: "أي من هياكل البيانات التالية يستخدم نموذج FIFO؟", options: ["المكدس (Stack)", "القائمة المرتبطة (Linked List)", "الشجرة (Tree)", "الطابور (Queue)"], answer: "الطابور (Queue)", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة التي تُعرف بشعار 'البساطة هي أفضل من التعقيد'؟", options: ["C++", "Python", "Perl", "JavaScript"], answer: "Python", difficulty: "easy"},
+            {question: "ما هي قيمة `3 + 2 + '7'` في JavaScript؟", options: ["'327'", "'57'", "12", "خطأ (Error)"], answer: "'57'", difficulty: "medium"},
+            {question: "أي من هذه الخوارزميات يستخدم استراتيجية 'فرق تسد' (Divide and Conquer)؟", options: ["فرز الإدراج (Insertion Sort)", "فرز الفقاعة (Bubble Sort)", "فرز الاختيار (Selection Sort)", "فرز سريع (Quick Sort)"], answer: "فرز سريع (Quick Sort)", difficulty: "medium"},
+            {question: "ما هو الـ DSL الذي يُستخدم للاستعلام عن قواعد البيانات العلائقية؟", options: ["XML", "JSON", "SQL", "HTML"], answer: "SQL", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة التي طورتها شركة Mozilla وتُعرف بأمانها وأدائها العالي؟", options: ["Dart", "Elixir", "Rust", "Julia"], answer: "Rust", difficulty: "medium"},
+            {question: "ما هو الاسم التقني للخطأ 'تقسيم على صفر'؟", options: ["ZeroDivisionError", "ArithmeticException", "جميع ما سبق", "DivisionByZeroError"], answer: "جميع ما سبق", difficulty: "easy"},
+            {question: "في Python، ما الفرق بين `list` و `tuple`؟", options: ["القائمة قابلة للتغيير (Mutable) بينما الـ Tuple غير قابل (Immutable)", "جميع ما سبق", "القائمة تستخدم أقواس مربعة [] والـ Tuple يستخدم أقواس عادية ()", "الـ Tuple أسرع في التكرار"], answer: "جميع ما سبق", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة التي تم إنشاؤها خصيصًا لتنفيذ عمليات على قواعد البيانات الموزعة مثل Hadoop؟", options: ["Scala", "Pig Latin", "Clojure", "F#"], answer: "Pig Latin", difficulty: "hard"},
+            {question: "ما هو المفهوم الذي يسمح لكائن بالحصول على خصائص وطرق كائن آخر؟", options: ["تعدد الأشكال (Polymorphism)", "التجريد (Abstraction)", "الوراثة (Inheritance)", "التغليف (Encapsulation)"], answer: "الوراثة (Inheritance)", difficulty: "easy"},
+            {question: "ما هي نتيجة `console.log(typeof NaN)` في JavaScript؟", options: ["'NaN'", "'undefined'", "'object'", "'number'"], answer: "'number'", difficulty: "medium"},
+            {question: "أي لغة من اللغات التالية هي لغة مفسرة (Interpreted) وليست مكتوبة (Compiled)؟", options: ["Go", "Python", "Rust", "C"], answer: "Python", difficulty: "easy"},
+            {question: "ما هو اسم المفتاح المستخدم لتعريف دالة في JSON؟", options: ["=>", "def", "function", "لا يمكن تعريف دوال في JSON"], answer: "لا يمكن تعريف دوال في JSON", difficulty: "medium"},
+            {question: "أي من التاليين له أولوية أعلى في العمليات الحسابية: الجمع (+) أو الضرب (*)؟", options: ["لهما نفس الأولوية", "الضرب", "يعتمد على اللغة", "الجمع"], answer: "الضرب", difficulty: "easy"},
+            {question: "ما هو الاسم الكامل لـ API؟", options: ["Advanced Programming Instruction", "Application Programming Interface", "Applied Programming Interface", "Automated Program Integration"], answer: "Application Programming Interface", difficulty: "easy"},
+            {question: "في قواعد البيانات، ما هي العملية التي تجمع بين صفوف من جدولين أو أكثر؟", options: ["UNION", "MERGE", "COMBINE", "JOIN"], answer: "JOIN", difficulty: "medium"},
+            {question: "ما هي اللغة التي صممها برندان إيتش في 10 أيام فقط؟", options: ["Ruby", "PHP", "Python", "JavaScript"], answer: "JavaScript", difficulty: "medium"},
+            {question: "ما هي نتيجة `5 == '5'` في JavaScript؟", options: ["undefined", "false", "true", "خطأ (Error)"], answer: "true", difficulty: "easy"},
+            {question: "أي من هياكل البيانات التالية يكون البحث فيها أسرع نظريًا (O(1))؟", options: ["المصفوفة (Array)", "جدول التجزئة (Hash Table)", "شجرة ثنائية (Binary Tree)", "قائمة مرتبطة (Linked List)"], answer: "جدول التجزئة (Hash Table)", difficulty: "medium"},
+            {question: "ما هي لغة البرمجة التي تستخدمها منصة Flutter بشكل أساسي؟", options: ["Kotlin", "Dart", "Java", "Swift"], answer: "Dart", difficulty: "medium"},
+            {question: "ما هو الاسم التقني لمشكلة 'الانتظار الدائري' التي يمكن أن تحدث في أنظمة التشغيل؟", options: ["Race Condition", "Starvation", "Deadlock", "Livelock"], answer: "Deadlock", difficulty: "medium"},
+            {question: "ما هي القيمة التي تُرجعها دالة في C إذا لم تحدد قيمة إرجاع؟", options: ["0", "قيمة عشوائية", "void", "خطأ في الترجمة"], answer: "قيمة عشوائية", difficulty: "hard"},
+            {question: "ما هو نظام التحكم في الإصدارات الذي طوره لينوس تورفالدس؟", options: ["CVS", "SVN", "Mercurial", "Git"], answer: "Git", difficulty: "easy"},
+            {question: "أي من هذه الأنواع في TypeScript يُمثل قيمة يمكن أن تكون `null` أو `undefined`؟", options: ["any", "nullable (مثل string | null)", "unknown", "void"], answer: "nullable (مثل string | null)", difficulty: "medium"},
+            {question: "ما هو البروتوكول الذي تستخدمه صفحات الويب غير الآمنة (HTTP) بشكل افتراضي؟", options: ["443", "21", "80", "8080"], answer: "80", difficulty: "easy"},
+            {question: "ما هي الدالة المستخدمة لإنشاء كائن في JavaScript؟", options: ["new Object()", "جميع ما سبق", "{}", "Object.create()"], answer: "جميع ما سبق", difficulty: "medium"},
+            {question: "أي من هذه المفاهيم ليس نمط تصميم (Design Pattern)؟", options: ["Singleton", "Promise", "Observer", "Factory"], answer: "Promise", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة التي كانت تسمى في الأصل 'Oak'؟", options: ["C#", "Python", "Java", "Go"], answer: "Java", difficulty: "medium"},
+            {question: "ما هو الـ CSS الذي يسمح بتصميم صفحات تستجيب لجميع أحجام الشاشات؟", options: ["Flexbox", "CSS Grid", "Media Queries", "جميع ما سبق"], answer: "جميع ما سبق", difficulty: "easy"},
+            {question: "في Python، ما الذي يفعله عامل `**`؟", options: ["القسمة", "الضرب", "الأسي (الأس)", "لا شيء، ليس عاملًا صالحًا"], answer: "الأسي (الأس)", difficulty: "easy"},
+            {question: "ما هو الخطأ المسمى 'Index Out of Bounds'؟", options: ["تعريف متغير مرتين", "تقسيم على صفر", "الوصول إلى عنصر خارج نطاق المصفوفة/القائمة", "تسرب الذاكرة"], answer: "الوصول إلى عنصر خارج نطاق المصفوفة/القائمة", difficulty: "easy"},
+            {question: "ما هي لغة الترميز المستخدمة لتهيئة حزم npm؟", options: ["TOML", "XML", "YAML", "JSON"], answer: "JSON", difficulty: "easy"},
+            {question: "أي من هذه اللغات تدعم البرمجة الوظيفية (Functional Programming) بشكل كامل؟", options: ["C", "Java (قبل الإصدار 8)", "Haskell", "Python (بدون مكتبات)"], answer: "Haskell", difficulty: "medium"},
+            {question: "ما هو الاسم المختصر لـ 'JavaScript Object Notation'؟", options: ["JSON", "JSX", "JSO", "JSN"], answer: "JSON", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة المستخدمة لكتابة استعلامات في قواعد بيانات NoSQL مثل MongoDB؟", options: ["SQL", "Python", "MQL (MongoDB Query Language)", "JavaScript"], answer: "MQL (MongoDB Query Language)", difficulty: "medium"},
+            {question: "ما هي نتيجة `0.1 + 0.2 === 0.3` في JavaScript؟", options: ["خطأ (Error)", "false", "true", "undefined"], answer: "false", difficulty: "medium"},
+            {question: "ما هو الـ Garbage Collector؟", options: ["أداة لتحسين السرعة", "مكتبة في Java", "مترجم للغة Python", "أداة لإدارة الذاكرة التلقائية"], answer: "أداة لإدارة الذاكرة التلقائية", difficulty: "medium"},
+            {question: "أي من هذه الأنظمة لا يعتمد على نواة Linux؟", options: ["Fedora", "Ubuntu", "macOS", "Android"], answer: "macOS", difficulty: "medium"},
+            {question: "ما هي لغة البرمجة التي أنشأتها شركة Google وتشبه Java و C++؟", options: ["Kotlin", "Dart", "Swift", "Go"], answer: "Go", difficulty: "medium"},
+            {question: "ما هي أداة بناء (build tool) شائعة في مشاريع Java؟", options: ["npm", "Pip", "Webpack", "Maven"], answer: "Maven", difficulty: "medium"},
+            {question: "ما هو الـ HTTP Status Code الذي يعني 'تم العثور على الصفحة'؟", options: ["302", "200", "500", "404"], answer: "200", difficulty: "easy"},
+            {question: "في Python، كيف يتم كتابة تعليق على سطر واحد؟", options: ["-- تعليق", "# تعليق", "/* تعليق */", "// تعليق"], answer: "# تعليق", difficulty: "easy"},
+            {question: "ما هي الدالة التي تُستخدم لطباعة نص في وحدة تحكم JavaScript؟", options: ["printf()", "console.log()", "print()", "echo()"], answer: "console.log()", difficulty: "easy"},
+            {question: "ما هو نوع البيانات `var` في JavaScript؟", options: ["نوع للأرقام", "نوع للنصوص", "ليس نوعًا، هو كلمة لحفظ المتغير", "نوع للمنطق (boolean)"], answer: "ليس نوعًا، هو كلمة لحفظ المتغير", difficulty: "easy"},
+            {question: "ما هو الاسم الكامل لـ CSS؟", options: ["Colorful Style Syntax", "Computer Style Sheets", "Creative Style System", "Cascading Style Sheets"], answer: "Cascading Style Sheets", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة التي تستخدمها مكتبة React لإنشاء واجهات المستخدم؟", options: ["Python", "JavaScript (و JSX)", "C#", "Java"], answer: "JavaScript (و JSX)", difficulty: "easy"},
+            {question: "أي من هذه القيم تُعتبر 'falsy' في JavaScript؟", options: ["'0'", "0", "[]", "{}"], answer: "0", difficulty: "medium"},
+            {question: "ما هو مصطلح 'callback hell'؟", options: ["مشكلة في الذاكرة", "كثرة الاستدعاءات العكسية المتداخلة", "توقف الخادم", "خطأ في التراجع"], answer: "كثرة الاستدعاءات العكسية المتداخلة", difficulty: "medium"},
+            {question: "ما هو الاسم التقني للخطأ عند محاولة استدعاء دالة غير معرفة؟", options: ["SyntaxError", "ReferenceError", "RangeError", "TypeError"], answer: "ReferenceError", difficulty: "medium"},
+            {question: "ما هو الفرق بين `let` و `var` في JavaScript؟", options: ["`var` له نطاق كتلة", "`let` له نطاق كتلة (block scope)", "`let` أقدم", "لا فرق"], answer: "`let` له نطاق كتلة (block scope)", difficulty: "medium"},
+            {question: "ما هي لغة البرمجة المستخدمة لكتابة سكريبات سطر الأوامر في أنظمة Unix/Linux؟", options: ["CMD", "Python", "PowerShell", "Bash"], answer: "Bash", difficulty: "easy"},
+            {question: "ما هو الـ HTTP Method المستخدم لإنشاء مورد جديد على الخادم؟", options: ["DELETE", "GET", "PUT", "POST"], answer: "POST", difficulty: "easy"},
+            {question: "في Java، ما الفرق بين `==` و `.equals()`؟", options: ["لا فرق", "`==` يقارن المراجع، `.equals()` يقارن القيم", "`==` للمقارنة النصية فقط", "`.equals()` للمقارنة العددية فقط"], answer: "`==` يقارن المراجع، `.equals()` يقارن القيم", difficulty: "medium"},
+            {question: "ما هي اللغة التي تُستخدم لكتابة تطبيقات الويب من جانب الخادم (Server-side) في إطار العمل Django؟", options: ["PHP", "Python", "Java", "Ruby"], answer: "Python", difficulty: "easy"},
+            {question: "ما هو الاسم المختصر لـ 'Content Management System'؟", options: ["SYS", "CMS", "CNT", "MNG"], answer: "CMS", difficulty: "easy"},
+            {question: "أي من هذه المكتبات تُستخدم للتعامل مع التواريخ والأوقات في JavaScript؟", options: ["Axios", "Lodash", "Moment.js", "jQuery"], answer: "Moment.js", difficulty: "medium"},
+            {question: "ما هي لغة البرمجة التي صممها يوكيهيرو ماتسوموتو وتُعرف بشعار 'السعادة للمبرمج'؟", options: ["Perl", "Ruby", "Julia", "Python"], answer: "Ruby", difficulty: "medium"},
+            {question: "ما هو الـ Protocol الذي يستخدمه البريد الإلكتروني لإرسال الرسائل؟", options: ["IMAP", "SMTP", "FTP", "POP3"], answer: "SMTP", difficulty: "medium"},
+            {question: "في CSS، ما الذي يفعله `display: none;`؟", options: ["يجعل العنصر شفافًا", "يزيل العنصر من DOM", "يخفي العنصر ويحتفظ بمساحته", "يخفي العنصر ولا يحتفظ بمساحته"], answer: "يخفي العنصر ولا يحتفظ بمساحته", difficulty: "easy"},
+            {question: "ما هي نتيجة `Math.max()` في JavaScript بدون معطيات؟", options: ["-Infinity", "Infinity", "0", "undefined"], answer: "-Infinity", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة التي تُستخدم في تطوير ألعاب محرك Unity بشكل أساسي؟", options: ["Java", "C#", "Python", "C++"], answer: "C#", difficulty: "easy"},
+            {question: "ما هو الاسم التقني لتقنية تحميل جزء من الصفحة فقط دون إعادة تحميلها كاملة؟", options: ["Server-Side Rendering", "jQuery", "CSS Animation", "AJAX"], answer: "AJAX", difficulty: "medium"},
+            {question: "أي من هذه الأنواع في Python قابل للتغيير (Mutable)؟", options: ["جميع ما سبق", "قاموس (dict)", "مجموعة (set)", "قائمة (list)"], answer: "جميع ما سبق", difficulty: "easy"},
+            {question: "ما هو الـ HTTP Status Code الذي يعني 'الصفحة انتقلت مؤقتًا'؟", options: ["404", "200", "302", "301"], answer: "302", difficulty: "medium"},
+            {question: "ما هو الاسم المختصر لـ 'Representational State Transfer'؟", options: ["HTTP", "REST", "API", "SOAP"], answer: "REST", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة التي تُستخدم في تحليل البيانات والتعلم الآلي بشكل كبير؟", options: ["C++", "Java", "Python", "JavaScript"], answer: "Python", difficulty: "easy"},
+            {question: "ما هو الـ Framework الذي طورته Facebook ويُستخدم لبناء واجهات المستخدم؟", options: ["Angular", "Vue.js", "React", "Ember"], answer: "React", difficulty: "easy"},
+            {question: "ما هي قيمة `null === undefined` في JavaScript؟", options: ["null", "true", "false", "undefined"], answer: "false", difficulty: "medium"},
+            {question: "أي من هذه اللغات تُعتبر لغة 'نظام' (Systems Programming Language)؟", options: ["PHP", "Python", "C", "JavaScript"], answer: "C", difficulty: "easy"},
+            {question: "ما هو الاسم التقني للعملية التي يحول فيها المترجم الشفرة المصدرية إلى لغة الآلة؟", options: ["التنفيذ (Execution)", "التفسير (Interpretation)", "التحويل (Transpilation)", "الترجمة (Compilation)"], answer: "الترجمة (Compilation)", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة المستخدمة في تطوير إطار العمل Laravel؟", options: ["Java", "Ruby", "PHP", "Python"], answer: "PHP", difficulty: "easy"},
+            {question: "ما هو الـ Keyword المستخدم لتعريف ثابت (constant) في JavaScript (ES6)؟", options: ["static", "const", "var", "let"], answer: "const", difficulty: "easy"},
+            {question: "ما هو الـ HTTP Method المستخدم لتحديث مورد موجود كليًا على الخادم؟", options: ["POST", "UPDATE", "PUT", "PATCH"], answer: "PUT", difficulty: "medium"},
+            {question: "أي من هذه المكتبات ليست مكتبة JavaScript؟", options: ["NumPy", "Vue.js", "Angular", "React"], answer: "NumPy", difficulty: "easy"},
+            {question: "ما هي لغة البرمجة التي تُستخدم في تطوير تطبيقات Android الأصلية باستخدام Kotlin؟", options: ["C#", "Kotlin", "Dart", "Swift"], answer: "Kotlin", difficulty: "easy"},
+            {question: "ما هو الـ Design Pattern الذي يضمن وجود نسخة واحدة فقط من الفئة؟", options: ["Observer", "Factory", "Singleton", "Builder"], answer: "Singleton", difficulty: "medium"},
+            {question: "ما هي نتيجة `'5' - 3` في JavaScript؟", options: ["NaN", "2", "'2'", "خطأ (Error)"], answer: "2", difficulty: "medium"},
+            {question: "ما هو الـ Protocol الذي يحمي اتصالات الويب (HTTPS)؟", options: ["TCP/IP", "HTTP/2", "FTP", "SSL/TLS"], answer: "SSL/TLS", difficulty: "medium"},
+            {question: "في Python، ما الذي يفعله الأمر `import this`؟", options: ["يستورد مكتبة النظام", "يفعل لا شيء", "يطبع 'The Zen of Python'", "يعطي خطأ"], answer: "يطبع 'The Zen of Python'", difficulty: "medium"},
+            {question: "ما هو الـ API الذي يتيح للمتصفحات الوصول إلى الموقع الجغرافي للمستخدم؟", options: ["Location API", "GPS API", "Map API", "Geolocation API"], answer: "Geolocation API", difficulty: "medium"},
+            {question: "أي من هذه العبارات صحيحة عن الـ Blockchain؟", options: ["مركزية", "سلسلة كتل غير قابلة للتغيير", "تستخدم في العملات الرقمية فقط", "لا تحتاج إلى إجماع (Consensus)"], answer: "سلسلة كتل غير قابلة للتغيير", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة التي طورتها شركة Apple لتحل محل Objective-C؟", options: ["Dart", "Swift", "Go", "Kotlin"], answer: "Swift", difficulty: "easy"},
+            {question: "ما هو الـ HTTP Status Code الذي يعني 'غير مصرح به'؟", options: ["404", "500", "401", "403"], answer: "401", difficulty: "easy"},
+            {question: "ما هو الاسم التقني لمشكلة عندما تحاول دالتان الوصول إلى مورد مشترك في نفس الوقت؟", options: ["Memory Leak", "Race Condition", "Stack Overflow", "Deadlock"], answer: "Race Condition", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة التي صممها جون مكارثي في الخمسينيات وتُستخدم في الذكاء الاصطناعي؟", options: ["Fortran", "Prolog", "Lisp", "COBOL"], answer: "Lisp", difficulty: "hard"},
+            {question: "ما هي نتيجة `[] + []` في JavaScript؟", options: ["''", "[object Object]", "0", "[]"], answer: "''", difficulty: "hard"},
+            {question: "ما هو الـ Framework الذي طورته Google لبناء واجهات المستخدم؟", options: ["React", "Vue.js", "Svelte", "Angular"], answer: "Angular", difficulty: "easy"},
+            {question: "ما هو الـ Algorithm الذي يستخدمه Git لإنشاء معرفات فريدة لكل commit؟", options: ["AES", "MD5", "SHA-1", "RSA"], answer: "SHA-1", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة التي تُستخدم لكتابة استعلامات GraphQL؟", options: ["SQL", "JavaScript", "ليست لغة محددة، GraphQL لغة استعلام نفسها", "Python"], answer: "ليست لغة محددة، GraphQL لغة استعلام نفسها", difficulty: "medium"},
+            {question: "ما هو الـ Protocol الذي ينقل ملفات من خادم إلى عميل؟", options: ["SSH", "HTTP", "FTP", "SMTP"], answer: "FTP", difficulty: "easy"},
+            {question: "في CSS، ما الذي يفعله `position: absolute;`؟", options: ["يصلح العنصر في مكانه", "يضع العنصر بالنسبة لصفحة الويب", "يحاذي العنصر إلى اليمين", "يضع العنصر بالنسبة إلى أقرب عنصر أب له `position` غير `static`"], answer: "يضع العنصر بالنسبة إلى أقرب عنصر أب له `position` غير `static`", difficulty: "medium"},
+            {question: "ما هي لغة البرمجة التي تُستخدم في تطوير إطار العمل Spring؟", options: ["Groovy", "Java", "جميع ما سبق", "Kotlin"], answer: "جميع ما سبق", difficulty: "hard"},
+            {question: "ما هي نتيجة `typeof function() {}` في JavaScript؟", options: ["'lambda'", "'function'", "'object'", "'undefined'"], answer: "'function'", difficulty: "medium"},
+            {question: "ما هو الـ Design Pattern الذي يفصل بين إنشاء الكائن واستخدامه؟", options: ["Decorator", "Factory Method", "Singleton", "Observer"], answer: "Factory Method", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة التي طورتها شركة JetBrains لتحل محل Java على منصة JVM؟", options: ["Scala", "Groovy", "Clojure", "Kotlin"], answer: "Kotlin", difficulty: "medium"},
+            {question: "ما هي نتيجة `2 ** 3 ** 2` في Python؟", options: ["512", "64", "72", "خطأ (Error)"], answer: "512", difficulty: "hard"}
+        ],
+        [
+            {question: "ما هي الخاصية التي تجعل Node.js مناسبًا للتطبيقات ذات الحمل العالي؟", options: ["متعدد الخيوط (Multithreaded)", "نوعي (Typed)", "غير متزامن (Asynchronous)", "مترجم (Compiled)"], answer: "غير متزامن (Asynchronous)", difficulty: "medium"},
+            {question: "ما هو الـ Framework الذي يستخدمه Ruby on Rails؟", options: ["PHP", "Ruby", "Python", "JavaScript"], answer: "Ruby", difficulty: "easy"},
+            {question: "ما هي لغة الاستعلام المستخدمة في Redis؟", options: ["GraphQL", "SQL", "لا يوجد لغة استعلام، تستخدم أوامر بسيطة", "NoSQL"], answer: "لا يوجد لغة استعلام، تستخدم أوامر بسيطة", difficulty: "medium"},
+            {question: "ما هو الـ Algorithm الذي تستخدمه خوارزمية Dijkstra لإيجاد أقصر مسار؟", options: ["Dynamic Programming", "Greedy Algorithm", "Backtracking", "Divide and Conquer"], answer: "Greedy Algorithm", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة المستخدمة في تطوير kernel لنظام Linux؟", options: ["Python", "C", "C++", "Assembly"], answer: "C", difficulty: "medium"},
+            {question: "ما هو الـ Protocol الذي يستخدمه SSH لنقل البيانات بشكل آمن؟", options: ["HTTP", "UDP", "TCP", "ICMP"], answer: "TCP", difficulty: "medium"},
+            {question: "ما هي نتيجة `'b' + 'a' + + 'a' + 'a'` في JavaScript؟", options: ["'baundefineda'", "'baNaNa'", "'baaa'", "'banana'"], answer: "'baNaNa'", difficulty: "hard"},
+            {question: "ما هي لغة البرمجة المستخدمة في TensorFlow لبناء نماذج التعلم الآلي؟", options: ["C++", "Python", "JavaScript", "Java"], answer: "Python", difficulty: "easy"},
+            {question: "ما هو الـ Design Pattern الذي يسمح لكائنات غير متوافقة بالعمل معًا؟", options: ["Proxy", "Facade", "Adapter", "Decorator"], answer: "Adapter", difficulty: "medium"},
+            {question: "ما هي نتيجة `[1, 2, 3].map(parseInt)` في JavaScript؟", options: ["[1, 2, NaN]", "[1, NaN, NaN]", "[1, 2, 3]", "خطأ (Error)"], answer: "[1, NaN, NaN]", difficulty: "hard"}
+        ]
+    ].flat()
+},
     technology: {
         name: 'التكنولوجيا',
         icon: 'fa-microchip',
@@ -3852,9 +3853,13 @@ const questionsDB = {
         function updateQuestionsCount() {
             // Set initial count based on mode
             if (gameState.mode === 'dual') {
-                gameState.selectedQuestionsCount = Math.max(gameState.minQuestionsDual, gameState.selectedQuestionsCount);
+                const min = gameState.minQuestionsDual;
+                const max = gameState.maxQuestionsDual;
+                gameState.selectedQuestionsCount = Math.max(min, Math.min(gameState.selectedQuestionsCount, max));
             } else {
-                gameState.selectedQuestionsCount = Math.max(gameState.minQuestionsSingle, gameState.selectedQuestionsCount);
+                const min = gameState.minQuestionsSingle;
+                const max = gameState.maxQuestionsSingle;
+                gameState.selectedQuestionsCount = Math.max(min, Math.min(gameState.selectedQuestionsCount, max));
             }
             
             // Update UI
@@ -3868,15 +3873,17 @@ const questionsDB = {
                 
                 // Update hint based on mode
                 if (gameState.mode === 'dual') {
-                    hintElement.textContent = `أقل عدد أسئلة: ${gameState.minQuestionsDual}`;
+                    hintElement.textContent = `من ${gameState.minQuestionsDual} إلى ${gameState.maxQuestionsDual} سؤال`;
                 } else {
-                    hintElement.textContent = `أقل عدد أسئلة: ${gameState.minQuestionsSingle}`;
+                    hintElement.textContent = `من ${gameState.minQuestionsSingle} إلى ${gameState.maxQuestionsSingle} سؤال`;
                 }
                 
                 // Update button states
                 const minCount = gameState.mode === 'dual' ? gameState.minQuestionsDual : gameState.minQuestionsSingle;
+                const maxCount = gameState.mode === 'dual' ? gameState.maxQuestionsDual : gameState.maxQuestionsSingle;
+                
                 decreaseBtn.disabled = gameState.selectedQuestionsCount <= minCount;
-                increaseBtn.disabled = gameState.selectedQuestionsCount >= gameState.maxQuestions;
+                increaseBtn.disabled = gameState.selectedQuestionsCount >= maxCount;
             }
         }
 
@@ -3889,7 +3896,8 @@ const questionsDB = {
         }
 
         function increaseQuestionCount() {
-            if (gameState.selectedQuestionsCount < gameState.maxQuestions) {
+            const maxCount = gameState.mode === 'dual' ? gameState.maxQuestionsDual : gameState.maxQuestionsSingle;
+            if (gameState.selectedQuestionsCount < maxCount) {
                 gameState.selectedQuestionsCount++;
                 updateQuestionsCount();
             }
@@ -3903,8 +3911,15 @@ const questionsDB = {
             
             // Validate questions count
             const minCount = gameState.mode === 'dual' ? gameState.minQuestionsDual : gameState.minQuestionsSingle;
+            const maxCount = gameState.mode === 'dual' ? gameState.maxQuestionsDual : gameState.maxQuestionsSingle;
+            
             if (gameState.selectedQuestionsCount < minCount) {
                 alert(`الحد الأدنى لعدد الأسئلة في اللعب ${gameState.mode === 'dual' ? 'الثنائي' : 'الفردي'} هو ${minCount}`);
+                return;
+            }
+            
+            if (gameState.selectedQuestionsCount > maxCount) {
+                alert(`الحد الأقصى لعدد الأسئلة في اللعب ${gameState.mode === 'dual' ? 'الثنائي' : 'الفردي'} هو ${maxCount}`);
                 return;
             }
             
